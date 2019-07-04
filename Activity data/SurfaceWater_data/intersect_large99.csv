@@ -1,0 +1,1891 @@
+CAA_ID,agua_leg,surface_id,GW_ID,area
+30,Zonas humidas interiores,331,21,95.195
+30,Zonas humidas interiores,331,27,11.978
+30,Aguas interiores,4375,21,14.862
+30,Aguas interiores,4375,27,4.607
+134,Zonas humidas litorais,739,21,30.546
+135,Aguas de transicao,98,21,31.4
+135,Zonas humidas litorais,739,21,77.075
+136,Zonas humidas litorais,739,21,0.723
+138,Zonas humidas litorais,739,21,37.963
+145,Zonas humidas interiores,331,21,26.979
+145,Zonas humidas interiores,331,27,0.506
+152,Aguas interiores,4552,3,20.571
+153,Aguas interiores,4552,3,35.742
+154,Aguas interiores,4552,3,70.054
+155,Aguas interiores,4552,3,24.013
+157,Aguas interiores,4552,3,10.125
+178,Zonas humidas litorais,768,21,0.278
+178,Zonas humidas litorais,768,27,72.276
+179,Zonas humidas litorais,768,27,79.781
+184,Aguas de transicao,98,22,33.003
+184,Aguas de transicao,98,27,264.371
+184,Zonas humidas litorais,754,21,2.227
+184,Zonas humidas litorais,754,27,25.973
+184,Zonas humidas litorais,760,21,37.516
+184,Zonas humidas litorais,760,27,255.252
+241,Aguas de transicao,98,21,17.404
+241,Aguas de transicao,98,27,17.404
+242,Aguas de transicao,98,21,3.434
+242,Aguas de transicao,98,27,3.434
+243,Aguas de transicao,76,21,49.234
+243,Aguas de transicao,76,27,30.822
+243,Zonas humidas litorais,731,21,19.161
+243,Zonas humidas litorais,731,27,8.615
+244,Aguas de transicao,98,21,143.074
+244,Aguas de transicao,98,27,143.074
+244,Zonas humidas litorais,724,21,71.218
+244,Zonas humidas litorais,724,27,71.218
+245,Aguas de transicao,76,21,82.846
+245,Zonas humidas litorais,718,21,51.343
+246,Aguas de transicao,76,21,79.072
+246,Aguas de transicao,76,27,79.072
+246,Aguas de transicao,98,21,6.606
+246,Aguas de transicao,98,27,6.606
+246,Zonas humidas litorais,731,21,63.411
+246,Zonas humidas litorais,731,27,63.411
+262,Aguas de transicao,98,21,10.104
+262,Aguas de transicao,98,27,10.104
+263,Aguas de transicao,98,21,41.941
+263,Aguas de transicao,98,27,41.941
+263,Zonas humidas litorais,746,21,12.163
+263,Zonas humidas litorais,746,27,12.163
+314,Zonas humidas litorais,770,27,9.321
+331,Zonas humidas litorais,768,27,24.659
+332,Aguas de transicao,98,21,37.957
+332,Aguas de transicao,98,27,37.957
+332,Zonas humidas litorais,768,21,42.635
+332,Zonas humidas litorais,768,27,42.635
+333,Zonas humidas litorais,768,27,39.589
+371,Aguas de transicao,98,21,58.642
+371,Aguas de transicao,98,27,58.642
+371,Zonas humidas litorais,724,21,35.901
+371,Zonas humidas litorais,724,27,35.901
+372,Aguas de transicao,76,21,21.744
+372,Zonas humidas litorais,713,21,31.562
+372,Zonas humidas litorais,718,21,10.422
+373,Aguas de transicao,98,21,114.738
+373,Aguas de transicao,98,27,114.738
+374,Aguas de transicao,76,21,21.758
+374,Zonas humidas litorais,713,21,24.846
+375,Zonas humidas litorais,713,21,23.722
+385,Aguas de transicao,76,21,43.54
+385,Zonas humidas litorais,713,21,144.989
+385,Zonas humidas litorais,718,21,90.29
+385,Zonas humidas litorais,718,27,19.724
+447,Aguas interiores,997,42,1.005
+463,Aguas interiores,1718,40,32.544
+470,Aguas interiores,1724,42,3.056
+471,Aguas interiores,1724,42,17.699
+481,Aguas interiores,1073,42,3.225
+482,Aguas interiores,1073,42,45.184
+483,Aguas interiores,1073,42,29.754
+485,Aguas interiores,1073,42,21.399
+486,Aguas interiores,1724,42,59.711
+487,Aguas interiores,1724,42,54.253
+488,Aguas interiores,1724,42,26.984
+489,Aguas interiores,1724,42,19.406
+490,Aguas interiores,1073,42,23.625
+492,Aguas interiores,1724,42,28.916
+493,Aguas de transicao,8,42,1.047
+493,Aguas interiores,1724,42,19.65
+495,Aguas de transicao,8,42,25.956
+495,Aguas interiores,999,42,16.849
+498,Aguas interiores,999,42,0.207
+499,Aguas de transicao,8,42,13.533
+499,Aguas interiores,999,42,15.215
+504,Aguas interiores,999,42,11.986
+509,Aguas interiores,1724,42,39.108
+511,Aguas interiores,1724,42,29.476
+518,Aguas interiores,998,42,1127.272
+518,Aguas interiores,999,42,554.962
+518,Aguas interiores,1023,42,926.843
+518,Aguas interiores,1302,42,257.776
+518,Aguas interiores,1724,42,2458.91
+519,Aguas interiores,1724,40,29.933
+521,Aguas interiores,1718,40,11.07
+522,Aguas interiores,1718,40,7.544
+524,Aguas interiores,1596,40,63.715
+525,Aguas interiores,1641,40,4.7
+526,Aguas interiores,1596,40,29.187
+544,Aguas de transicao,11,93,12.241
+546,Aguas de transicao,11,93,17.41
+548,Aguas de transicao,11,93,11.605
+552,Aguas de transicao,11,93,25.395
+558,Aguas interiores,1029,93,14.484
+559,Aguas de transicao,11,93,30.755
+559,Aguas interiores,1029,93,26.485
+564,Aguas interiores,1029,93,3.436
+577,Aguas interiores,1006,93,36.513
+579,Aguas interiores,1006,93,33.962
+584,Aguas interiores,1006,93,0.89
+590,Aguas interiores,1006,93,30.002
+606,Aguas de transicao,11,41,3.087
+606,Aguas de transicao,11,93,6.429
+614,Aguas de transicao,11,93,14.985
+614,Aguas interiores,1029,93,2.988
+621,Aguas interiores,1006,93,75.851
+636,Aguas interiores,1494,12,2.039
+639,Aguas interiores,1006,93,11.534
+640,Aguas interiores,1006,93,61.932
+641,Aguas interiores,1006,93,29.534
+642,Aguas interiores,1006,93,4.476
+646,Aguas interiores,1006,93,77.851
+661,Aguas interiores,1006,93,25.97
+666,Aguas interiores,1006,93,10.342
+666,Aguas interiores,1119,41,2140.02
+666,Aguas interiores,1494,12,162.521
+666,Aguas interiores,1494,13,456.419
+666,Aguas interiores,1494,41,360.455
+668,Aguas interiores,1724,42,34.969
+682,Aguas interiores,4679,54,49.826
+690,Aguas interiores,4656,54,11.252
+692,Aguas de transicao,103,54,29.015
+704,Aguas interiores,4656,54,25.959
+704,Aguas interiores,4679,54,1.796
+716,Aguas interiores,4656,54,10.726
+716,Aguas interiores,4679,54,49.737
+758,Aguas interiores,4593,3,4.426
+758,Aguas interiores,4626,3,1.576
+847,Aguas interiores,4679,54,41.963
+854,Aguas interiores,4679,54,2.759
+856,Aguas interiores,4679,54,0.432
+858,Aguas interiores,4679,54,25.826
+861,Aguas interiores,4679,54,62.689
+862,Aguas interiores,4679,54,61.43
+866,Aguas interiores,4679,54,56.291
+867,Aguas interiores,4679,54,6.344
+869,Aguas interiores,4679,54,10.803
+871,Aguas interiores,4679,54,34.153
+872,Aguas interiores,4679,54,45.648
+877,Aguas interiores,4663,53,32.427
+878,Aguas interiores,4663,53,25.116
+880,Aguas interiores,4679,54,2.738
+977,Aguas interiores,4608,3,4.583
+982,Aguas interiores,4587,3,30.817
+989,Aguas interiores,4650,3,34.101
+1028,Aguas interiores,4630,3,25.366
+1029,Aguas interiores,4630,3,25.009
+1030,Aguas interiores,4630,3,98.815
+1037,Aguas interiores,4630,3,53.877
+1043,Aguas interiores,4650,3,23.862
+1044,Aguas interiores,4650,3,16.689
+1045,Aguas interiores,4650,3,47.614
+1046,Aguas interiores,4650,3,8.614
+1048,Aguas interiores,4650,3,14.064
+1053,Aguas interiores,4585,3,25.439
+1054,Aguas interiores,4650,3,26.846
+1080,Aguas interiores,4650,3,92.972
+1089,Aguas interiores,4650,3,89.756
+1102,Aguas interiores,4701,3,5.875
+1121,Aguas interiores,4702,3,3.773
+1163,Aguas interiores,4078,85,28.817
+1164,Aguas interiores,4078,85,23.671
+1166,Aguas interiores,4078,85,43.409
+1181,Aguas interiores,4078,85,1.206
+1196,Aguas interiores,4009,85,51.402
+1198,Aguas interiores,4078,85,50.358
+1204,Aguas interiores,4078,85,87.802
+1243,Aguas interiores,4198,85,54.733
+1261,Aguas interiores,4198,85,27.059
+1282,Aguas interiores,4112,85,8.023
+1290,Aguas interiores,4112,85,58.448
+1305,Aguas interiores,4009,85,23.929
+1308,Aguas interiores,4112,85,2.813
+1311,Aguas interiores,4112,85,228.986
+1312,Aguas interiores,4112,85,47.748
+1314,Aguas interiores,4198,85,42.534
+1317,Aguas interiores,4198,85,39.934
+1322,Aguas interiores,4198,85,16.773
+1328,Aguas interiores,4198,85,3.685
+1330,Aguas interiores,4198,85,1.748
+1335,Aguas interiores,4198,85,2.592
+1368,Aguas interiores,4253,85,21.86
+1436,Aguas interiores,4198,85,0.354
+1456,Aguas interiores,3999,85,46.833
+1468,Aguas interiores,3994,85,5.502
+1472,Aguas interiores,3994,85,15.054
+1474,Aguas interiores,3999,85,68.269
+1476,Aguas interiores,3994,85,25.551
+1477,Aguas interiores,3999,85,25.488
+1487,Aguas interiores,3994,85,25.024
+1488,Aguas interiores,3999,85,15.483
+1497,Aguas interiores,3994,85,25.361
+1499,Aguas interiores,3994,85,31.798
+1501,Aguas interiores,4049,85,14.145
+1501,Aguas interiores,4198,85,1.667
+1507,Aguas interiores,3994,85,9.89
+1531,Aguas interiores,3994,85,8.486
+1534,Aguas interiores,3994,85,25.016
+1549,Aguas interiores,3932,85,18.189
+1551,Aguas interiores,3932,85,61.558
+1552,Aguas interiores,3932,85,54.274
+1554,Aguas interiores,3932,85,33.164
+1555,Aguas interiores,3932,85,25.144
+1558,Aguas interiores,3932,85,36.042
+1560,Aguas interiores,3932,85,0.579
+1561,Aguas interiores,3932,85,45.479
+1562,Aguas interiores,4078,85,5.023
+1577,Aguas interiores,4260,7,9.424
+1580,Aguas interiores,4260,7,26.345
+1581,Aguas interiores,4260,7,42.736
+1583,Aguas interiores,4260,7,50.176
+1584,Aguas interiores,4260,7,38.741
+1589,Aguas interiores,4260,7,48.09
+1594,Aguas interiores,4260,7,13.877
+1595,Aguas interiores,4260,7,0.126
+1596,Aguas interiores,4260,7,0.05
+1598,Aguas interiores,4260,7,4.474
+1660,Aguas interiores,4264,7,89.321
+1662,Aguas interiores,4264,38,15.493
+1663,Aguas interiores,4264,7,35.985
+1665,Aguas interiores,4264,23,25.245
+1666,Aguas interiores,4264,23,12.47
+1666,Aguas interiores,4264,38,11.47
+1666,Aguas interiores,4264,91,5.79
+1670,Aguas interiores,4264,7,26.837
+1685,Aguas interiores,4264,23,60.667
+1685,Aguas interiores,4264,91,59.251
+1717,Aguas de transicao,68,23,9.191
+1717,Aguas de transicao,68,26,31.533
+1717,Zonas humidas litorais,704,23,2.402
+1717,Zonas humidas litorais,704,26,9.133
+1718,Zonas humidas litorais,702,20,22.897
+1718,Zonas humidas litorais,702,23,5.62
+1718,Aguas interiores,4170,20,2.243
+1718,Aguas interiores,4170,23,1.693
+1819,Aguas interiores,4222,23,44.037
+1829,Aguas interiores,4323,7,0.031
+1831,Aguas interiores,4323,7,0.1
+1838,Aguas interiores,4261,7,0.355
+1868,Aguas interiores,4162,85,28.935
+1869,Aguas interiores,4198,85,12.907
+1877,Aguas interiores,4162,85,11.607
+1879,Aguas interiores,4162,85,3.514
+1895,Aguas interiores,4198,85,3.533
+1896,Aguas interiores,4198,85,3.395
+1897,Aguas interiores,4198,85,3.626
+1898,Aguas interiores,4198,85,20.089
+1906,Aguas interiores,4323,7,79.875
+1909,Aguas interiores,4323,7,29.646
+1912,Aguas interiores,4323,7,0.045
+1916,Aguas interiores,4264,7,3.113
+1916,Aguas interiores,4323,7,1.604
+1918,Aguas interiores,4264,7,65.227
+1918,Aguas interiores,4323,7,43.554
+1921,Aguas interiores,4264,7,20.54
+1924,Aguas interiores,4264,7,27.91
+1926,Aguas interiores,4264,7,14.922
+1928,Aguas interiores,4264,7,2.422
+1930,Aguas interiores,4264,7,29.037
+1943,Aguas interiores,4264,7,25.728
+1945,Aguas interiores,4264,7,11.6
+2014,Aguas interiores,4323,7,79.989
+2051,Aguas interiores,2367,40,79.472
+2052,Aguas interiores,2367,40,51.732
+2063,Aguas interiores,2224,40,171.106
+2076,Aguas interiores,3039,43,41.089
+2127,Aguas interiores,999,42,0.5
+2128,Aguas de transicao,8,42,33.973
+2128,Aguas interiores,961,42,33.973
+2131,Aguas interiores,999,42,5.097
+2133,Aguas interiores,961,42,32.507
+2138,Aguas interiores,935,42,1.048
+2139,Aguas de transicao,8,42,3.984
+2140,Aguas de transicao,8,42,26.835
+2143,Aguas interiores,935,42,11.777
+2144,Aguas interiores,935,42,26.759
+2155,Aguas de transicao,8,42,30.921
+2155,Aguas interiores,961,42,87.955
+2157,Aguas de transicao,8,42,76.968
+2162,Aguas interiores,935,42,8.853
+2170,Zonas humidas litorais,472,14,30.543
+2170,Aguas interiores,919,14,26.014
+2185,Aguas interiores,920,42,16.259
+2186,Aguas interiores,920,42,43.191
+2187,Aguas de transicao,8,42,16.672
+2187,Zonas humidas litorais,470,42,4.986
+2188,Aguas de transicao,8,50,124.559
+2188,Zonas humidas litorais,464,50,48.279
+2188,Zonas humidas litorais,468,50,61.198
+2188,Zonas humidas litorais,469,50,63.621
+2188,Zonas humidas litorais,470,50,43.665
+2190,Aguas de transicao,8,42,120.108
+2195,Aguas de transicao,4,60,2.405
+2195,Aguas de transicao,4,82,6.948
+2196,Aguas de transicao,4,82,0.685
+2224,Aguas interiores,880,65,0.845
+2260,Aguas interiores,891,14,19.433
+2262,Aguas interiores,891,14,22.531
+2276,Zonas humidas litorais,444,58,19.587
+2276,Aguas marinhas e costeiras,4755,58,33.917
+2276,Aguas marinhas e costeiras,4755,77,5.501
+2278,Aguas marinhas e costeiras,4755,77,1.262
+2280,Aguas de transicao,4,60,42.706
+2283,Aguas de transicao,4,60,22.254
+2283,Zonas humidas litorais,454,60,51.443
+2311,Aguas interiores,903,16,31.739
+2320,Aguas interiores,935,42,3.214
+2321,Aguas interiores,935,42,5.645
+2363,Aguas de transicao,8,49,129.261
+2363,Aguas de transicao,8,50,21.262
+2363,Zonas humidas litorais,459,49,61.849
+2363,Zonas humidas litorais,459,50,1.52
+2363,Zonas humidas litorais,464,49,66.602
+2363,Zonas humidas litorais,464,50,11.777
+2363,Zonas humidas litorais,468,49,13.72
+2363,Zonas humidas litorais,468,50,9.689
+2363,Zonas humidas litorais,469,49,60.229
+2363,Zonas humidas litorais,469,50,5.661
+2453,Aguas interiores,4536,3,9.199
+2454,Aguas interiores,4536,3,5.776
+2458,Aguas interiores,4536,3,3.286
+2501,Aguas interiores,4353,7,23.855
+2544,Aguas interiores,4536,3,1.392
+2547,Aguas interiores,4536,3,48.732
+2648,Aguas interiores,4261,7,54.672
+2691,Aguas interiores,4585,3,86.783
+2692,Aguas interiores,4585,3,7.83
+2692,Aguas interiores,4650,3,48.092
+2693,Aguas interiores,4585,3,19.892
+2694,Aguas interiores,4585,3,59.225
+2695,Aguas interiores,4650,3,33.3
+2700,Aguas interiores,4650,3,35.392
+2703,Aguas interiores,4536,3,22.224
+2706,Aguas interiores,4585,3,115.509
+2708,Aguas interiores,4650,3,95.865
+2709,Aguas interiores,4650,3,74.67
+2815,Aguas interiores,3994,85,11.681
+2816,Aguas interiores,3994,85,3.48
+2817,Aguas interiores,3994,85,26.12
+2867,Aguas de transicao,67,15,27.56
+2868,Aguas de transicao,67,15,2.331
+2887,Aguas marinhas e costeiras,4784,34,12.383
+2889,Aguas marinhas e costeiras,4784,34,5.384
+2897,Zonas humidas interiores,254,34,150.878
+2897,Aguas marinhas e costeiras,4784,8,18.222
+2897,Aguas marinhas e costeiras,4784,34,132.806
+2902,Aguas interiores,4198,85,1.955
+2906,Aguas interiores,4198,85,13.417
+2911,Aguas interiores,4198,85,34.229
+2913,Aguas interiores,4049,85,23.128
+3016,Aguas interiores,3342,44,53.176
+3016,Aguas interiores,3342,45,16.04
+3016,Aguas interiores,3342,46,69.216
+3056,Aguas de transicao,66,33,15.295
+3056,Zonas humidas litorais,670,33,15.24
+3067,Zonas humidas interiores,164,34,46.569
+3078,Aguas de transicao,66,33,16.02
+3133,Aguas de transicao,66,33,5.928
+3133,Aguas de transicao,66,46,21.327
+3140,Aguas de transicao,66,46,273.844
+3140,Zonas humidas litorais,676,46,6.164
+3141,Aguas de transicao,66,33,0.016
+3141,Aguas de transicao,66,46,3.473
+3144,Aguas de transicao,66,45,333.185
+3144,Aguas de transicao,66,46,333.477
+3144,Zonas humidas litorais,675,45,48.041
+3144,Zonas humidas litorais,675,46,48.041
+3144,Zonas humidas litorais,676,45,451.421
+3144,Zonas humidas litorais,676,46,451.713
+3178,Aguas interiores,3875,85,27.784
+3178,Aguas interiores,3895,85,14.997
+3181,Aguas interiores,3875,85,39.253
+3183,Aguas interiores,3875,85,28.303
+3204,Aguas interiores,3907,85,1.811
+3205,Aguas interiores,3907,85,66.593
+3207,Aguas interiores,3907,85,14.802
+3244,Aguas interiores,3932,85,15.691
+3245,Aguas interiores,3932,85,97.038
+3248,Aguas interiores,3932,85,84.085
+3294,Aguas interiores,3475,45,74.49
+3347,Aguas interiores,4593,3,29.127
+3365,Aguas interiores,4564,3,19.25
+3388,Aguas de transicao,99,3,43.572
+3390,Aguas de transicao,99,3,31.998
+3393,Aguas de transicao,99,3,36.087
+3395,Aguas de transicao,99,3,59.857
+3397,Aguas interiores,4552,3,29.451
+3399,Aguas de transicao,99,3,41.816
+3400,Aguas interiores,4552,3,26.257
+3401,Aguas interiores,4552,3,35.899
+3402,Aguas interiores,4552,3,14.059
+3403,Aguas interiores,4552,3,90.68
+3404,Aguas interiores,4552,3,64.608
+3405,Aguas interiores,4552,3,15.243
+3406,Aguas interiores,4552,3,12.978
+3407,Aguas interiores,4552,3,27.85
+3437,Aguas interiores,4593,3,66.317
+3439,Aguas interiores,4593,3,10.006
+3452,Aguas de transicao,101,2,16.519
+3495,Aguas interiores,4552,3,35.454
+3498,Aguas interiores,4593,3,130.309
+3501,Aguas interiores,4552,3,200.838
+3501,Aguas interiores,4593,3,0.949
+3548,Aguas de transicao,99,3,33.763
+3550,Aguas de transicao,99,3,7.15
+3550,Aguas de transicao,99,4,28.952
+3551,Aguas de transicao,99,3,1.54
+3568,Aguas de transicao,99,3,4.728
+3568,Aguas interiores,4552,3,30.247
+3570,Aguas de transicao,99,3,8.715
+3571,Aguas de transicao,99,3,23.33
+3600,Aguas de transicao,99,3,0.002
+3600,Aguas interiores,4552,3,39.384
+3608,Aguas de transicao,102,53,8.661
+3617,Aguas interiores,3994,85,21.042
+3618,Aguas interiores,3994,85,55.285
+3619,Aguas interiores,3994,85,26.856
+3620,Aguas interiores,3994,85,37.944
+3621,Aguas interiores,3994,85,56.538
+3622,Aguas interiores,3994,85,112.915
+3626,Aguas interiores,3994,85,73.536
+3628,Aguas interiores,3994,85,108.322
+3629,Aguas interiores,3994,85,32.032
+3636,Aguas interiores,3873,85,12.918
+3637,Aguas interiores,3873,85,50.899
+3638,Aguas interiores,3873,43,49.517
+3639,Aguas interiores,3873,43,22.589
+3640,Aguas interiores,3873,43,9.729
+3675,Aguas interiores,3873,43,51.076
+3675,Aguas interiores,3873,46,213.93
+3700,Aguas interiores,3063,45,7.231
+3700,Aguas interiores,3063,46,7.231
+3712,Aguas interiores,3873,43,24.529
+3743,Aguas interiores,3873,85,0.602
+3743,Aguas interiores,3994,85,7.203
+3768,Aguas interiores,3475,45,3.958
+3771,Aguas interiores,2951,45,16.346
+3795,Aguas interiores,2951,45,17.216
+3802,Aguas interiores,3994,85,34.766
+3803,Aguas interiores,3994,85,29.344
+3832,Aguas interiores,4078,85,0.23
+3869,Aguas interiores,3873,85,301.14
+3869,Aguas interiores,3907,85,56.572
+3888,Aguas interiores,3342,44,16.294
+3888,Aguas interiores,3342,45,11.799
+3888,Aguas interiores,3342,46,28.093
+3889,Aguas interiores,3115,45,37.794
+3889,Aguas interiores,3115,46,37.794
+3930,Aguas interiores,3994,85,56.082
+3933,Aguas interiores,3994,85,14.989
+3934,Aguas interiores,3994,85,112.872
+3942,Aguas interiores,3994,85,155.973
+3944,Aguas interiores,3994,85,15.608
+3953,Aguas interiores,3994,85,14.396
+3954,Aguas interiores,3994,85,8.483
+3957,Aguas interiores,3873,43,26.286
+3959,Aguas interiores,3873,43,23.279
+3984,Aguas interiores,2147,45,28.649
+3986,Aguas de transicao,34,45,44.842
+3986,Zonas humidas litorais,628,45,39.728
+3995,Aguas de transicao,34,45,109.85
+3995,Zonas humidas litorais,593,45,92.66
+3996,Aguas interiores,2065,39,35.282
+4000,Aguas de transicao,34,45,0.068
+4043,Aguas de transicao,66,45,84.133
+4043,Zonas humidas litorais,634,45,106.877
+4044,Aguas de transicao,66,45,30.004
+4044,Zonas humidas litorais,629,45,24.606
+4044,Zonas humidas litorais,634,45,24.357
+4046,Aguas de transicao,66,45,0.244
+4046,Zonas humidas litorais,629,45,40.442
+4090,Aguas interiores,1862,45,24.441
+4130,Aguas de transicao,34,45,22.099
+4130,Zonas humidas litorais,628,45,25.444
+4164,Aguas interiores,1341,13,34.064
+4165,Aguas interiores,1341,13,34.568
+4166,Aguas interiores,1341,13,29.369
+4167,Aguas interiores,1306,41,22.85
+4181,Aguas de transicao,66,45,108.859
+4181,Zonas humidas litorais,638,45,19.417
+4183,Aguas de transicao,66,45,58.032
+4196,Aguas marinhas e costeiras,4780,45,18.367
+4200,Aguas marinhas e costeiras,4780,45,4.827
+4214,Aguas de transicao,34,45,24.955
+4214,Zonas humidas litorais,628,45,127.363
+4216,Aguas de transicao,34,11,22.238
+4217,Aguas de transicao,34,11,27.833
+4219,Aguas de transicao,34,45,8.71
+4219,Zonas humidas litorais,628,45,9.085
+4223,Aguas de transicao,34,45,72.057
+4223,Zonas humidas litorais,605,45,14.871
+4223,Zonas humidas litorais,628,45,161.258
+4237,Aguas interiores,1373,41,60.298
+4238,Aguas interiores,1373,41,34.813
+4239,Aguas interiores,1373,41,44.509
+4250,Aguas interiores,4731,5,34.883
+4262,Aguas interiores,4728,5,43.603
+4267,Aguas interiores,4731,5,41.873
+4268,Aguas interiores,4731,5,18.305
+4269,Aguas interiores,4731,5,30.373
+4270,Aguas interiores,4728,5,10.943
+4271,Aguas interiores,4731,5,20.581
+4272,Aguas interiores,4731,5,23.635
+4273,Aguas interiores,4728,5,0.766
+4274,Aguas interiores,4731,5,14.051
+4276,Aguas interiores,4728,5,44.802
+4278,Aguas interiores,4731,5,36.663
+4280,Aguas interiores,4728,5,49.092
+4281,Aguas interiores,4715,5,19.262
+4285,Aguas interiores,4731,5,57.685
+4286,Aguas interiores,4731,5,16.192
+4287,Aguas interiores,4728,5,143.23
+4292,Aguas interiores,4728,5,48.292
+4296,Aguas de transicao,114,1,8.349
+4296,Zonas humidas litorais,806,1,13.717
+4297,Aguas de transicao,114,1,14.103
+4297,Zonas humidas litorais,805,1,5.548
+4299,Aguas de transicao,114,1,13.095
+4306,Aguas de transicao,114,1,0.811
+4307,Aguas de transicao,114,1,10.209
+4317,Aguas interiores,4732,1,4.959
+4318,Aguas interiores,4732,1,14.718
+4342,Aguas interiores,4732,1,60.653
+4343,Aguas interiores,4732,1,61.563
+4349,Aguas interiores,4732,1,57.593
+4350,Aguas interiores,4732,1,16.25
+4351,Aguas interiores,4732,1,51.155
+4392,Aguas interiores,4728,5,54.492
+4393,Aguas interiores,4728,5,17.608
+4394,Aguas interiores,4728,5,33.875
+4395,Aguas interiores,4728,5,34.405
+4397,Aguas interiores,4728,5,55.579
+4401,Aguas interiores,4728,5,25.765
+4403,Aguas interiores,4728,5,9.214
+4426,Aguas de transicao,105,5,44.108
+4432,Aguas de transicao,105,5,28.38
+4433,Aguas de transicao,105,5,60.279
+4436,Aguas de transicao,105,5,12.876
+4468,Aguas de transicao,105,5,47.04
+4469,Aguas de transicao,105,5,25.752
+4469,Zonas humidas litorais,791,5,25.752
+4471,Zonas humidas litorais,791,5,0.059
+4486,Aguas de transicao,105,5,103.863
+4495,Aguas de transicao,114,1,5.284
+4496,Aguas de transicao,114,1,12.589
+4546,Aguas interiores,4674,3,1.719
+4548,Aguas interiores,4674,3,13.623
+4549,Aguas interiores,4674,3,29.186
+4597,Aguas interiores,4725,5,35.926
+4606,Aguas interiores,4711,54,28.41
+4607,Aguas interiores,4700,54,28.769
+4614,Aguas interiores,4700,54,80.759
+4621,Aguas interiores,4679,54,8.996
+4623,Aguas interiores,4679,54,14.597
+4624,Aguas interiores,4679,54,14.662
+4625,Aguas interiores,4679,54,19.685
+4626,Aguas interiores,4679,54,24.086
+4627,Aguas interiores,4679,54,42.829
+4628,Aguas interiores,4679,54,25.433
+4629,Aguas interiores,4679,54,62.304
+4638,Aguas interiores,4725,5,111.539
+4648,Aguas interiores,4700,3,47.355
+4648,Aguas interiores,4700,54,95.392
+4649,Aguas interiores,4700,54,87.234
+4652,Aguas interiores,4679,54,111.984
+4679,Aguas interiores,4647,3,15.484
+4682,Aguas interiores,4647,3,32.371
+4735,Aguas interiores,4674,3,23.149
+4872,Aguas interiores,4552,3,11.51
+4900,Aguas interiores,4409,7,57.616
+4901,Aguas interiores,4409,7,6.909
+4954,Aguas interiores,4323,7,13.664
+4969,Aguas interiores,4323,7,30.621
+4973,Aguas interiores,4323,7,42.2
+5066,Aguas interiores,4323,7,36.692
+5067,Aguas interiores,4323,7,21.858
+5070,Aguas interiores,4323,7,34.862
+5071,Aguas interiores,4323,7,33.209
+5073,Aguas interiores,4323,7,0.007
+5075,Aguas interiores,4323,7,17.061
+5077,Aguas interiores,4587,3,50.815
+5166,Aguas interiores,4531,3,88.621
+58,Zonas humidas interiores,327,21,63.263
+58,Zonas humidas interiores,327,27,11.196
+58,Zonas humidas interiores,331,21,3.204
+58,Zonas humidas interiores,331,27,2.743
+58,Aguas interiores,4375,21,102.888
+58,Aguas interiores,4375,27,23.158
+58,Zonas humidas interiores,327,27,3.71
+75,Aguas de transicao,98,21,55.626
+75,Aguas de transicao,98,27,83.137
+75,Zonas humidas litorais,754,21,20.797
+75,Zonas humidas litorais,754,27,32.242
+75,Aguas de transicao,98,21,1.146
+75,Aguas de transicao,98,27,1.146
+75,Zonas humidas litorais,747,21,0.036
+75,Zonas humidas litorais,747,27,0.036
+75,Zonas humidas litorais,754,21,1.146
+75,Zonas humidas litorais,754,27,1.146
+150,Aguas de transicao,98,21,145.71
+150,Aguas de transicao,98,27,145.71
+150,Zonas humidas litorais,739,21,22.148
+150,Zonas humidas litorais,739,27,22.148
+150,Zonas humidas litorais,747,21,66.498
+150,Zonas humidas litorais,747,27,66.498
+150,Zonas humidas litorais,754,21,39.91
+150,Zonas humidas litorais,754,27,39.91
+150,Zonas humidas interiores,331,21,41.394
+150,Zonas humidas interiores,331,27,0.218
+150,Aguas interiores,4375,21,89.032
+150,Aguas interiores,4375,22,19.466
+150,Aguas interiores,4375,27,41.744
+55,Aguas interiores,4375,21,17.916
+55,Aguas interiores,4375,22,0.077
+55,Aguas interiores,4375,27,90.774
+168,Aguas interiores,4552,3,0.049
+168,Aguas interiores,4552,3,0.276
+176,Zonas humidas litorais,770,4,24.545
+176,Zonas humidas litorais,770,27,11.97
+148,Aguas de transicao,76,21,2.497
+148,Zonas humidas litorais,731,21,90.112
+247,Aguas de transicao,76,21,0.671
+247,Zonas humidas litorais,731,21,123.989
+251,Aguas de transicao,76,21,117.805
+251,Aguas de transicao,76,27,112.434
+251,Zonas humidas litorais,718,21,96.611
+251,Zonas humidas litorais,718,27,90.501
+251,Zonas humidas litorais,731,21,7.7
+251,Zonas humidas litorais,731,27,7.7
+184,Aguas de transicao,98,21,9.48
+184,Aguas de transicao,98,27,10.104
+184,Zonas humidas litorais,768,21,110.918
+184,Zonas humidas litorais,768,27,115.485
+265,Aguas de transicao,98,21,568.85
+265,Aguas de transicao,98,27,568.85
+265,Zonas humidas litorais,753,21,1.963
+265,Zonas humidas litorais,753,27,1.963
+265,Zonas humidas litorais,754,21,38.745
+265,Zonas humidas litorais,754,27,38.745
+265,Zonas humidas litorais,755,21,38.871
+265,Zonas humidas litorais,755,27,38.871
+265,Zonas humidas litorais,760,21,140.098
+265,Zonas humidas litorais,760,27,140.098
+265,Zonas humidas litorais,761,21,271.701
+265,Zonas humidas litorais,761,27,271.701
+265,Zonas humidas litorais,763,21,53.31
+265,Zonas humidas litorais,763,27,53.31
+265,Zonas humidas litorais,768,21,384.36
+265,Zonas humidas litorais,768,27,384.36
+265,Zonas humidas litorais,760,21,2.3
+265,Zonas humidas litorais,760,27,2.3
+311,Zonas humidas interiores,327,21,25.254
+311,Zonas humidas interiores,327,22,0
+311,Zonas humidas interiores,327,27,91.49
+311,Aguas interiores,4375,21,13.615
+311,Aguas interiores,4375,22,0
+311,Aguas interiores,4375,27,6.672
+334,Zonas humidas litorais,770,4,10.339
+334,Zonas humidas litorais,770,27,2.759
+337,Aguas de transicao,98,21,32.959
+337,Aguas de transicao,98,27,32.959
+337,Zonas humidas litorais,765,21,44.369
+337,Zonas humidas litorais,765,27,44.369
+337,Zonas humidas litorais,768,21,14.708
+337,Zonas humidas litorais,768,27,14.708
+384,Aguas de transicao,98,21,303.981
+384,Aguas de transicao,98,27,303.981
+384,Zonas humidas litorais,724,21,73.4
+384,Zonas humidas litorais,724,27,73.4
+384,Aguas de transicao,98,21,16.084
+384,Aguas de transicao,98,27,16.084
+422,Aguas interiores,1313,12,0.353
+422,Aguas interiores,1313,41,260.975
+422,Aguas interiores,1366,12,33.931
+422,Aguas interiores,1366,13,69.657
+422,Aguas interiores,1442,41,703.784
+422,Aguas interiores,1470,12,26.498
+422,Aguas interiores,1470,13,493.442
+422,Aguas interiores,1442,41,9.924
+422,Aguas interiores,1442,41,0.055
+444,Aguas interiores,999,42,42.037
+450,Aguas interiores,997,42,197.166
+450,Aguas interiores,999,42,121.953
+450,Aguas interiores,999,42,1.039
+450,Aguas interiores,999,42,21.701
+450,Aguas interiores,999,42,223.206
+450,Aguas interiores,999,42,0.074
+450,Aguas interiores,999,42,0.007
+450,Aguas interiores,999,42,42.231
+450,Aguas interiores,999,42,169.54
+455,Aguas interiores,1768,39,1.396
+456,Aguas interiores,1693,39,291.506
+456,Aguas interiores,1768,39,1884.099
+456,Aguas interiores,1886,39,44.51
+456,Aguas interiores,1922,39,371.984
+464,Aguas interiores,1596,40,64.403
+466,Aguas interiores,1641,40,34.26
+466,Aguas interiores,1718,40,125.65
+467,Aguas interiores,1596,40,86.738
+467,Aguas interiores,1718,40,271.423
+467,Aguas interiores,1641,40,0.073
+472,Aguas interiores,1279,42,975.879
+472,Aguas interiores,1302,42,1095.821
+472,Aguas interiores,1345,42,407.081
+472,Aguas interiores,1442,41,2276.64
+472,Aguas interiores,1576,40,314.528
+472,Aguas interiores,1724,40,274.14
+472,Aguas interiores,1724,42,570.571
+472,Aguas interiores,1724,59,368.422
+472,Aguas interiores,1724,40,0.39
+472,Aguas interiores,1442,41,1.337
+472,Aguas interiores,1442,41,36.38
+472,Aguas interiores,1442,41,1.728
+472,Aguas interiores,1724,42,0.106
+472,Aguas interiores,1302,42,0.006
+472,Aguas interiores,1302,42,0.012
+472,Aguas interiores,1302,42,0.342
+475,Aguas interiores,1091,42,1947.299
+475,Aguas interiores,1279,42,133.059
+475,Aguas interiores,1302,42,144.582
+475,Aguas interiores,1302,42,2.679
+475,Aguas interiores,1119,41,66.888
+477,Aguas interiores,1894,39,151.493
+478,Aguas interiores,1768,39,29.494
+480,Aguas interiores,1519,41,230.667
+480,Aguas interiores,1519,59,40.824
+480,Aguas interiores,1544,41,439.263
+480,Aguas interiores,1693,39,70.252
+480,Aguas interiores,1768,12,217.143
+480,Aguas interiores,1768,39,1529.126
+480,Aguas interiores,1768,39,44.83
+506,Aguas interiores,999,42,7.936
+506,Aguas interiores,999,42,3.109
+507,Aguas interiores,999,42,37.621
+514,Aguas de transicao,8,42,6.681
+514,Aguas interiores,1066,42,303.944
+514,Aguas interiores,1073,42,524.391
+514,Aguas interiores,1724,42,96.247
+517,Aguas interiores,999,42,0.001
+517,Aguas interiores,999,42,0.003
+518,Aguas interiores,999,42,0.841
+518,Aguas interiores,999,42,49.431
+518,Aguas interiores,999,42,0.353
+518,Aguas interiores,999,42,0.204
+518,Aguas interiores,999,42,0.915
+518,Aguas interiores,1302,42,0.134
+523,Aguas interiores,1596,40,2.347
+523,Aguas interiores,1596,40,8.434
+528,Aguas interiores,1718,40,2.254
+528,Aguas interiores,1718,40,1.36
+529,Aguas interiores,1596,40,40.262
+529,Aguas interiores,1596,40,0.519
+529,Aguas interiores,1596,40,0.04
+529,Aguas interiores,1641,40,87.657
+529,Aguas interiores,1718,40,1526.529
+529,Aguas interiores,1724,40,863.799
+529,Aguas interiores,1724,55,62.959
+629,Aguas de transicao,11,93,216.246
+633,Aguas interiores,1494,13,97.495
+633,Aguas de transicao,11,93,89.335
+633,Aguas de transicao,11,93,77.472
+663,Aguas interiores,1006,93,9.089
+666,Aguas interiores,1119,41,0.024
+676,Aguas interiores,1377,40,41.105
+676,Aguas interiores,1377,42,152.216
+676,Aguas interiores,1485,40,943.837
+676,Aguas interiores,1724,40,1556.43
+676,Aguas interiores,1724,42,252.794
+676,Aguas interiores,1724,59,761.114
+677,Aguas interiores,1724,40,0
+677,Aguas interiores,1724,40,0.002
+681,Aguas interiores,1724,40,1441.943
+683,Aguas interiores,4679,54,123.356
+684,Aguas interiores,4679,54,552.596
+699,Aguas de transicao,103,54,224.717
+699,Aguas interiores,4656,54,117.664
+703,Aguas de transicao,103,54,182.58
+703,Aguas interiores,4656,54,2.999
+733,Aguas interiores,4626,3,0.125
+733,Aguas interiores,4626,3,1.956
+738,Aguas interiores,4647,3,131.82
+740,Aguas interiores,4647,3,1.434
+743,Aguas interiores,4626,3,9.162
+752,Aguas interiores,4626,3,33.322
+757,Aguas interiores,4626,3,86.376
+757,Aguas interiores,4626,3,6.513
+759,Aguas interiores,4593,3,6.228
+763,Aguas marinhas e costeiras,4795,5,0.006
+763,Aguas marinhas e costeiras,4795,52,196.192
+700,Aguas de transicao,103,52,2.099
+700,Aguas de transicao,103,54,61.407
+767,Aguas de transicao,103,52,75.508
+703,Aguas de transicao,103,52,56.091
+768,Aguas de transicao,103,52,139.322
+721,Aguas interiores,4656,54,149.166
+838,Aguas interiores,4679,54,55.03
+838,Aguas interiores,4679,54,0.044
+838,Aguas interiores,4679,54,0.227
+838,Aguas interiores,4679,54,0.091
+841,Aguas interiores,4679,54,23.959
+841,Aguas interiores,4679,54,0.032
+841,Aguas interiores,4679,54,0.223
+841,Aguas interiores,4679,54,116.815
+717,Aguas interiores,4679,54,315.551
+841,Aguas interiores,4679,54,0.001
+879,Aguas interiores,4679,54,0.558
+879,Aguas interiores,4679,54,0
+879,Aguas interiores,4679,54,1.304
+882,Aguas interiores,4679,54,1.568
+884,Aguas interiores,4679,54,0.364
+884,Aguas interiores,4679,54,0.007
+884,Aguas interiores,4679,54,76.681
+910,Aguas de transicao,102,53,255.648
+921,Aguas interiores,4656,54,64.956
+921,Aguas interiores,4679,54,128.403
+922,Aguas interiores,4656,54,214.226
+936,Aguas interiores,4585,3,22.8
+939,Aguas interiores,4585,3,0.287
+940,Aguas interiores,4585,3,93.701
+940,Aguas interiores,4701,3,393.741
+968,Aguas interiores,4701,3,1.858
+975,Aguas interiores,4701,3,4.21
+976,Aguas interiores,4652,3,79.43
+976,Aguas interiores,4701,3,99.567
+980,Aguas interiores,4587,3,2.209
+981,Aguas interiores,4587,3,0.827
+981,Aguas interiores,4587,3,0.804
+981,Aguas interiores,4587,3,0.001
+986,Aguas interiores,4585,3,458.408
+986,Aguas interiores,4587,3,353.913
+986,Aguas interiores,4608,3,304.069
+986,Aguas interiores,4608,3,1.764
+986,Aguas interiores,4587,3,1.174
+986,Aguas interiores,4608,3,1.153
+986,Aguas interiores,4587,3,0.225
+986,Aguas interiores,4587,3,0.284
+986,Aguas interiores,4585,3,42.879
+1000,Aguas interiores,4650,3,76.553
+1004,Aguas interiores,4650,3,99.592
+1015,Aguas interiores,4701,3,0.531
+1015,Aguas interiores,4701,3,0.171
+1019,Aguas interiores,4652,3,511.88
+1019,Aguas interiores,4701,3,312.046
+976,Aguas interiores,4701,3,39.19
+1019,Aguas interiores,4701,3,0.203
+1019,Aguas interiores,4701,3,0.007
+1019,Aguas interiores,4701,3,97.093
+1019,Aguas interiores,4701,3,1.171
+1019,Aguas interiores,4701,3,25.503
+1019,Aguas interiores,4701,3,6.82
+1022,Aguas interiores,4650,3,432.267
+1039,Aguas interiores,4630,3,713.478
+1039,Aguas interiores,4702,3,1.19
+1039,Aguas interiores,4608,3,38.176
+1039,Aguas interiores,4630,3,139.404
+1039,Aguas interiores,4608,3,0.053
+1039,Aguas interiores,4608,3,0.068
+1039,Aguas interiores,4608,3,0.242
+1039,Aguas interiores,4608,3,0.033
+1041,Aguas interiores,4701,3,61.89
+935,Aguas interiores,4585,3,39.596
+1050,Aguas interiores,4585,3,0.441
+937,Aguas interiores,4585,3,29.27
+1056,Aguas interiores,4585,3,4.261
+1064,Aguas interiores,4585,3,104.95
+1064,Aguas interiores,4650,3,351.105
+1064,Aguas interiores,4701,3,1335.714
+1064,Aguas interiores,4701,3,7.812
+1064,Aguas interiores,4701,3,0.018
+1064,Aguas interiores,4701,3,0.008
+1087,Aguas interiores,4585,3,417.048
+1088,Aguas interiores,4585,3,787.398
+1090,Aguas interiores,4585,3,185.431
+1090,Aguas interiores,4650,3,449.623
+1092,Aguas interiores,4650,3,32.736
+1095,Aguas interiores,4608,3,150.985
+1095,Aguas interiores,4630,3,106.487
+1039,Aguas interiores,4608,3,36.178
+1095,Aguas interiores,4630,3,140.482
+1095,Aguas interiores,4630,3,0.007
+1100,Aguas interiores,4701,3,56.765
+1106,Aguas interiores,4701,3,76.631
+1107,Aguas interiores,4701,3,9.56
+1107,Aguas interiores,4701,3,17.292
+1143,Aguas interiores,4702,3,72.928
+1185,Aguas interiores,4078,85,7.027
+1214,Aguas interiores,4009,85,2.222
+1214,Aguas interiores,4078,85,2.739
+1214,Aguas interiores,4116,85,869.495
+1214,Aguas interiores,4116,85,0.017
+1214,Aguas interiores,4009,85,1117.029
+1215,Aguas interiores,4078,85,743.28
+1237,Aguas interiores,4198,85,185.49
+1237,Aguas interiores,4229,85,781.849
+1237,Aguas interiores,4198,85,135.14
+1247,Aguas interiores,4198,85,25.519
+1250,Aguas interiores,4198,85,5.331
+1250,Aguas interiores,4198,85,1.445
+1254,Aguas interiores,4198,85,20.853
+1256,Aguas interiores,4198,85,34.611
+1263,Aguas interiores,4198,85,91.221
+1214,Aguas interiores,4116,85,17.143
+1264,Aguas interiores,4116,85,280.2
+1264,Aguas interiores,4229,85,382.878
+1264,Aguas interiores,4198,85,123.365
+1264,Aguas interiores,4198,85,0.559
+1264,Aguas interiores,4116,85,1.135
+1171,Aguas interiores,4009,85,62.152
+1294,Aguas interiores,4009,85,7.459
+1313,Aguas interiores,4009,85,8.929
+1313,Aguas interiores,4009,85,222.932
+1313,Aguas interiores,4112,85,94.318
+1401,Aguas interiores,4078,85,19.671
+1423,Aguas interiores,4078,85,10.951
+1430,Aguas interiores,3994,85,54.519
+1435,Aguas interiores,4078,85,8.073
+1435,Aguas interiores,4078,85,35.055
+1435,Aguas interiores,4078,85,1247.018
+1435,Aguas interiores,4078,85,0.648
+1435,Aguas interiores,4078,85,46.377
+1435,Aguas interiores,4078,85,23.799
+1435,Aguas interiores,4078,85,0.123
+1435,Aguas interiores,4078,85,0.481
+1435,Aguas interiores,4078,85,21.35
+1435,Aguas interiores,4078,85,520.835
+1512,Aguas interiores,3994,85,36.581
+1512,Aguas interiores,3994,85,2.65
+1569,Aguas interiores,4078,85,1.395
+1569,Aguas interiores,4078,85,0.001
+1569,Aguas interiores,4078,85,0.247
+1569,Aguas interiores,4078,85,9.09
+1569,Aguas interiores,4078,85,12.876
+1569,Aguas interiores,4078,85,0.065
+1569,Aguas interiores,4078,85,22.766
+1569,Aguas interiores,4078,85,58.054
+1569,Aguas interiores,4078,85,155.884
+1569,Aguas interiores,4078,85,0.113
+1569,Aguas interiores,4078,85,0.011
+1569,Aguas interiores,4078,85,0.026
+1569,Aguas interiores,3907,85,7.606
+1569,Aguas interiores,4078,85,5.928
+1570,Aguas interiores,3907,85,75.077
+1570,Aguas interiores,3932,85,8.163
+1614,Aguas interiores,4260,7,0.001
+1614,Aguas interiores,4260,7,0.002
+1614,Aguas interiores,4260,7,9.692
+1615,Aguas interiores,4260,7,108.119
+1686,Aguas interiores,4222,23,298.175
+1688,Zonas humidas interiores,296,18,0.073
+1688,Zonas humidas interiores,296,18,31.872
+1689,Aguas interiores,4264,7,13.948
+1689,Aguas interiores,4264,23,33.144
+1689,Aguas interiores,4264,91,92.323
+1688,Zonas humidas interiores,296,18,110.57
+1688,Aguas interiores,4222,23,304.259
+1688,Aguas interiores,4264,23,13.99
+1688,Aguas interiores,4264,38,10.399
+1700,Zonas humidas interiores,296,18,6.855
+1700,Zonas humidas interiores,296,18,32.982
+1733,Aguas interiores,4251,17,121.81
+1733,Aguas interiores,4251,27,121.81
+1733,Aguas de transicao,68,23,196.385
+1733,Aguas de transicao,68,91,24.457
+1733,Aguas interiores,4170,23,17.237
+1733,Aguas interiores,4170,91,7.377
+1738,Aguas de transicao,68,20,73.251
+1738,Aguas de transicao,68,23,282.518
+1738,Aguas de transicao,68,26,2.462
+1738,Zonas humidas litorais,702,20,39.287
+1738,Zonas humidas litorais,702,23,122.26
+1738,Zonas humidas litorais,704,20,30.839
+1738,Zonas humidas litorais,704,23,122.648
+1738,Zonas humidas litorais,704,26,0.527
+1738,Zonas humidas litorais,705,23,102.782
+1738,Aguas interiores,4170,20,844.444
+1738,Aguas interiores,4170,23,811.34
+1738,Aguas interiores,4170,26,10.708
+1756,Aguas interiores,4198,85,12.892
+1625,Aguas interiores,4260,7,27.406
+1791,Aguas de transicao,98,21,0.292
+1791,Aguas de transicao,98,27,0.292
+1791,Aguas de transicao,98,21,16.045
+1791,Aguas de transicao,98,27,16.045
+1822,Aguas de transicao,68,23,326.712
+1822,Aguas interiores,4170,23,5.683
+1822,Aguas interiores,4222,23,429.836
+1823,Zonas humidas interiores,296,18,33.816
+1823,Aguas interiores,4222,18,105.461
+1823,Aguas interiores,4222,23,154.81
+1823,Zonas humidas interiores,296,18,20.567
+1824,Aguas de transicao,68,18,0.378
+1824,Aguas de transicao,68,23,57.543
+1824,Aguas de transicao,68,91,10.298
+1824,Aguas interiores,4169,18,128.691
+1824,Aguas interiores,4169,23,133.106
+1824,Aguas interiores,4169,26,16.928
+1824,Aguas interiores,4169,91,14.478
+1824,Aguas de transicao,68,23,88.789
+1824,Aguas de transicao,68,26,55.729
+1824,Aguas de transicao,68,91,88.458
+1824,Zonas humidas litorais,704,23,9.073
+1824,Zonas humidas litorais,704,26,5.998
+1824,Aguas interiores,4170,23,142.662
+1824,Aguas interiores,4170,26,108.044
+1824,Aguas interiores,4170,91,33.953
+1824,Aguas de transicao,68,23,0.001
+1824,Zonas humidas litorais,704,23,0.001
+1824,Aguas interiores,4170,23,0.001
+1856,Aguas interiores,4260,7,0.204
+1856,Aguas interiores,4261,7,114.87
+1614,Aguas interiores,4260,7,68.382
+1857,Aguas interiores,4260,7,85.772
+1870,Aguas interiores,4198,85,11.389
+1245,Aguas interiores,4198,85,25.56
+1873,Aguas interiores,4198,85,6.424
+1873,Aguas interiores,4198,85,32.713
+1880,Aguas interiores,4198,85,32.402
+1881,Aguas interiores,4198,85,36.361
+1887,Aguas interiores,4198,85,68.996
+1256,Aguas interiores,4198,85,20.761
+1887,Aguas interiores,4198,85,0.08
+1899,Aguas interiores,4198,85,4.55
+1899,Aguas interiores,4198,85,0.071
+1911,Aguas interiores,4323,7,0
+1935,Aguas interiores,4264,7,48.453
+1935,Aguas interiores,4264,7,43.428
+1981,Aguas de transicao,68,23,37.751
+1981,Aguas interiores,4222,23,144.936
+1983,Aguas interiores,4222,18,11.117
+1983,Aguas interiores,4222,23,0
+1993,Aguas de transicao,68,18,52.112
+1993,Aguas de transicao,68,23,15.966
+1993,Aguas interiores,4169,18,507.694
+1993,Aguas interiores,4169,23,404.932
+1993,Aguas interiores,4169,26,198.664
+1993,Aguas interiores,4169,91,125.806
+1993,Aguas interiores,4222,18,95
+1993,Aguas interiores,4222,23,25.85
+1993,Aguas interiores,4170,20,417.366
+1993,Aguas interiores,4170,23,267.597
+1993,Aguas interiores,4170,26,71.249
+2025,Aguas interiores,4260,7,45.07
+2026,Aguas interiores,4264,7,25.188
+2055,Aguas interiores,2258,40,8.324
+2055,Aguas interiores,2367,40,248.852
+2057,Aguas interiores,2458,85,463.012
+2064,Aguas interiores,2129,39,2.764
+2064,Aguas interiores,2129,40,399.807
+2064,Aguas interiores,2143,39,323.8
+2064,Aguas interiores,2150,39,2089.976
+2064,Aguas interiores,2224,40,2675.861
+2064,Aguas interiores,2258,40,0.151
+2064,Aguas interiores,2458,85,28.661
+2064,Aguas interiores,2258,40,0.088
+2074,Aguas interiores,2147,45,3.44
+2075,Aguas interiores,2582,85,406.01
+2075,Aguas interiores,2672,85,245.2
+2075,Aguas interiores,2065,39,0
+2081,Aguas interiores,3039,43,550.254
+2081,Aguas interiores,3039,45,0.034
+2081,Aguas interiores,3039,85,238.722
+2081,Aguas interiores,3475,43,139.487
+2081,Aguas interiores,3475,45,70.236
+2083,Aguas interiores,1718,40,69.748
+2083,Aguas interiores,1718,40,2.619
+2083,Aguas interiores,1718,40,0.003
+2097,Aguas interiores,1867,39,335.251
+2097,Aguas interiores,1894,39,1669.869
+2097,Aguas interiores,1909,40,430.743
+2097,Aguas interiores,1966,40,452.543
+2097,Aguas interiores,1894,39,146.272
+2097,Aguas interiores,1724,40,0.004
+2100,Aguas interiores,2224,40,135.516
+2100,Aguas interiores,2258,40,1125.335
+2100,Aguas interiores,2224,40,58.91
+2100,Aguas interiores,2258,40,525.32
+2106,Aguas interiores,1975,40,410.203
+2118,Aguas interiores,2257,45,21.211
+2120,Aguas interiores,1894,39,333.314
+2120,Aguas interiores,1922,39,1013.642
+2120,Aguas interiores,1923,39,295.543
+2120,Aguas interiores,2065,39,376.09
+2120,Aguas interiores,2150,39,448.627
+2120,Aguas interiores,2065,39,0.029
+2120,Aguas interiores,1886,39,0.273
+2120,Aguas interiores,1922,39,0.273
+2123,Aguas interiores,880,61,82.569
+2123,Aguas interiores,880,65,588.026
+2123,Aguas interiores,880,83,18.433
+502,Aguas interiores,999,42,38.927
+2124,Aguas interiores,999,42,0.64
+2125,Aguas interiores,999,42,16.125
+2154,Aguas interiores,999,42,85.485
+2161,Aguas interiores,999,42,1.526
+2161,Aguas interiores,999,42,0.013
+2161,Aguas interiores,999,42,0.783
+2161,Aguas interiores,999,42,2.117
+2161,Aguas interiores,999,42,1.157
+2161,Aguas interiores,935,42,239.051
+2161,Aguas interiores,999,42,375.335
+2161,Aguas interiores,999,42,0.123
+2161,Aguas interiores,999,42,0.22
+2161,Aguas interiores,999,42,11.093
+2163,Aguas interiores,935,42,284.892
+2163,Aguas interiores,935,42,1.462
+2166,Aguas interiores,935,42,0.274
+2166,Aguas interiores,935,42,0.322
+2167,Aguas interiores,935,42,549.815
+2167,Aguas interiores,935,42,3.006
+2167,Aguas interiores,935,42,2.453
+2167,Aguas interiores,935,42,19.032
+2167,Aguas interiores,920,42,0.206
+2191,Aguas interiores,935,42,40.852
+2167,Aguas interiores,935,42,269.954
+2191,Aguas interiores,935,42,15.149
+2191,Aguas de transicao,8,42,258.671
+2191,Aguas interiores,908,42,633.754
+2191,Aguas interiores,920,42,961.375
+2191,Aguas interiores,935,42,833.447
+2191,Aguas de transicao,8,42,205.774
+2191,Aguas de transicao,8,50,181.628
+2191,Aguas de transicao,8,69,18.765
+2191,Zonas humidas litorais,459,50,44.103
+2191,Zonas humidas litorais,468,42,26.717
+2191,Zonas humidas litorais,469,42,135.869
+2191,Zonas humidas litorais,469,50,236.284
+2191,Zonas humidas litorais,470,42,332.664
+2191,Aguas interiores,908,42,43.239
+2192,Zonas humidas litorais,413,80,19.279
+2192,Aguas marinhas e costeiras,4746,61,14.028
+2192,Aguas marinhas e costeiras,4746,80,31.028
+2193,Zonas humidas litorais,402,61,97.706
+2193,Zonas humidas litorais,402,80,116.62
+2193,Zonas humidas litorais,409,61,90.204
+2193,Zonas humidas litorais,409,80,36.367
+2193,Zonas humidas litorais,413,61,28.37
+2193,Zonas humidas litorais,413,80,50.121
+2193,Aguas marinhas e costeiras,4746,80,6.941
+2193,Aguas marinhas e costeiras,4756,61,89.905
+2193,Aguas marinhas e costeiras,4756,80,36.857
+2197,Aguas de transicao,4,60,113.011
+2197,Aguas de transicao,4,65,122.646
+2197,Aguas de transicao,4,82,10.28
+2207,Zonas humidas litorais,440,58,28.072
+2207,Aguas marinhas e costeiras,4755,58,119.425
+2209,Aguas interiores,999,42,29.93
+2229,Zonas humidas litorais,413,61,0.668
+2229,Zonas humidas litorais,413,80,0.245
+2229,Aguas marinhas e costeiras,4746,61,15.02
+2229,Aguas marinhas e costeiras,4746,80,1.12
+2229,Zonas humidas litorais,413,80,0.044
+2229,Aguas marinhas e costeiras,4746,80,0.044
+2229,Zonas humidas litorais,413,80,0.015
+2229,Aguas marinhas e costeiras,4746,80,0.015
+2230,Aguas interiores,999,42,87.717
+2230,Aguas interiores,999,42,269.745
+2230,Aguas interiores,999,42,0.316
+2232,Aguas interiores,935,42,248.031
+2236,Zonas humidas litorais,413,61,5.288
+2236,Zonas humidas litorais,413,92,48.102
+2236,Aguas interiores,880,61,262.568
+2236,Aguas interiores,880,65,908.276
+2236,Aguas marinhas e costeiras,4746,61,5.288
+2236,Aguas marinhas e costeiras,4746,92,32.215
+2269,Aguas interiores,901,16,7.033
+2271,Zonas humidas litorais,409,61,82.372
+2271,Zonas humidas litorais,409,80,86.79
+2271,Zonas humidas litorais,415,61,74.775
+2271,Zonas humidas litorais,415,70,20.762
+2271,Zonas humidas litorais,415,80,11.12
+2271,Zonas humidas litorais,416,61,70.991
+2271,Zonas humidas litorais,416,70,125.354
+2271,Zonas humidas litorais,419,61,54.33
+2271,Zonas humidas litorais,419,70,106.463
+2271,Zonas humidas litorais,421,61,2.751
+2271,Zonas humidas litorais,421,70,1.073
+2271,Aguas marinhas e costeiras,4756,61,144.576
+2271,Aguas marinhas e costeiras,4756,70,89.573
+2271,Aguas marinhas e costeiras,4756,80,12.425
+2285,Aguas de transicao,4,60,31.515
+2285,Aguas de transicao,4,77,92.94
+2285,Zonas humidas litorais,440,58,137.576
+2285,Zonas humidas litorais,440,77,27.882
+2285,Zonas humidas litorais,444,58,166.833
+2285,Zonas humidas litorais,444,77,22.801
+2285,Zonas humidas litorais,454,60,43.366
+2285,Zonas humidas litorais,454,77,90.413
+2285,Aguas marinhas e costeiras,4755,58,309.979
+2285,Aguas marinhas e costeiras,4755,77,40.806
+2304,Aguas interiores,926,16,50.704
+2317,Aguas de transicao,4,16,92.033
+2317,Aguas de transicao,4,60,0.778
+2317,Aguas interiores,901,16,390.843
+2318,Aguas de transicao,4,16,0
+2318,Aguas de transicao,4,60,817.197
+2318,Aguas de transicao,4,65,243.426
+2318,Aguas interiores,903,16,252.557
+2318,Aguas interiores,926,16,1000.728
+2319,Aguas interiores,935,42,17.715
+2345,Aguas interiores,935,42,23.754
+2346,Aguas interiores,935,42,14.988
+2346,Aguas interiores,935,42,290.143
+2349,Aguas interiores,867,57,158.259
+2349,Zonas humidas litorais,419,61,6.906
+2349,Zonas humidas litorais,419,70,24.547
+2349,Zonas humidas litorais,421,61,99.401
+2349,Zonas humidas litorais,421,70,51.755
+2349,Zonas humidas litorais,427,47,54.301
+2349,Zonas humidas litorais,427,61,79.213
+2349,Zonas humidas litorais,429,47,72.447
+2349,Zonas humidas litorais,429,61,46.383
+2349,Zonas humidas litorais,433,61,175.541
+2349,Aguas interiores,867,57,461.512
+2349,Aguas interiores,867,61,60.886
+2349,Aguas marinhas e costeiras,4756,47,107.487
+2349,Aguas marinhas e costeiras,4756,61,398.054
+2349,Aguas marinhas e costeiras,4756,70,27.544
+2364,Aguas marinhas e costeiras,4756,61,189.24
+2457,Aguas interiores,4650,3,299.191
+2459,Aguas interiores,4498,3,373.249
+2459,Aguas interiores,4536,3,144.801
+2521,Aguas interiores,4353,7,4.835
+2543,Aguas interiores,4499,3,5.376
+2543,Aguas interiores,4499,3,6.887
+2561,Aguas interiores,4536,3,54.285
+2565,Aguas interiores,4438,3,183.225
+2565,Aguas interiores,4438,7,3.431
+2565,Aguas interiores,4448,3,203.347
+2565,Aguas interiores,4536,3,9.893
+2526,Aguas interiores,4438,3,1.73
+2526,Aguas interiores,4438,3,21.987
+1384,Aguas interiores,4253,85,58.18
+1854,Aguas interiores,4261,7,150.609
+2665,Aguas interiores,4261,7,4.574
+2690,Aguas interiores,4499,3,219.809
+2543,Aguas interiores,4499,3,1.076
+2690,Aguas interiores,4438,7,2.575
+2713,Aguas interiores,4536,3,15.266
+2713,Aguas interiores,4585,3,342.23
+2713,Aguas interiores,4650,3,88.821
+2864,Aguas de transicao,67,9,416.773
+2864,Aguas de transicao,67,15,20.715
+2864,Aguas de transicao,67,89,284.446
+2876,Aguas de transicao,67,15,81.951
+2876,Aguas de transicao,67,89,129.256
+2899,Aguas interiores,4198,85,0.01
+2924,Aguas interiores,3794,31,68.255
+2924,Aguas interiores,3794,34,345.783
+2975,Aguas interiores,4170,20,4.177
+3012,Aguas de transicao,66,44,144.16
+3012,Aguas de transicao,66,46,144.16
+3012,Aguas interiores,3342,44,55.828
+3012,Aguas interiores,3342,46,55.828
+3017,Aguas de transicao,66,44,1.583
+3017,Aguas de transicao,66,46,1.583
+3017,Aguas interiores,3342,44,1524.057
+3017,Aguas interiores,3342,46,1518.765
+3018,Aguas interiores,3342,45,77.756
+3018,Aguas interiores,3342,46,77.756
+3060,Aguas de transicao,66,33,105.133
+3075,Zonas humidas interiores,164,34,758.732
+3075,Zonas humidas interiores,164,34,3.908
+3110,Zonas humidas interiores,164,34,266.266
+3110,Zonas humidas interiores,164,34,2.423
+3110,Zonas humidas interiores,164,34,11.51
+3129,Zonas humidas interiores,205,34,2432.224
+3129,Zonas humidas interiores,205,37,7.947
+3146,Aguas de transicao,66,33,41.368
+3146,Aguas de transicao,66,44,356.91
+3146,Aguas de transicao,66,46,356.91
+3165,Aguas interiores,3579,85,850.817
+3165,Aguas interiores,3728,85,317.542
+3166,Aguas interiores,3258,40,1414.589
+3172,Aguas interiores,3579,85,1844.588
+3172,Aguas interiores,3579,85,3595.926
+3172,Aguas interiores,3039,85,64.431
+3172,Aguas interiores,3475,45,5.093
+3191,Aguas interiores,3875,85,301.314
+3191,Aguas interiores,3895,85,120.176
+3197,Aguas interiores,3258,40,1674.777
+3206,Aguas interiores,3907,85,1.983
+3206,Aguas interiores,3907,85,0.539
+3254,Aguas interiores,3907,85,25.772
+3266,Aguas interiores,3907,85,0.314
+3266,Aguas interiores,3932,85,0.314
+3266,Aguas interiores,3907,85,0.005
+3269,Aguas interiores,3895,85,41.96
+3170,Aguas interiores,3475,45,13.898
+3299,Aguas interiores,3475,45,225.051
+3320,Aguas interiores,3475,43,12.577
+3320,Aguas interiores,3475,45,33.543
+3336,Aguas interiores,4626,3,45.159
+3355,Aguas interiores,4593,3,510.199
+3356,Aguas interiores,4593,3,304.101
+3360,Aguas interiores,4593,3,5.865
+3360,Aguas interiores,4593,3,24.361
+3372,Aguas interiores,4564,3,173.753
+3442,Aguas interiores,4593,3,6.744
+3444,Aguas interiores,4593,3,202.678
+3444,Aguas interiores,4552,3,3.463
+3444,Aguas interiores,4564,3,155.049
+3446,Aguas interiores,4593,3,260.219
+3396,Aguas interiores,4552,3,3.549
+3446,Aguas interiores,4552,3,86.759
+3446,Aguas interiores,4593,3,0.149
+3506,Aguas de transicao,99,3,11.686
+3511,Aguas de transicao,102,52,12.482
+3511,Aguas de transicao,102,53,0.001
+3547,Aguas de transicao,102,52,62.089
+3547,Aguas de transicao,102,53,772.783
+3547,Aguas de transicao,102,53,15.792
+3672,Aguas interiores,3873,43,84.104
+3672,Aguas interiores,3873,45,117.295
+3672,Aguas interiores,3873,46,130.131
+3672,Aguas interiores,3873,85,451.163
+3674,Aguas interiores,3873,85,123.041
+3698,Aguas interiores,3515,45,405.136
+3698,Aguas interiores,3515,46,405.136
+3698,Aguas interiores,3737,45,551.096
+3698,Aguas interiores,3737,46,551.096
+3698,Aguas interiores,3873,45,319.805
+3698,Aguas interiores,3873,46,319.805
+3699,Aguas interiores,3737,45,1268.363
+3699,Aguas interiores,3737,46,1268.363
+3699,Aguas interiores,3873,45,332.296
+3699,Aguas interiores,3873,46,332.296
+3709,Aguas de transicao,66,45,379.73
+3709,Aguas de transicao,66,46,314.309
+3709,Zonas humidas litorais,666,45,1.383
+3709,Zonas humidas litorais,667,45,0.655
+3709,Zonas humidas litorais,680,45,1019.743
+3709,Zonas humidas litorais,680,46,751.011
+3709,Zonas humidas litorais,681,45,219.405
+3709,Zonas humidas litorais,681,46,219.405
+3709,Aguas interiores,2572,45,20.896
+3709,Aguas interiores,3063,45,2115.116
+3709,Aguas interiores,3063,46,1917.825
+3709,Aguas interiores,3342,45,861.197
+3709,Aguas interiores,3342,46,861.197
+3709,Aguas interiores,3475,45,196.049
+3709,Aguas interiores,3475,46,196.049
+3709,Zonas humidas litorais,666,45,3.145
+3709,Aguas interiores,2572,45,3.191
+3709,Aguas interiores,2572,45,0.029
+3709,Aguas interiores,2572,45,1.729
+3711,Aguas interiores,3342,44,328.764
+3711,Aguas interiores,3342,46,328.764
+3711,Aguas interiores,3515,44,470.518
+3711,Aguas interiores,3515,46,470.518
+3742,Aguas interiores,3737,45,326.729
+3742,Aguas interiores,3737,46,323.242
+3742,Aguas interiores,3873,45,473.246
+3742,Aguas interiores,3873,46,459.886
+3671,Aguas interiores,3873,43,44.794
+3671,Aguas interiores,3873,46,143.191
+3749,Aguas interiores,3873,43,43.363
+3749,Aguas interiores,3873,46,213.83
+3750,Aguas interiores,3873,43,64.115
+3750,Aguas interiores,3873,46,117.178
+3794,Aguas interiores,3475,45,3.259
+3799,Aguas interiores,2951,45,30.053
+3799,Aguas interiores,3475,45,4918.186
+3799,Aguas interiores,3475,46,152.025
+3320,Aguas interiores,3475,43,554.051
+3320,Aguas interiores,3475,45,944.499
+3799,Aguas interiores,2672,85,7.903
+3810,Aguas interiores,3994,85,35.329
+3815,Zonas humidas interiores,256,44,478.821
+3815,Zonas humidas interiores,256,46,264.047
+3815,Aguas interiores,3873,44,974.225
+3815,Aguas interiores,3873,45,0.701
+3815,Aguas interiores,3873,46,974.926
+3827,Aguas interiores,4078,85,7.169
+3863,Aguas interiores,4078,85,8.553
+3863,Aguas interiores,4078,85,7.61
+3863,Aguas interiores,4078,85,8.069
+3863,Aguas interiores,4078,85,21.484
+3863,Aguas interiores,4078,85,392.296
+3863,Aguas interiores,3907,85,24.926
+3868,Aguas interiores,3907,85,128.051
+3220,Aguas interiores,3873,85,20.729
+3220,Aguas interiores,3907,85,276.325
+3870,Aguas interiores,3873,85,0.084
+3893,Aguas interiores,3115,45,201.137
+3893,Aguas interiores,3115,46,168.618
+3894,Aguas interiores,3337,45,247.447
+3894,Aguas interiores,3337,46,247.447
+3894,Aguas interiores,3342,45,642.775
+3894,Aguas interiores,3342,46,642.775
+3894,Aguas interiores,3515,44,0.354
+3894,Aguas interiores,3515,45,193.673
+3894,Aguas interiores,3515,46,194.026
+3894,Aguas interiores,3475,45,0.335
+3894,Aguas interiores,3475,46,0.335
+3909,Aguas interiores,3515,44,89.621
+3909,Aguas interiores,3515,46,89.621
+3909,Aguas interiores,3873,44,865.873
+3909,Aguas interiores,3873,46,629.691
+3929,Aguas interiores,3994,85,6.713
+3940,Aguas interiores,3994,85,216.689
+3946,Aguas interiores,3994,85,44.205
+3684,Aguas interiores,3994,85,0.732
+3952,Zonas humidas interiores,256,44,13.896
+3960,Aguas interiores,3873,44,2.536
+3960,Aguas interiores,3873,46,2.536
+3960,Aguas interiores,3873,43,54.447
+3960,Aguas interiores,3873,44,2.323
+3960,Aguas interiores,3873,45,28.881
+3960,Aguas interiores,3873,46,31.204
+3982,Aguas interiores,2147,45,7.717
+4016,Aguas interiores,1862,45,3.372
+4022,Aguas interiores,2147,45,8.101
+4032,Aguas de transicao,16,12,2305.048
+4032,Aguas de transicao,16,45,274.529
+4032,Aguas de transicao,34,12,30.694
+4032,Aguas de transicao,34,45,1086.222
+4032,Aguas de transicao - leito de cheia,343,12,899.239
+4032,Aguas de transicao - leito de cheia,344,12,398.068
+4032,Aguas de transicao - leito de cheia,345,12,1156.64
+4032,Aguas de transicao - leito de cheia,346,12,415.515
+4032,Aguas de transicao - leito de cheia,348,12,1027.167
+4032,Aguas de transicao - leito de cheia,348,45,38.137
+4032,Aguas de transicao - leito de cheia,352,12,213.351
+4032,Aguas de transicao - leito de cheia,352,45,100.505
+4032,Aguas de transicao - leito de cheia,355,12,253.378
+4032,Aguas de transicao - leito de cheia,355,45,313.592
+4032,Aguas de transicao - leito de cheia,357,12,6.255
+4032,Aguas de transicao - leito de cheia,357,45,185.097
+4032,Aguas de transicao - leito de cheia,359,45,84.125
+4032,Aguas de transicao - leito de cheia,360,45,331.33
+4032,Aguas de transicao - leito de cheia,361,45,32.038
+4032,Aguas de transicao - leito de cheia,368,45,465.585
+4032,Aguas de transicao - leito de cheia,371,45,627.367
+4032,Zonas humidas litorais,532,45,25.598
+4032,Zonas humidas litorais,544,45,28.203
+4032,Zonas humidas litorais,562,45,268.707
+4032,Zonas humidas litorais,593,45,104.851
+4032,Zonas humidas litorais,596,45,404.255
+4032,Aguas interiores,1768,12,253.605
+4032,Aguas interiores,1768,39,986.24
+4032,Aguas interiores,1882,39,487.095
+4032,Aguas interiores,1886,39,2170.513
+4032,Aguas interiores,1923,39,19.078
+4032,Aguas interiores,2065,39,1119.561
+4032,Aguas interiores,2147,45,14.369
+2120,Aguas interiores,2065,39,2.925
+4032,Aguas interiores,2065,39,81.724
+4032,Aguas interiores,2065,39,518.249
+4032,Aguas interiores,2065,39,7.338
+4032,Aguas interiores,1768,39,0.341
+4032,Aguas interiores,1768,39,1.224
+4034,Aguas de transicao,66,45,122.385
+4034,Zonas humidas litorais,665,45,168.508
+4034,Zonas humidas litorais,666,45,167.364
+4034,Zonas humidas litorais,667,45,116.402
+4034,Aguas interiores,2456,45,76.594
+4034,Aguas interiores,2572,45,1313.741
+3709,Aguas interiores,2572,45,0.133
+4034,Aguas de transicao,66,45,53.064
+4034,Zonas humidas litorais,665,45,7.038
+4103,Aguas interiores,1768,12,655.767
+4103,Aguas interiores,1768,39,91.873
+480,Aguas interiores,1768,12,27.203
+4105,Aguas de transicao,66,45,8.173
+4105,Zonas humidas litorais,646,45,0.208
+4106,Aguas de transicao,66,45,392.197
+4106,Zonas humidas litorais,646,45,141.629
+4106,Zonas humidas litorais,655,45,126.143
+4106,Zonas humidas litorais,657,45,2.953
+4119,Aguas de transicao,66,45,56.296
+4119,Zonas humidas litorais,659,45,6.603
+4119,Aguas de transicao,66,45,316.434
+4119,Zonas humidas litorais,657,45,126.136
+4137,Aguas de transicao,34,45,116.9
+4137,Zonas humidas litorais,628,45,564.881
+4137,Aguas interiores,2456,45,252.193
+4137,Aguas interiores,2572,45,7.677
+4137,Aguas interiores,2456,45,0.112
+4137,Zonas humidas litorais,628,45,0.043
+4170,Aguas marinhas e costeiras,4776,66,103.582
+4179,Aguas interiores,1544,41,0.36
+4179,Aguas interiores,1306,41,709.407
+4179,Aguas interiores,1341,13,0.829
+4179,Aguas interiores,1366,13,299.262
+4179,Aguas interiores,1470,13,995.934
+4179,Aguas interiores,1494,13,4167.5
+4179,Aguas interiores,1494,41,277.373
+4179,Aguas interiores,1544,13,13.114
+4179,Aguas interiores,1544,41,356.85
+4224,Aguas de transicao,34,45,36.466
+4224,Zonas humidas litorais,628,45,176.601
+4224,Aguas de transicao,34,45,1.301
+4224,Zonas humidas litorais,628,45,57.824
+4224,Zonas humidas litorais,628,45,88.221
+4224,Zonas humidas litorais,628,45,2.74
+4244,Aguas interiores,1373,41,185.803
+4244,Aguas marinhas e costeiras,4761,41,311.163
+4249,Aguas interiores,4731,5,0.023
+4249,Aguas interiores,4731,5,0.032
+4293,Aguas de transicao,105,5,158.247
+4293,Aguas interiores,4715,5,315.668
+4293,Aguas interiores,4731,5,1115.031
+4247,Aguas interiores,4731,5,1.715
+4249,Aguas interiores,4731,5,2.404
+4366,Aguas interiores,4731,5,23.144
+4371,Aguas interiores,4732,1,11.674
+4344,Aguas interiores,4732,1,205.855
+4378,Aguas interiores,4731,5,0.196
+4279,Aguas interiores,4728,5,49.341
+4396,Aguas interiores,4728,5,4.228
+4282,Aguas interiores,4715,5,52.285
+4402,Aguas interiores,4715,5,0.01
+4417,Aguas de transicao,105,5,27.826
+4417,Aguas interiores,4715,5,94.674
+4418,Aguas de transicao,105,5,0.01
+4418,Aguas interiores,4715,5,0.01
+4419,Aguas interiores,4715,5,90.325
+4434,Aguas de transicao,105,5,181.482
+4434,Aguas interiores,4715,5,1.213
+4437,Aguas de transicao,105,5,548.159
+4440,Aguas de transicao,105,5,209.865
+4373,Aguas de transicao,114,1,2.404
+4373,Aguas interiores,4732,1,48.698
+4449,Aguas de transicao,114,1,150.62
+4449,Aguas interiores,4732,1,48.064
+4456,Aguas de transicao,114,1,17.72
+4485,Aguas de transicao,105,5,219.155
+4438,Aguas de transicao,105,5,44.558
+4487,Aguas de transicao,105,5,409.026
+4487,Zonas humidas litorais,791,5,106.179
+4493,Aguas marinhas e costeiras,4795,5,45.309
+4294,Aguas de transicao,114,1,70.752
+4502,Aguas de transicao,114,1,11.033
+4510,Aguas de transicao,114,1,82.065
+4529,Aguas interiores,4587,3,31.847
+981,Aguas interiores,4587,3,0.109
+4530,Aguas interiores,4587,3,39.033
+4536,Aguas interiores,4587,3,694.632
+986,Aguas interiores,4587,3,1.894
+4536,Aguas interiores,4587,3,111.408
+4536,Aguas interiores,4608,3,128.787
+4536,Aguas interiores,4587,3,48.693
+4536,Aguas interiores,4608,3,34.913
+4536,Aguas interiores,4587,3,0.135
+4551,Aguas interiores,4674,3,16.043
+4559,Aguas interiores,4700,54,0.622
+4562,Aguas interiores,4674,3,53.129
+4577,Aguas interiores,4674,3,293.539
+3369,Aguas interiores,4564,3,207.378
+4578,Aguas interiores,4564,3,429.913
+745,Aguas interiores,4626,3,27.999
+4582,Aguas interiores,4626,3,95.107
+4595,Aguas interiores,4626,3,3.942
+4595,Aguas interiores,4626,3,141.97
+4595,Aguas interiores,4626,3,1.122
+4647,Aguas interiores,4700,3,12.767
+4647,Aguas interiores,4700,54,915.771
+4651,Aguas interiores,4679,54,77.254
+4654,Aguas interiores,4679,54,26.254
+4656,Aguas interiores,4700,54,90.317
+4656,Aguas interiores,4700,54,43.881
+4656,Aguas interiores,4679,54,175.768
+4674,Aguas interiores,4608,3,238.825
+4675,Aguas interiores,4564,3,601.104
+4675,Aguas interiores,4587,3,387.062
+4675,Aguas interiores,4564,3,0.423
+4675,Aguas interiores,4587,3,0.125
+4677,Aguas interiores,4674,3,5.093
+730,Aguas interiores,4647,3,113.148
+4689,Aguas interiores,4647,3,0.471
+4689,Aguas interiores,4647,3,0.054
+4689,Aguas interiores,4647,3,1.026
+4690,Aguas interiores,4647,3,62.381
+4712,Aguas interiores,4587,3,579.805
+4716,Aguas interiores,4564,3,16.384
+4716,Aguas interiores,4564,3,0.007
+4716,Aguas interiores,4564,3,0.073
+4731,Aguas interiores,4702,3,16.497
+4737,Aguas interiores,4674,3,18.741
+4773,Aguas interiores,4674,3,33.817
+4773,Aguas interiores,4674,3,0.283
+4800,Aguas interiores,4587,3,435.571
+4802,Aguas interiores,4323,7,0.24
+4802,Aguas interiores,4323,7,1.42
+4883,Aguas interiores,4564,3,276.325
+4887,Aguas interiores,4552,3,212.719
+168,Aguas interiores,4552,3,341.541
+4899,Aguas interiores,4553,3,366.4
+4899,Aguas interiores,4564,3,618.159
+4899,Aguas interiores,4587,3,27.621
+4911,Aguas interiores,4409,7,12.528
+4920,Aguas interiores,4409,7,11.445
+4930,Aguas interiores,4531,3,182.138
+4930,Aguas interiores,4531,3,0.046
+4940,Aguas interiores,4323,7,2.552
+4943,Aguas interiores,4323,7,0.535
+4975,Aguas interiores,4323,7,0.422
+5040,Aguas interiores,4409,7,95.89
+5040,Aguas interiores,4409,7,2.011
+5061,Aguas interiores,4564,3,0.087
+5061,Aguas interiores,4564,3,0.124
+5061,Aguas interiores,4564,3,0.417
+5063,Aguas interiores,4564,3,750.758
+5064,Aguas interiores,4323,7,44.645
+4802,Aguas interiores,4323,7,0.388
+5065,Aguas interiores,4323,7,10.81
+5074,Aguas interiores,4323,7,2.303
+5076,Aguas interiores,4323,7,143.799
+5087,Aguas interiores,4585,3,346.942
+5087,Aguas interiores,4587,3,737.717
+5186,Aguas interiores,4531,3,79.327
+5186,Aguas interiores,4531,3,72.452
+5190,Aguas interiores,4531,3,31.416
+5194,Aguas interiores,4531,3,0.039
+5194,Aguas interiores,4531,3,37.263
+5194,Aguas interiores,4531,3,49.268
+5204,Aguas interiores,4587,3,527.501
+5204,Aguas interiores,4587,3,0.328
+5204,Aguas interiores,4587,3,0.009
+5248,Aguas interiores,4323,7,1.986
+5074,Aguas interiores,4323,7,107.394
+5328,Aguas interiores,4409,7,113.74
+2230,Aguas interiores,999,42,0.001
+450,Aguas interiores,999,42,0.009
+2161,Aguas interiores,999,42,0.571
+2161,Aguas interiores,999,42,0
+2083,Aguas interiores,1718,40,1.557
+1569,Aguas interiores,4078,85,1.48
+1899,Aguas interiores,4198,85,0.378
+2364,Aguas de transicao,8,50,0.352
+2364,Zonas humidas litorais,459,50,0.352
+2364,Zonas humidas litorais,469,50,0.217
+2230,Aguas interiores,999,42,121.183
+3269,Aguas interiores,3895,85,15.443
+3174,Aguas interiores,3258,40,129.663
+450,Aguas interiores,999,42,0
+517,Aguas interiores,999,42,0.169
+1435,Aguas interiores,4078,85,34.096
+4656,Aguas interiores,4700,54,10.723
+58,Zonas humidas interiores,327,27,6.177
+147,Aguas de transicao,98,21,104.828
+147,Aguas de transicao,98,27,15.201
+147,Zonas humidas litorais,739,21,197.877
+147,Zonas humidas litorais,747,21,10.11
+250,Aguas de transicao,98,21,151.155
+250,Aguas de transicao,98,27,151.155
+250,Zonas humidas litorais,724,21,147.43
+250,Zonas humidas litorais,724,27,147.43
+264,Aguas de transicao,98,21,264.628
+264,Aguas de transicao,98,27,264.628
+264,Zonas humidas litorais,765,21,29.62
+264,Zonas humidas litorais,765,27,29.62
+264,Zonas humidas litorais,768,21,84.103
+264,Zonas humidas litorais,768,27,84.103
+326,Aguas de transicao,98,21,122.411
+326,Aguas de transicao,98,27,122.411
+326,Zonas humidas litorais,765,21,46.757
+326,Zonas humidas litorais,765,27,46.757
+326,Zonas humidas litorais,768,21,62.964
+326,Zonas humidas litorais,768,27,62.964
+329,Aguas de transicao,98,21,68.968
+329,Aguas de transicao,98,27,83.143
+329,Zonas humidas litorais,765,21,23.694
+329,Zonas humidas litorais,765,27,23.694
+329,Zonas humidas litorais,768,21,94.792
+329,Zonas humidas litorais,768,27,235.589
+496,Aguas de transicao,8,42,1.19
+496,Aguas interiores,999,42,2.48
+513,Aguas interiores,1073,42,180.008
+619,Aguas interiores,1006,93,61.231
+620,Aguas interiores,1029,93,694.748
+623,Aguas interiores,1006,93,44.334
+662,Aguas interiores,1006,93,128.319
+675,Aguas interiores,1724,42,83.632
+766,Aguas de transicao,103,52,102.792
+766,Aguas marinhas e costeiras,4795,52,7.687
+857,Aguas interiores,4679,54,226.572
+868,Aguas interiores,4679,54,144.026
+883,Aguas interiores,4679,54,138.951
+886,Aguas interiores,4663,53,109.415
+890,Aguas interiores,4663,53,249.5
+1005,Aguas interiores,4650,3,335.766
+1006,Aguas interiores,4650,3,822.721
+1082,Aguas interiores,4585,3,181.464
+1200,Aguas interiores,4078,85,2.731
+1201,Aguas interiores,4078,85,325.328
+1207,Aguas interiores,4078,85,8.293
+1301,Aguas interiores,4009,85,70.076
+1509,Aguas interiores,3999,85,178.208
+1511,Aguas interiores,3994,85,4.575
+1567,Aguas interiores,3932,85,386.367
+1567,Aguas interiores,4009,85,44.471
+1569,Aguas interiores,4078,85,511.054
+1619,Aguas interiores,4260,7,84.456
+1623,Aguas interiores,4260,7,292.675
+1735,Aguas de transicao,68,23,130.264
+1735,Aguas de transicao,68,26,109.045
+1735,Aguas de transicao,68,91,31.25
+1735,Zonas humidas litorais,704,23,211.801
+1735,Zonas humidas litorais,704,26,49.043
+1735,Zonas humidas litorais,705,23,9.904
+1735,Aguas interiores,4170,23,16.399
+1735,Aguas interiores,4170,26,26.398
+1735,Aguas interiores,4170,91,8.975
+1736,Aguas de transicao,68,23,0.157
+1736,Zonas humidas litorais,702,9,1.099
+1736,Zonas humidas litorais,702,20,29.337
+1736,Zonas humidas litorais,702,23,67.576
+1855,Aguas interiores,4261,7,90.376
+1910,Aguas interiores,4323,7,9.795
+1923,Aguas interiores,4264,7,71.646
+1923,Aguas interiores,4264,10,0.846
+2010,Aguas interiores,4323,7,5.385
+2013,Aguas interiores,4323,7,0.941
+2080,Aguas interiores,3039,43,38.566
+2080,Aguas interiores,3475,43,173.68
+2096,Aguas interiores,1724,40,0.144
+2152,Aguas interiores,999,42,12.91
+2153,Aguas de transicao,8,42,8.817
+2153,Aguas interiores,961,42,5.991
+2153,Aguas interiores,999,42,28.075
+2166,Aguas interiores,935,42,443.089
+2182,Zonas humidas litorais,472,14,56.249
+2182,Aguas interiores,919,14,147.829
+2182,Aguas interiores,919,79,32.071
+2230,Aguas interiores,999,42,344.341
+2347,Aguas interiores,935,42,20.873
+2524,Aguas interiores,4353,7,94.079
+2707,Aguas interiores,4650,3,116.257
+2710,Aguas interiores,4650,3,59.51
+2793,Aguas marinhas e costeiras,4784,8,41.47
+2793,Aguas marinhas e costeiras,4784,34,60.135
+3143,Aguas de transicao,66,33,45.855
+3143,Aguas de transicao,66,46,86.85
+3143,Zonas humidas litorais,674,33,21.424
+3143,Zonas humidas litorais,674,46,30.469
+3143,Zonas humidas litorais,677,33,67.783
+3143,Zonas humidas litorais,677,46,114.856
+3147,Aguas de transicao,66,45,1300.081
+3147,Aguas de transicao,66,46,1300.081
+3147,Zonas humidas litorais,675,45,436.04
+3147,Zonas humidas litorais,675,46,436.04
+3147,Zonas humidas litorais,676,45,31.996
+3147,Zonas humidas litorais,676,46,31.996
+3147,Zonas humidas litorais,680,45,162.672
+3147,Zonas humidas litorais,680,46,162.672
+3147,Zonas humidas litorais,681,45,500.744
+3147,Zonas humidas litorais,681,46,500.744
+3147,Aguas interiores,3063,45,573.557
+3147,Aguas interiores,3063,46,573.557
+3147,Aguas interiores,3342,45,356.161
+3147,Aguas interiores,3342,46,356.161
+3218,Aguas interiores,3907,85,7.601
+3219,Aguas interiores,3907,85,10.252
+3258,Aguas interiores,3932,85,18.889
+3261,Aguas interiores,3932,85,230.02
+3267,Aguas interiores,3907,85,93.937
+3267,Aguas interiores,3932,85,6.458
+3314,Aguas interiores,3475,43,111.494
+3314,Aguas interiores,3475,45,219.685
+3318,Aguas interiores,3475,45,195.333
+3371,Aguas interiores,4564,3,185.62
+3409,Aguas de transicao,99,3,9.753
+3445,Aguas interiores,4552,3,337.742
+3445,Aguas interiores,4564,3,1.442
+3445,Aguas interiores,4593,3,186.82
+3447,Aguas interiores,4552,3,196.486
+3447,Aguas interiores,4593,3,67.046
+3497,Aguas interiores,4593,3,18.291
+3500,Aguas interiores,4552,3,6.427
+3500,Aguas interiores,4593,3,265.676
+3558,Aguas de transicao,99,3,289.623
+3616,Aguas de transicao,102,53,238.193
+3625,Aguas interiores,3994,43,41.679
+3625,Aguas interiores,3994,85,97.604
+3633,Aguas interiores,3994,85,99.014
+3669,Aguas interiores,3994,85,98.995
+3677,Aguas interiores,3873,43,55.486
+3677,Aguas interiores,3873,45,164.214
+3677,Aguas interiores,3873,46,158.897
+3677,Aguas interiores,3873,85,90.553
+3733,Aguas interiores,3873,43,1.248
+3733,Aguas interiores,3873,45,518.729
+3733,Aguas interiores,3873,46,501.068
+3987,Aguas de transicao,34,45,127.274
+3987,Zonas humidas litorais,597,45,11.071
+3998,Aguas de transicao,34,45,156.625
+3998,Aguas de transicao - leito de cheia,361,45,0.278
+3998,Aguas de transicao - leito de cheia,367,45,262.431
+4024,Aguas de transicao,34,45,405.066
+4024,Aguas de transicao - leito de cheia,360,45,9.299
+4024,Aguas de transicao - leito de cheia,361,45,977.933
+4024,Aguas de transicao - leito de cheia,367,45,28.019
+4024,Aguas de transicao - leito de cheia,368,45,6.415
+4024,Zonas humidas litorais,532,45,194.14
+4024,Zonas humidas litorais,544,45,245.195
+4024,Zonas humidas litorais,562,45,0.144
+4025,Aguas de transicao,34,45,239.74
+4025,Aguas de transicao - leito de cheia,355,45,5.902
+4025,Aguas de transicao - leito de cheia,357,45,38.137
+4025,Aguas de transicao - leito de cheia,359,45,277.173
+4025,Aguas de transicao - leito de cheia,360,45,117.815
+4027,Aguas de transicao,34,45,558.558
+4027,Zonas humidas litorais,592,45,37.926
+4041,Aguas de transicao,66,45,162.818
+4089,Aguas de transicao,34,45,25.993
+4089,Aguas interiores,1862,45,4.933
+4172,Aguas marinhas e costeiras,4776,66,4.173
+4189,Aguas de transicao,66,45,80.625
+4209,Aguas marinhas e costeiras,4780,45,29.685
+4222,Aguas de transicao,34,45,37.632
+4222,Zonas humidas litorais,628,45,193.024
+4284,Aguas interiores,4731,5,159.657
+4289,Aguas interiores,4728,5,53.248
+4290,Aguas interiores,4731,5,236.036
+4314,Aguas de transicao,114,1,109.717
+4314,Zonas humidas litorais,805,1,129.911
+4314,Zonas humidas litorais,806,1,26.857
+4360,Aguas interiores,4732,1,282.578
+4374,Aguas interiores,4732,1,40.913
+4414,Aguas interiores,4715,5,43.429
+4435,Aguas de transicao,105,5,15.029
+4455,Aguas de transicao,114,1,395.322
+4466,Aguas de transicao,105,5,198.203
+4466,Zonas humidas litorais,791,5,2.88
+4482,Aguas de transicao,105,5,1.461
+4490,Aguas de transicao,105,5,0.509
+4512,Aguas de transicao,114,1,56.327
+4515,Aguas de transicao,114,1,101.806
+4616,Aguas interiores,4679,54,122.155
+4644,Aguas interiores,4711,54,89.467
+4646,Aguas interiores,4711,54,77.224
+4691,Aguas interiores,4647,3,82.002
+4809,Aguas interiores,4323,7,1.957
+4882,Aguas interiores,4552,3,110.36
+4884,Aguas interiores,4552,3,85.821
+4884,Aguas interiores,4564,3,195.719
+5163,Aguas interiores,4531,3,274.742
+467,Aguas interiores,1641,40,5.069
+1019,Aguas interiores,4652,3,1.559
+1019,Aguas interiores,4652,3,92.453
+1052,Aguas interiores,4585,3,28.22
+1251,Aguas interiores,4198,85,7.287
+1264,Aguas interiores,4198,85,10.979
+1481,Aguas interiores,3994,85,4.777
+1622,Aguas interiores,4260,7,54.239
+1882,Aguas interiores,4198,85,6.319
+1911,Aguas interiores,4323,7,46.438
+2083,Aguas interiores,1718,40,5.385
+2129,Aguas interiores,999,42,22.936
+2161,Aguas interiores,999,42,0.555
+2161,Aguas interiores,999,42,3.204
+2161,Aguas interiores,999,42,40.952
+2167,Aguas de transicao,8,42,219.682
+2230,Aguas interiores,999,42,0.078
+2238,Aguas interiores,926,16,21.213
+2269,Aguas interiores,901,16,193.423
+2308,Aguas interiores,903,16,42.354
+2346,Aguas interiores,935,42,0.02
+2711,Aguas interiores,4650,3,17.877
+2899,Aguas interiores,4198,85,5.325
+3360,Aguas interiores,4593,3,101.885
+3384,Aguas de transicao,99,3,4.162
+3863,Aguas interiores,4078,85,10.206
+3929,Aguas interiores,3994,85,4.577
+4051,Aguas interiores,1862,45,13.913
+4173,Aguas interiores,1544,41,15.026
+4437,Aguas de transicao,105,5,0.371
+4451,Aguas de transicao,114,1,0.973
+5194,Aguas interiores,4531,3,121.09
