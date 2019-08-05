@@ -64,7 +64,7 @@ Muni_ID,ID,Muni,furrow,other_grav,aspersion,cannon,pivot,drip,microaspersion
 1710,1171710,Sabrosa,0,0,0,0,0,0,0
 1711,1171711,Santa Marta de Penaguião,0,0,0,0,0,0,0
 1815,1171815,São João da Pesqueira,0,0,0,0,0,14870,0
-1818,1171818,Sernancelhe,0,10000,0,0,0,7435,0
+1818,1171818,Sernancelhe,0,5000,0,0,0,7435,0
 1819,1171819,Tabuaço,0,0,0,0,0,0,0
 1820,1171820,Tarouca,0,0,0,0,0,0,0
 409,1170409,Torre de Moncorvo,0,0,0,0,0,0,0
@@ -118,7 +118,7 @@ Muni_ID,ID,Muni,furrow,other_grav,aspersion,cannon,pivot,drip,microaspersion
 606,1640606,Góis,0,0,0,0,0,0,0
 607,1640607,Lousã,0,0,0,0,0,0,0
 609,1640609,Miranda do Corvo,0,0,0,0,0,0,0
-611,1640611,Oliveira do Hospital,0,10000,0,0,0,0,0
+611,1640611,Oliveira do Hospital,0,5000,0,0,0,0,0
 612,1640612,Pampilhosa da Serra,0,0,0,0,0,0,0
 1013,1641013,Pedrógão Grande,0,0,0,0,0,0,0
 614,1640614,Penela,0,0,0,0,0,0,0
@@ -127,17 +127,17 @@ Muni_ID,ID,Muni,furrow,other_grav,aspersion,cannon,pivot,drip,microaspersion
 901,1650901,Aguiar da Beira,0,0,0,0,0,0,0
 1802,1651802,Carregal do Sal,0,0,0,0,0,0,0
 1803,1651803,Castro Daire,0,0,0,0,0,0,0
-1806,1651806,Mangualde,0,20000,0,0,0,0,0
+1806,1651806,Mangualde,0,10000,0,0,0,0,0
 1808,1651808,Mortágua,0,0,0,0,0,0,0
 1809,1651809,Nelas,0,0,0,0,0,0,0
 1810,1651810,Oliveira de Frades,0,0,0,0,0,0,0
-1811,1651811,Penalva do Castelo,0,10000,0,0,0,0,0
+1811,1651811,Penalva do Castelo,0,5000,0,0,0,0,0
 1814,1651814,Santa Comba Dão,0,0,0,0,0,0,0
-1816,1651816,São Pedro do Sul,0,10000,0,0,0,0,0
+1816,1651816,São Pedro do Sul,0,5000,0,0,0,0,0
 1817,1651817,Sátão,0,0,0,0,0,5954,0
-1821,1651821,Tondela,0,10000,0,0,0,0,0
+1821,1651821,Tondela,0,5000,0,0,0,0,0
 1822,1651822,Vila Nova de Paiva,0,0,0,0,0,0,0
-1823,1651823,Viseu,0,10000,0,0,0,59480,0
+1823,1651823,Viseu,0,5000,0,0,0,59480,0
 1824,1651824,Vouzela,0,0,0,0,0,0,0
 1413,1661413,Mação,0,0,0,0,0,0,0
 506,1660506,Oleiros,0,0,0,0,0,0,0
@@ -145,8 +145,8 @@ Muni_ID,ID,Muni,furrow,other_grav,aspersion,cannon,pivot,drip,microaspersion
 509,1660509,Sertã,0,0,0,0,0,0,0
 510,1660510,Vila de Rei,0,0,0,0,0,0,0
 905,1670905,Fornos de Algodres,0,0,0,0,0,0,0
-906,1670906,Gouveia,0,10000,0,0,0,0,0
-912,1670912,Seia,0,10000,0,0,0,0,0
+906,1670906,Gouveia,0,5000,0,0,0,0,0
+912,1670912,Seia,0,5000,0,0,0,0,0
 902,1680902,Almeida,0,0,0,0,0,0,0
 903,1680903,Celorico da Beira,0,0,0,0,0,0,0
 904,1680904,Figueira de Castelo Rodrigo,0,0,0,0,0,0,0
@@ -222,7 +222,7 @@ Muni_ID,ID,Muni,furrow,other_grav,aspersion,cannon,pivot,drip,microaspersion
 707,1820707,Mora,0,0,0,0,0,0,0
 1212,1821212,Nisa,0,0,0,0,0,0,0
 1213,1821213,Ponte de Sor,0,0,0,0,0,0,0
-1214,1821214,Portalegre,0,40000,0,0,0,0,0
+1214,1821214,Portalegre,0,20000,0,0,0,0,0
 701,1830701,Alandroal,0,0,0,0,0,0,0
 702,1830702,Arraiolos,0,0,0,0,0,0,0
 703,1830703,Borba,0,0,0,0,0,0,0

@@ -1,0 +1,12 @@
+recl_from,recl_to,category_id,category
+1,142,urban,0
+142,211,non-irrigated,0
+211,212,irrigated,0
+212,213,rice,0
+213,221,vineyards,0
+221,222,orchards,0
+222,223,olive groves,0
+223,231,pastures,0
+231,243,heterogeneous,1
+243,244,pastures,0
+244,523,others,0

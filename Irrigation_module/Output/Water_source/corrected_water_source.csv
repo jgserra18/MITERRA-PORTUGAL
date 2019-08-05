@@ -68,7 +68,7 @@ Muni_ID,ID,Muni,spring,superficial,wells
 1819,1171819,Tabuaço,0,0,1
 1820,1171820,Tarouca,0,0,0
 409,1170409,Torre de Moncorvo,0,0,0
-410,1170410,Vila Flor,0,0,1
+410,1170410,Vila Flor,0,0,0
 914,1170914,Vila Nova de Foz Côa,0,0,0
 1714,1171714,Vila Real,0,0,0
 401,1180401,Alfândega da Fé,0,1,0
@@ -137,7 +137,7 @@ Muni_ID,ID,Muni,spring,superficial,wells
 1817,1651817,Sátão,0,0,1
 1821,1651821,Tondela,0,0,1
 1822,1651822,Vila Nova de Paiva,1,0,0
-1823,1651823,Viseu,0,0,0
+1823,1651823,Viseu,0,0,1
 1824,1651824,Vouzela,0,0,1
 1413,1661413,Mação,0,0,0
 506,1660506,Oleiros,0,0,1
@@ -171,12 +171,12 @@ Muni_ID,ID,Muni,spring,superficial,wells
 1006,16B1006,Caldas da Rainha,0,0,1
 1108,16B1108,Lourinhã,0,0,1
 1011,16B1011,Nazaré,0,0.333,0.667
-1012,16B1012,Óbidos,0,0,0
+1012,16B1012,Óbidos,0,0,1
 1014,16B1014,Peniche,0.1,0.3,0.6
 1112,16B1112,Sobral de Monte Agraço,0,1,0
 1113,16B1113,Torres Vedras,0,1,0
 1401,16C1401,Abrantes,0,0,1
-1402,16C1402,Alcanena,0,0,0
+1402,16C1402,Alcanena,0,0,1
 1408,16C1408,Constância,0,0,0
 1410,16C1410,Entroncamento,0,1,0
 1411,16C1411,Ferreira do Zêzere,0,0,1
@@ -187,12 +187,12 @@ Muni_ID,ID,Muni,spring,superficial,wells
 1420,16C1420,Vila Nova da Barquinha,0,0,0
 1115,1711115,Amadora,0,0,1
 1105,1711105,Cascais,0,0,0
-1106,1711106,Lisboa,0,0,0
+1106,1711106,Lisboa,0,0,1
 1107,1711107,Loures,0,0,1
 1109,1711109,Mafra,0,0,1
 1116,1711116,Odivelas,0,0.202,0.798
-1110,1711110,Oeiras,0,0,0
-1111,1711111,Sintra,0,0,0
+1110,1711110,Oeiras,0,0,1
+1111,1711111,Sintra,0,0,1
 1114,1711114,Vila Franca de Xira,0,0,1
 1502,1721502,Alcochete,0.03,0.4,0.57
 1503,1721503,Almada,0.03,0.4,0.57
@@ -211,7 +211,7 @@ Muni_ID,ID,Muni,spring,superficial,wells
 1201,1821201,Alter do Chão,0,0,1
 1202,1821202,Arronches,0,0,1
 1203,1821203,Avis,0.05,0,0.95
-1204,1821204,Campo Maior,0,0,1
+1204,1821204,Campo Maior,0.05,0,0.95
 1205,1821205,Castelo de Vide,0.05,0,0.95
 1206,1821206,Crato,0,0,0
 1207,1821207,Elvas,0,0.412,0.588
@@ -220,7 +220,7 @@ Muni_ID,ID,Muni,spring,superficial,wells
 1210,1821210,Marvão,0,0,1
 1211,1821211,Monforte,0.03,0.4,0.57
 707,1820707,Mora,0.03,0.4,0.57
-1212,1821212,Nisa,0,1,0
+1212,1821212,Nisa,0,0.412,0.588
 1213,1821213,Ponte de Sor,0,0,1
 1214,1821214,Portalegre,0,1,0
 701,1830701,Alandroal,0,0,0
@@ -258,9 +258,9 @@ Muni_ID,ID,Muni,spring,superficial,wells
 1407,1851407,Chamusca,0.012,0,0.988
 1409,1851409,Coruche,0,0,1
 1412,1851412,Golegã,0,0,1
-1414,1851414,Rio Maior,0,1,0
+1414,1851414,Rio Maior,0,0.202,0.798
 1415,1851415,Salvaterra de Magos,0,0,1
-1416,1851416,Santarém,0,0,0
+1416,1851416,Santarém,0,0,1
 801,1500801,Albufeira,0,0,1
 802,1500802,Alcoutim,0,0,0
 803,1500803,Aljezur,0,0,0
@@ -271,7 +271,7 @@ Muni_ID,ID,Muni,spring,superficial,wells
 808,1500808,Loulé,1,0,0
 809,1500809,Monchique,0,0,0
 810,1500810,Olhão,0,0,0
-811,1500811,Portimão,0,0,0
+811,1500811,Portimão,0,0,1
 812,1500812,São Brás de Alportel,1,0,0
 813,1500813,Silves,0,0,0
 814,1500814,Tavira,0,0,1

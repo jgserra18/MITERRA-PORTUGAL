@@ -20,7 +20,14 @@ library(data.table)
 
 tier_condition <- function(year, tier_leaching)
 {
-  ifelse(grep('irrig', tier_leaching) == T, tier <- 'source_leaching_irrig', tier <- 'source_leaching')
+  if(grepl('irrig', tier_leaching)==TRUE)
+  {
+    tier <- 'source_leaching_irrig'
+  } 
+  else if (grepl('irrig', tier_leaching)==FALSE)
+  {
+    tier <- 'source_leaching'
+  }
   tier <- paste0(tier, year_prefix(year))
   
   return(tier)

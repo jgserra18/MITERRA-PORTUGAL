@@ -395,3 +395,60 @@ create_caa_df <- function(year)
 
   return(file)
 }
+
+write_results <- function(folder, file, filename)
+{
+  res_folder <- './ExploratoryAnalysis_module/Results/Paper#2/'
+  folders <- list.files(res_folder, pattern=folder, full.names=T)
+
+  filename <- paste0(filename, '.csv')
+  file_path <- file.path(folders, filename)
+  write.csv(file, file_path)
+}
+
+get_results <- function(folder, filename)
+{
+  res_folder <- './ExploratoryAnalysis_module/Results/Paper#2/'
+  folders <- list.files(res_folder, pattern=folder, full.names=T)
+  file <- list.files(folders, pattern=filename, full.names=T)
+  read <- read.csv(file)
+}
+
+
+## loads raw data activity data subfolders
+load_raw_data <- function(subfolder)
+{
+    raw_folder <- select_maindata_pattern('Raw')
+    subfolder <- file.path(raw_folder, list.files(raw_folder, pattern=subfolder))
+    return(subfolder)
+}
+
+#gets raw crop areas
+get_raw_crop_areas <- function(year, main_crop, crop)
+{
+  subfolder <- load_raw_data('Crop_data')
+  select_yr <- file.path(subfolder, list.files(subfolder, pattern=as.character(year)))
+  select_maincrop <- file.path(select_yr, list.files(select_yr, pattern = main_crop))
+  select_crop <- file.path(select_maincrop, list.files(select_maincrop, pattern = crop))
+
+  read_crop <- read.csv(select_crop)
+  return(read_crop)
+}
+
+load_raw_total_arable <- function(subfolder, year, file_pattern)
+{ 
+  subfolder <- load_raw_data(subfolder)
+  select_yr <- file.path(subfolder, list.files(subfolder, pattern=as.character(year)))
+  select_file <- file.path(select_yr, list.files(select_yr, pattern=file_pattern))
+
+  ifelse(grepl('.csv', select_file), file <- read.csv(select_file), file <- raster(select_file))
+  return(file)
+}
+
+
+call_spatial_disaggregation <- function() {
+
+  module_path <- list.files(patter='SpatialAggregation', full.names = T)
+  select_disagg_file <- list.files(module_path, pattern = 'spatial_disaggregation', full.names = T)
+  file <- read.csv(select_disagg_file)
+}

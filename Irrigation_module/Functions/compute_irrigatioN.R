@@ -5,9 +5,12 @@ source('./Irrigation_module/Functions/no3_functions.R')
 #load correct water sources
 #load NO3 by source and convert these to N-NO3
 
+#d <- compute_corrected_water_sources(1999, T)
+#dd <- compute_corrected_water_sources(2009, FALSE)
+#CORRECT WATER SOURCE FFS ONLY FOR 2009!!
+
 #compute kg N per each water source
 #water_source_weight * water_volume_irrig_sys * NO3_water_source
-
 get_correct_water_source <- function()
 {
   water_source <- compute_corrected_water_sources(2009, FALSE)
@@ -29,6 +32,7 @@ get_irrig_sys_volumes <- function(year, efficiency)
   }
   return(irrig_sys_vol)
 }
+
 
 #gets specified water_source column
 specify_water_source <- function(water_source)

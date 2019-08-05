@@ -1,0 +1,12 @@
+rcl_id,clc_id,clc_name,specifications,crop_categories
+211,2.1.1,non-irrigated,annuals; mostly rainfed,cereals; potatoes; pulses; forage; industrial
+212,2.1.2,irrigated,non-permanent annuals,arable non-permanent crops
+213,2.1.3,rice,rice paddies,rice
+221,2.2.1,vineyards,vineyards,vineyards
+222,2.2.2 ,orchards,"fresh fruits, citrus, dried fruits",fresh fruits; citrus; dried fruits
+223,2.2.3,olive groves,olives,olive groves
+231,2.3.1,pastures,extensive and intensive pastures,intensive grassland; extensive grassland
+241,2.4,Heterogeneous agricultural areas,assumed for rainfed permanent and temporary crops,all
+242,2.4,Heterogeneous agricultural areas,assumed for rainfed permanent and temporary crops,all
+243,2.4,Heterogeneous agricultural areas,assumed for rainfed permanent and temporary crops,all
+244,2.4.4,pastures,extensive and intensive pastures,intensive grassland; extensive grassland

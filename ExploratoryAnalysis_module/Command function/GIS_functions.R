@@ -96,7 +96,7 @@ merge_file <- function(shp, df, id)
 #computes zonal statistics 
 zonal_statistic <- function(shp, raster, colname)
 {
-  z_stat <- extract(raster, shp, fun=mean, na.rm=TRUE,  df=TRUE)
+  z_stat <- raster::extract(raster, shp, fun=mean, na.rm=TRUE,  df=TRUE)
   df <- cbind(shp, z_stat[, 2])
   colnames(df@data)[ncol(df)] <- colname
   

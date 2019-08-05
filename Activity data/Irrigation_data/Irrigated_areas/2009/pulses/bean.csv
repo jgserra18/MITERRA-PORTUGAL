@@ -156,7 +156,7 @@ Muni_ID,ID,Muni,furrow,other_grav,aspersion,cannon,pivot,drip
 910,1680910,Pinhel,2,0,3,0,0,0
 911,1680911,Sabugal,8,0,0,0,0,0
 913,1680913,Trancoso,3,0,2,0,0,0
-502,1690502,Castelo Branco,2,0,1,3,0,0
+502,1690502,Castelo Branco,2,3,1,3,0,0
 505,1690505,Idanha-a-Nova,1,0,2,0,0,0
 507,1690507,Penamacor,2,0,3,0,0,0
 511,1690511,Vila Velha de Ródão,1,0,0,0,0,0
@@ -263,7 +263,7 @@ Muni_ID,ID,Muni,furrow,other_grav,aspersion,cannon,pivot,drip
 1416,1851416,Santarém,1,0,0,0,0,0
 801,1500801,Albufeira,0,0,0,0,0,0
 802,1500802,Alcoutim,0,0,0,0,0,0
-803,1500803,Aljezur,9,0,0,0,0,0
+803,1500803,Aljezur,9,2,0,0,0,0
 804,1500804,Castro Marim,0,0,0,0,0,0
 805,1500805,Faro,0,0,0,0,0,0
 806,1500806,Lagoa,0,0,0,0,0,0

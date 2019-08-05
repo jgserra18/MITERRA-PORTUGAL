@@ -10,6 +10,7 @@ source('./Other_N_balances/Function/N_balance_functions.R')
 source('./Runoff_module/Function/Compute_runoff_application.R')
 source('./Leaching_module/Function/Compute_leaching.R')
 source('./NLoading_module/Function/Compute_gw_loadings.R')
+source('./GIS_module/Function/General_GIS_functions.R')
 
 ################################################################################################################
 ################################################# LOAD DATA ####################################################
@@ -154,7 +155,6 @@ compute_N_losses <- function(year)
 
   return(list(main_df, sum_df))
 }
-
 
 #for plotting
 melt_gaseous_losses_runoff <- function(year)
@@ -436,12 +436,14 @@ ggplot_scatter_nb_leaching <- function(year, xx_axis, strip_facet)
 ################################################################################################################
 ################################################# TMAP MODULE ####################################################
 
+## -------------------------- POLYGONS -------------------------------##
+
 #creates default map for leaching/n-loadings
 create_map <- function(map_plot, col_plot, panel_plot, legend, title, muni, unit){
   tm_shape(muni) + tm_borders(col='grey') + tm_fill(col='grey') + 
   tm_shape(map_plot) + tm_borders(col=NA, lwd = 0, alpha = 0) + 
     tm_polygons(col=col_plot,
-                title = paste0(title, '\n', unit), breaks=c(0, 10, 20, 50, +Inf),
+                title = paste0(title, '\n', unit), breaks=c(0, 10, 20, 30, +Inf),
                 palette = c('blue1', 'green1', 'yellow1', 'red'),
                 label = c('<10', '10-20', '20-50', '>50'),
                 textNA = 'NA', colorNA='black')+
@@ -476,7 +478,7 @@ caa_nc_plot_main_hydro <- function(map_plot, col_plot, panel_plot, legend, title
 #creates map for precipitation
 prec_map <- function(map_plot, panel_plot)
 {
-    tm_shape(map_plot) + 
+    tm_shape(map_plot, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + 
     tm_raster(breaks=c(0, 500, 1000, 2000, 3000), palette = 'Blues', title = 'Precipitation\n(mm)') + 
     tm_legend(show=TRUE, position=c(0.69, 0.3), frame=F)+
     tm_scale_bar(color.dark = 'black', text.color = 'black',
@@ -489,7 +491,7 @@ prec_map <- function(map_plot, panel_plot)
               panel.label.bg.color = 'white',
               legend.title.size = 1.2,
               panel.labels = panel_plot,
-              fontfamily = 'Times',
+              fontfamily = 'serif',
               panel.label.height = 1.2,
               #bottom, left, top, right
               inner.margins = c(0.01, 0, 0.01, 0.2))
@@ -526,40 +528,284 @@ gis_gw_plot <- function(map_plot, col_plot, panel_plot, legend, title, unit){
 #V function name
 gis_prec_map_hist <- function(df_plot, col, pane_label)
 {
-  plot <- tm_shape(df_plot) + tm_polygons(col=col, palette = 'Blues', 
-                                          legend.hist=TRUE, legend.hist.width=1.1,
+  plot <- tm_shape(df_plot, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_polygons(col=col, palette = 'Blues', 
+                                         # legend.hist=TRUE, legend.hist.width=1.1,
                                           breaks=c(0, 500, 1000, 1500, 2000, 3000),
-                                          labels = c('< 500', '500 - 1000', '1000 - 1500', '1500 - 2000', '2000 - 3000'),
-                                          title='Precipitation (mm)') + 
-    tm_legend(legend.outside=FALSE, position=c(.6, 0.25)) + 
+                                          style='cont',
+                                          #labels = c('< 500', '500 - 1000', '1000 - 1500', '1500 - 2000', '2000 - 3000'),
+                                          title='Precipitation\n(mm)') + 
+    tm_legend(legend.outside=FALSE, position=c(.7, 0.3)) + 
     tm_scale_bar(color.dark = 'black', text.color = 'black', 
                  position=c(0.63, 0.009), breaks = c(0, 50, 100)) + 
     tm_compass(type='4star', size=1.5,
                position=c(0.025, 0.9)) +
     tm_layout(frame=TRUE,   
-              legend.text.fontfamily ='Times',          
+              legend.text.fontfamily ='serif',          
               legend.text.size = 0.9,
               panel.show = T,
               legend.title.size = 1.2,
               panel.labels = pane_label,
-              fontfamily = 'Times',
+              fontfamily = 'serif',
               legend.width = 2.3,
               panel.label.height = 1.2,
               #bottom, left, top, right
-              inner.margins = c(0, 0, 0, 0.3))
+              inner.margins = c(0, 0, 0, 0))
   
   return(plot)
 }
 
+## -------------------------- RASTERS  -------------------------------##
+
+create_recharge_rate <- function(two_plots)
+{
+  gw_ind_inters <- load_shp('ind_aquifer')
+  hydro <- load_shp('main_hydro')
+  hydro$initial <- c('H', 'W', 'TS', 'W', 'W', 'M')
+  hydro_h <- subset(hydro, initial=='H')
+  hydro_t <- subset(hydro, initial=='TS')
+  hydro_w <- subset(hydro, initial=='W')
+  hydro_m <- subset(hydro, initial=='M')
+  gw <- load_shp('gw')
+  subset <- subset(gw, gw_data0_1=='Ind')
+  df <- get_gw_recharge_df()
+  colnames(df)[1] <- 'GW_ID'
+  gw <- load_shp('gw')
+  gw <- merge(gw, df, 'GW_ID')
+  
+  plot1 <- tm_shape(gw, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + 
+    tm_polygons(col='recharge', style='cont', palette =  c('snow1', 'cadetblue1', 'deepskyblue2', 'dodgerblue3', 'blue3', 'blue4'),
+                title = 'Recharge rate\n(%)', alpha=.8) + tm_borders(col='black') + 
+    tm_legend(show=T, position=c(0.7, 0.32), frame=F) + 
+    tm_scale_bar(color.dark = 'black', text.color = 'black',
+                 position=c(0.63, 0.05), breaks = c(0, 50, 100)) + 
+    tm_compass(type='4star', size=1.1, fontsize = 0.7,
+               position=c(0.1, 0.9)) +
+    tm_layout(legend.title.size = 1.2, legend.width = 2, legend.position = c(0.7, 0.3),
+              frame=TRUE, legend.text.size=0.9, panel.labels='Aquifer recharge rates', fontfamily = 'serif', panel.label.height = 1.2)  
+  
+  plot2 <- tm_shape(hydro_h, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=3, lty='solid', col='chartreuse2') +
+    tm_shape(hydro_t, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=3, lty='solid', col='red') + 
+    tm_shape(hydro_w, pprojection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=3, lty='solid', col='chocolate1') + 
+    tm_shape(hydro_m, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=3, lty='solid', col='darkorchid1') + 
+    tm_add_legend(type='line', col=c('chartreuse2', 'red', 'chocolate1', 'darkorchid1'), labels=c('Hercynean', 'Tagus-Sado', 'Western', 'Meridional'), lwd=2)
+  
+  ifelse(two_plots==TRUE, plot <- plot1 + plot2, plot <- plot1)
+  return(plot)
+}
+
+
+create_gw_leaching_result <- function(shp_ind, shp_diff_nload)
+{
+  tm_shape(shp_ind, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_fill(col='azure4') + tm_borders(col='black') + 
+    tm_shape(gw99, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_polygons(col='N.loads.mg.N.',# style='cont', 
+                                 breaks = c(0, 100, 200, 400, 600, 900, 1200),
+                                 palette = c('blue1','green1', 'yellow1',  'red1'), #c('cadetblue1', 'deepskyblue2', 'dodgerblue3', 'blue3'), 
+                                 labels = c(' <100', '100 - 200', '200 - 400', '400 - 600', '600 - 900', '900 - 1200'),
+                                 title='Ngw (tonnes N)') + tm_borders(col='black') + 
+    tm_legend(legend.outside=F, legend.position = c(0.7, 0.3)) + 
+    tm_scale_bar(color.dark = 'black', text.color = 'black',
+                 position=c(0.63, 0.05), breaks = c(0, 50, 100)) + 
+    tm_compass(type='4star', size=1.1, fontsize = 0.7,
+               position=c(0.1, 0.9)) +
+    tm_layout(legend.title.size = 0.9, legend.text.size=0.7, legend.width=2, 
+              frame=T,  legend.hist.width = .7,                                     
+              fontfamily = 'serif', panel.label.height = 1, panel.labels='1999') + 
+    tm_shape(shp_ind, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_fill(col='azure4') + tm_borders(col='black')
+}
+
+
+create_gw_leaching_result_proportion <- function(shp_ind, shp_diff_nload)
+{
+  d <- tm_shape(shp_ind, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_fill(col='azure4') + tm_borders(col='black') + 
+    tm_shape(shp_diff_nload, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_polygons(col='dif_prc', 
+                                   labels = c('<-40', '-40 - -20', '-20 - 0', '0 - 20', '>20'),
+                                   breaks = c(-Inf, -40, -20, 0, 20, +Inf), midpoint=0,
+                                   palette = c('blue1', 'green3', 'yellow1', 'orange', 'red1'), #c('cadetblue1', 'deepskyblue2', 'dodgerblue3', 'blue3'), 
+                                   title='Change in\nN-loads (%)') + tm_borders(col='black') + 
+    tm_legend(legend.outside=F, legend.position = c(0.7, 0.3)) + 
+    tm_scale_bar(color.dark = 'black', text.color = 'black',
+                 position=c(0.63, 0.05), breaks = c(0, 50, 100)) + 
+    tm_compass(type='4star', size=1.1, fontsize = 0.7,
+               position=c(0.1, 0.9)) +
+    tm_layout(legend.title.size = 0.9, legend.text.size=0.7, legend.width=2, 
+              frame=T,  legend.hist.width = .7,                                     
+              fontfamily = 'serif', panel.label.height = 1, panel.labels='Change in N-loads') + 
+    tm_shape(shp_ind, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_fill(col='azure4') + tm_borders(col='black')
+}
+
+
+create_aquifer_recharge_result_proportion <- function(shp_ind, shp_diff_rech)
+{
+  d <- tm_shape(shp_diff_rech, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(col='black') +
+    tm_polygons(col='drain_dif', midpoint=0, breaks=c(-77,-50, -30, 0, 27), title='Change in\nrecharge (%)',
+                palette = c('firebrick4', 'red', 'orange', 'blue3'), #legend.hist=T,
+                label = c('< -50', '-50 - -30', '-30 - 0',  '0 - 27')) + 
+    tm_legend(legend.outside=F, legend.position = c(0.7, 0.3)) + 
+    tm_scale_bar(color.dark = 'black', text.color = 'black',
+                 position=c(0.63, 0.05), breaks = c(0, 50, 100)) + 
+    tm_compass(type='4star', size=1.1, fontsize = 0.7,
+               position=c(0.1, 0.9)) +
+    tm_layout(legend.title.size = 0.9, legend.text.size=0.7, 
+              frame=T,  legend.hist.width = .7,                                     
+              fontfamily = 'serif', panel.label.height = 1, panel.labels='Change in recharge') + 
+    tm_shape(shp_ind, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_fill(col='azure4') + tm_borders(col='black')
+}
+
+
+create_aquifer_recharge <- function(year, legend, panel_plot, two_plots)
+{
+  gw_ind_inters <- load_shp('ind_aquifer')
+  hydro <- load_shp('main_hydro')
+  hydro$initial <- c('H', 'W', 'TS', 'W', 'W', 'M')
+  hydro_h <- subset(hydro, initial=='H')
+  hydro_t <- subset(hydro, initial=='TS')
+  hydro_w <- subset(hydro, initial=='W')
+  hydro_m <- subset(hydro, initial=='M')
+  gw <- load_shp('gw')
+  subset <- subset(gw, gw_data0_1=='Ind')
+  
+  df_gw <- get_df_Nc(year)
+  df_gw$drainage <- df_gw$drainage/1000000000 #L to hm3
+  
+  gw <- merge(gw, df_gw, 'GW_ID')
+  gw <- subset(gw, gw_data0_1 != 'Ind')
+  
+  plot1<-tm_shape(subset, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_fill(col='azure4') + tm_borders(col='black') + 
+    tm_shape(gw, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + 
+    tm_polygons(col='drainage',palette = c('snow1', 'cadetblue1', 'deepskyblue2', 'dodgerblue3', 'blue3', 'blue4'), 
+               breaks = c(0, 15, 30, 45, 75, +Inf), title=expression(paste('Recharge (', hm^3, ')'))) + tm_borders(col='black') + 
+    tm_layout(legend.title.size = 0.9, legend.width = 2, legend.position = c(0.7, 0.5),
+              frame=TRUE, legend.text.size=0.7, panel.labels=panel_plot, fontfamily = 'serif', panel.label.height = 1)  + 
+    tm_legend(show=legend, position=c(0.7, 0.3), frame=F) + 
+    tm_scale_bar(color.dark = 'black', text.color = 'black',
+                 position=c(0.63, 0.05), breaks = c(0, 50, 100)) + 
+    tm_compass(type='4star', size=1.1, fontsize = 0.7,
+               position=c(0.1, 0.9)) 
+    plot2 <- tm_shape(hydro_h, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=2.2, lty='solid', col='red') +
+    tm_shape(hydro_t, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=2.2, lty='solid', col='green') + 
+    tm_shape(hydro_w, pprojection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=2.2, lty='solid', col='purple') + 
+    tm_shape(hydro_m, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=2.2, lty='solid', col='orange') + 
+    tm_add_legend(type='line', col=c('red', 'green', 'purple', 'orange'), labels=c('Hercynean', 'Tagus-Sado', 'Western', 'Meridional'), lwd=2)
+    
+    ifelse(two_plots==TRUE, plot <- plot1 + plot2, plot <- plot1)
+    return(plot)
+}
+
+
+create_raster_leaching <- function(map_plot, col_plot, panel_plot, legend, title, muni, unit, breaks)
+{ 
+  tm_shape(muni, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(col='grey') + tm_fill(col='grey') + 
+    tm_shape(map_plot, projection = 'longlat', bbox=c(-10, 36.8, -5.5, 42.25)) + tm_raster(col=col_plot, breaks = c(0, 0.001, 5, 10, 20, 40, 110), 
+                                                      palette = c('black', 'blue1', 'green1', 'yellow', 'orange', 'red'), 
+                                                      labels=c('NA', ' <5', '5 - 10', '10 - 20', '20 - 40', ' >40'),
+                                                      title = paste0(title, '\n', unit)) +
+    tm_legend(show=legend, position=c(0.7, 0.3), frame=F)+
+    tm_scale_bar(color.dark = 'black', text.color = 'black',
+                 position=c(0.63, 0.05), breaks = c(0, 50, 100)) + 
+    tm_compass(type='4star', size=1.1, fontsize = 0.7,
+               position=c(0.1, 0.9)) +
+    tm_layout(frame=T,
+              legend.text.size = 0.71,
+              panel.show = T,
+              legend.title.size = 0.9,
+              panel.labels = panel_plot,
+              fontfamily = 'serif',
+             # legend.width = 2.3,
+              panel.label.height = 1)
+              #bottom, left, top, right
+              #inner.margins = c(0,0,0,0),
+              # = c(0, 0.05, 0, 0.05))
+}
+
+create_raster_leaching_gw <- function(map_plot, col_plot, panel_plot, legend, title, muni, unit, breaks)
+{ 
+  tm_shape(muni, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(col='grey') + tm_fill(col='grey') + 
+    tm_shape(map_plot, projection = 'longlat', bbox=c(-10, 36.8, -5.5, 42.25)) + tm_raster(col=col_plot, breaks = c(0, 0.001, 2.5, 5, 10, 20, 110), 
+                                                                                           palette = c('black', 'blue1', 'green1', 'yellow', 'orange', 'red'), 
+                                                                                           labels=c('NA', ' <2.5', '2.5 - 5', '5 - 10', '10 - 20', ' >20'),
+                                                                                           title = paste0(title, '\n', unit)) +
+    tm_legend(show=legend, position=c(0.7, 0.3), frame=F)+
+    tm_scale_bar(color.dark = 'black', text.color = 'black',
+                 position=c(0.63, 0.05), breaks = c(0, 50, 100)) + 
+    tm_compass(type='4star', size=1.1, fontsize = 0.7,
+               position=c(0.1, 0.9)) +
+    tm_layout(frame=T,
+              legend.text.size = 0.71,
+              panel.show = T,
+              legend.title.size = 0.9,
+              panel.labels = panel_plot,
+              fontfamily = 'serif',
+              panel.label.height = 1)
+
+}
+
+
+create_raster_Nc <- function(map_plot, col_plot, panel_plot, legend, title, muni, unit)
+{
+  plot <- tm_shape(muni, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + 
+    tm_borders(col='grey') + tm_fill(col='grey') + 
+    tm_shape(map_plot, projection = 'longlat', bbox=c(-10, 36.8, -5.5, 42.25)) +
+    tm_raster(col=col_plot, breaks = c(0, 0.001, 5, 10, 25, 50, +Inf), 
+                           palette = c('black', 'blue', 'green', 'yellow', 'orange', 'red'), 
+                           labels=c('0', ' <5', '5 - 10', '10 - 25', '25 - 50', ' >50'),
+                           title = paste0(title, '\n', unit)) +
+    tm_legend(show=legend, position=c(0.7, 0.3), frame=F)+
+    tm_scale_bar(color.dark = 'black', text.color = 'black',
+                 position=c(0.63, 0.05), breaks = c(0, 50, 100)) + 
+    tm_compass(type='4star', size=1.1, fontsize = 0.7,
+               position=c(0.1, 0.9)) +
+    tm_layout(frame=T,
+              legend.text.size = 0.71,
+              panel.show = T,
+              legend.title.size = 0.9,
+              panel.labels = panel_plot,
+              fontfamily = 'serif',
+              panel.label.height = 1)
+}
+
+create_raster_gw <- function(subset, map_plot, col_plot, panel_plot, legend, title, unit){
+  
+  hydro <- load_shp('main_hydro')
+  hydro$initial <- c('H', 'W', 'TS', 'W', 'W', 'M')
+  hydro_h <- subset(hydro, initial=='H')
+  hydro_t <- subset(hydro, initial=='TS')
+  hydro_w <- subset(hydro, initial=='W')
+  hydro_m <- subset(hydro, initial=='M')
+  
+  tm_shape(map_plot, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(col='black', lwd = 0.8) + 
+    tm_polygons(col=col_plot,
+                title = paste0(title, '\n', unit), breaks=c(0,  10, 25, 50, +Inf),
+                palette = c('blue1', 'green1', 'yellow1', 'red'),
+                label = c('<10', '10 - 25', '25 - 50', ' >50'), showNA=FALSE)+
+    tm_shape(subset, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_fill(col='azure4') +tm_borders(col='black') +
+    tm_legend(show=legend, position=c(0.7, 0.3), frame=F)+
+    tm_scale_bar(color.dark = 'black', text.color = 'black',
+                 position=c(0.63, 0.05), breaks = c(0, 50, 100)) + 
+    tm_compass(type='4star', size=1.1, fontsize = 0.7,
+               position=c(0.1, 0.9)) +
+    tm_layout(frame=T,
+              legend.text.size = 0.71,
+              panel.show = T,
+              legend.title.size = 0.9,
+              panel.labels = panel_plot,
+              fontfamily = 'serif',
+              panel.label.height = 1) + 
+    tm_shape(hydro_h, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=2.2, lty='solid', col='black') +
+    tm_shape(hydro_t, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=2.2, lty='solid', col='black') + 
+    tm_shape(hydro_w, pprojection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=2.2, lty='solid', col='black') + 
+    tm_shape(hydro_m, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=2.2, lty='solid', col='black') 
+}
+
 #arranges two different tmap plots as one and then saves it to a default path
-map_arrange <- function(p1, p2, name, heigth, width)
+map_arrange <- function(p1, p2, name, heigth, width, ncol)
 {
   path <- plot_output()
   
+  ifelse(missing(ncol)==TRUE, ncol <- 2, ncol <- ncol)
   pl <- tmap_arrange(p1, p2, ncol=2)
   
   print('Saving this now...')
-  tmap_save(pl, paste0(path, name), dpi =600, height = 6.5, width = 8)
+  tmap_save(pl, paste0(path, name), dpi =600, height = 6.5, width = 8) #width =8 by default +
 }
 
 master_plot_nload <- function(p1, p2, p3, p4, height, width, name)
