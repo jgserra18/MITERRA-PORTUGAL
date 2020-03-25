@@ -1,6 +1,0 @@
-Runoff_drip = 0
-Runoff_rice = 0
-Runoff_sprinkler_sandy = 0
-Runoff_furrow99 = 20%N_irrig
-Runoff_furrow 09 = 10%N_irrig
-Runoff_remaining = f_runoff

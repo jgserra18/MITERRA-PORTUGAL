@@ -1,0 +1,12 @@
+Manure,Livestock_class,CN_ratio,source,assumption
+FYM,Dairy,18,CdNP18,-
+FYM,Bovine,18,CdNP18,-
+FYM,Goats,15,CdNP18,-
+FYM,Equides,21,CdNP18,-
+FYM,Sheep,15,CdNP18,-
+FYM,Swine,3,CdNP18,-
+FYM,Poultry,8,CdNP18,-
+FYM,Rabbits,15,CdNP18,Assumd from goats/sheep
+Slurry,Dairy,9,CdNP19,
+Slurry,Bovine,9,CdNP20,
+Slurry,Swine,4,CdNP21,

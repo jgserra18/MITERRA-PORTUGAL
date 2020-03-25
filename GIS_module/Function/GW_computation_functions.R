@@ -4,11 +4,15 @@
 # (2) - COMPUTE PRECIPITATION RUNOFF, SOIL DRAINAGE (BOTH USING MITERRA RF) AND AQUIFER RECHARGE (USING RECHARGE RATES AND PRECIPITATION)
 # (3) - COMPUTE THE NO3 CONCENTRATION IN LEACHED WATER
 
+############ READ ME --------------------- #############################
+## drainage calculated by aquifer recharge rates + irrigation is not correct but I wont erase these sections
+## drainage is now given as a proxy of water balance from below the root zone
 
 source('./GIS_module/Function/compute_GIS_leaching_fractions.R')
 source('./GIS_module/Function/General_GIS_functions.R')
 source('./GIS_module/Function/compute_GIS_leaching_pathways.R')
 source('./ExploratoryAnalysis_module/Command function/GIS_functions.R')
+source('./WaterBalance_module/Functions/GW_Water_Balance.R')
 
 ## ----------------------------------------------------------------------------------------------------------------
 ## RECHARGE RATE COMPUTATION --------------------------------------------------------------------------------------
@@ -44,8 +48,7 @@ rasterize_gw_recharge <- function() {
   write_raster_modelling(rast, 'rast_recharge_gw', 'Recharge')
 }
 
-get_rast_gw_recharge <- function()
-{
+get_rast_gw_recharge <- function() {
   gw_rech <- get_modelling_files('Recharge', 'rast_recharge_gw')
 }
 
@@ -69,8 +72,7 @@ get_Nc_rasters <- function(pattern_file, irrig_mode) {
 ## ---------------------------------------------------------------------------------------
 
 write_gw_rasters <- function(write, rasterfile, filename, irrig_mode, main_subfolder) {
-  if (write==TRUE)
-  {
+  if (write==TRUE) {
     write_pathway_leaching(rasterfile, filename, irrig_mode, main_subfolder)
   }
 }
@@ -80,8 +82,7 @@ write_gw_rasters <- function(write, rasterfile, filename, irrig_mode, main_subfo
 ## ---------------------------------------------------------------------------------------
 
 #d <- rf_precipitation_runoff(1999, TRUE, 'Default')
-rf_precipitation_runoff <- function(year, write, irrig_mode)
-{
+rf_precipitation_runoff <- function(year, write, irrig_mode) {
   rf <- get_GIS_file(paste0('Rf', year_prefix(year)), 'MITERRA')
   prec <- get_precipitation(year, 'rast_caa')
   
@@ -91,8 +92,7 @@ rf_precipitation_runoff <- function(year, write, irrig_mode)
  return(rf_prec)
 }
 
-rf_precipitation_drainage <- function(year, write, irrig_mode)
-{
+rf_precipitation_drainage <- function(year, write, irrig_mode) {
   prec <- get_precipitation(year, 'rast_caa')
   rf_prec <- rf_precipitation_runoff(year, FALSE,irrig_mode)
   
@@ -152,10 +152,30 @@ method_parameters <- function(method) {
   if (method=='RF'){return(method_rf)} else if (method=='GW'){return(method_gw)}
 }
 
+general_Nc_func <- function(year, write, irrig_mode) {
+  # general function to calculate Nc (mg N/L) for each cellgrid
+  
+  # get water balance for each cellgrid
+  water_balance <- raster(select_WB_subfolder_file('Water_surplus', 'MOSAIC', year))*1000 #Litres
+  n_loads <- correct_nloads_gw(year, FALSE, irrig_mode) #N-loads are already corrected to the adj factor but in kg N
+  adj_factor <- get_modelling_files('Adjustment_factor', paste0('rast_adj_factor', year_prefix(year)))
+  
+  water_balance <- water_balance*adj_factor
+  n_loads <- n_loads *1000*1000 #in mg N
+  Nc <- n_loads/water_balance
+  if (write==TRUE) {
+    write_gw_rasters(write, rasterfile = Nc, filename = paste0('Nc_WB_', year_prefix(year)), irrig_mode = irrig_mode, 'Nc')
+  }
+  return(Nc)
+  rm(list=c('water_balance', 'adj_factor', 'n_loads'))
+}
 
-#general function to compute Nc based on method parameters
-general_Nc_func <- function(year, write, irrig_mode, method)
-{
+
+## FUNCTION DISREGARDED DUE TO CHANGES IN DRAINAGE (IE RECHARGE) TO WATER BALANCE
+general_Nc_func_OLD <- function(year, write, irrig_mode, method) {
+  #general function to compute Nc based on method parameters
+  
+
   method_df <- method_parameters(method)
   #load data
   drainage <- get_drainage_rasters(paste0(method_df[1], year_prefix(year)), irrig_mode)
@@ -171,18 +191,44 @@ general_Nc_func <- function(year, write, irrig_mode, method)
 }
 
 #Nc using soil drainage
+# wrong
 rf_Nc_gw <- function(year, write, irrig_mode)
 {
-  general_Nc_func(year, write, irrig_mode, 'RF')
+  general_Nc_func_OLD(year, write, irrig_mode, 'RF')
 }
 
 #Nc using aquifer recharge rates
+# wrong
 gw_Nc_gw <- function(year, write, irrig_mode)
 {
-  general_Nc_func(year, write, irrig_mode, 'GW')
+  general_Nc_func_OLD(year, write, irrig_mode, 'GW')
 }
 
-df_compute_gw_nc <- function(year,write, irrig_mode) {
+#Nc using WATER BALANCE
+wb_Nc_gw <- function(year, write, irrig_mode) {
+  ifelse(missing(irrig_mode)==TRUE, irrig <- 'Default', irrig <- 'Irrig')
+  general_Nc_func(year, write, irrig)
+}
+
+## VERY IMPORTANT
+df_compute_gw_Nc <- function(year, write, irrig_mode) {
+  # READ: correct approach to calculate NO3 in leached water
+  # USES THE WATER BALANCE FROM BELOW THE ROOT ZONE AS A PROXY (see WaterBalance_module)
+  ifelse(missing(irrig_mode)==TRUE, irrig <- 'Default', irrig <- 'Irrig')
+  
+  gw_WB <- read.csv(select_WB_subfolder_file('GW', 'df', year)) #in litres
+  nload_df <-get_modellingDf_file(paste0('nload_df_gw', year_prefix(year)), 'Pathway_leaching', irrig)[, -1] #in kg N
+  
+  gw_WB$n_load_kgN <- nload_df$n.load
+  gw_WB$Nc_mgNL <- gw_WB$n_load_kgN*1000*1000/gw_WB$wsurplus_L #in mg N/L
+  gw_WB$Nc_mgNO3L <- gw_WB$Nc_mgNL*50/11.3 #in mg NO3/L
+  if (write==TRUE){write_csv_modelling('Nc', subfolder_pattern = irrig, gw_WB, paste0('nc_df_gw', year_prefix(year)))}
+  
+  return(gw_WB)
+}
+
+## DISREGARDED 
+df_compute_gw_nc_OLD <- function(year,write, irrig_mode) {
   #compute Nc of each GW in a dataframe format
   
   ifelse(missing(irrig_mode)==TRUE, irrig <- 'Default', irrig <- 'Irrig')
@@ -210,9 +256,8 @@ get_df_Nc <- function(year, irrig_mode) {
   return(nc_df)
 }
 
-
 get_main_df_gw_dataset <- function(year, write) {
-  gw_df <- get_df_Nc(year)
+  gw_df <- get_df_Nc(year, irrig_mode = 'Irrig')
   rech <- get_gw_recharge_df()
   colnames(rech)[1] <- 'GW_ID'
   #get HUs
@@ -223,6 +268,4 @@ get_main_df_gw_dataset <- function(year, write) {
   if (write==TRUE){write_csv_modelling('Nc', 'Default', gw_df, paste0('dataset_gw_', year_prefix(year)))}
   return(gw_df)
 }
-
-
 

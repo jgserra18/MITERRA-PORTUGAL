@@ -27,5 +27,3 @@ export_HU <- function(file)
   write.csv(x = file, file = paste0(path,'/gw_HUs.csv'))
 }
 
-d <- gw_within_HUs()
-export_HU(d)

@@ -169,17 +169,17 @@ compute_nha <- function(year, input_variable, tier_ssnb)
 	return(calc_nha)
 }
 
-#add the output of compute_leaching and denitrification to the main_df
-#compute_area must be TRUE or FALSE
-#dd <- aggregate_to_maindf(2009, F, 'tier2_irrig')
-aggregate_to_maindf <- function(year, compute_area, tier_ssnb)
-{
+
+aggregate_to_maindf <- function(year, compute_area, tier_ssnb) {
+  #add the output of compute_leaching and denitrification to the main_df
+  #compute_area must be TRUE or FALSE
+  #dd <- aggregate_to_maindf(2009, F, 'tier2_irrig')
+  
 	main_df <- downscale_ssnb_caa(year, tier_ssnb)
 	nl <- compute_leaching(year, tier_ssnb)
 	denit <- compute_denitrification(year, tier_ssnb)
 
-	if (compute_area==TRUE)
-	{
+	if (compute_area==TRUE) {
 		denit <- compute_nha(year, denit, tier_ssnb)
 		nl <- compute_nha(year, nl, tier_ssnb)
 
@@ -187,8 +187,7 @@ aggregate_to_maindf <- function(year, compute_area, tier_ssnb)
 		colnames(main_df)[ncol(main_df)] <- 'leaching_nha'
 		colnames(main_df)[ncol(main_df)-1] <- 'denit_nha'
 	}
-	else 
-	{
+	else  {
 		main_df <- cbind(main_df, denit, nl)
 	}
 	

@@ -1,5 +1,7 @@
 library(raster)
 library(rgdal)
+library(sf)
+library(fasterize)
 
 #load GIS functions to export shapefile
 source('./ExploratoryAnalysis_module/Command function/GIS_functions.R')
@@ -7,47 +9,56 @@ source('./Main_functions.R')
 source('./Leaching_module/Function/Compute_leaching.R')
 
 
-get_muni_shp <- function()
-{
+get_muni_shp <- function(rgdal_sf) {
+  
+  options(warnings=-1)
   path <- select_GIS_output_submodule('Muni')
   file_path <- file.path(path, list.files(path, pattern='shp'))
+  
   muni <- readOGR(file_path)
   colnames(muni@data)[1] <- 'Muni_ID'
   muni$Muni_ID <- as.character(muni$Muni_ID)
   muni$Muni_ID <- as.integer(muni$Muni_ID)
-  
   ext <- c(2635900, 2977200, 1729700, 2298200)
   muni <- crop(muni, ext)
   
+  if (missing(rgdal_sf)==FALSE) {
+    muni <- st_as_sf(muni)
+  }
+
   return(muni)
 }
 
-general_rasterize <- function(shp,  fiel_rast)
-{
+general_rasterize <- function(shp,  fiel_rast) {
+  
   r <- raster(ext=extent(2635900, 2977200, 1729700, 2298200), 
               crs=CRS('+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs'),
               res=100)
   
-  rast <- rasterize(shp, r, field=fiel_rast)
+  if ((class(shp)[1]=='sf')==TRUE) {
+  rast <- fasterize(sf = shp, raster = r, field = fiel_rast)
+  }
+  else {
+    shp <- st_as_sf(shp)
+    rast <- fasterize(sf = shp, raster = r, field = fiel_rast)
+    
+  }
   return(rast)
 }
 
 #rasterize_data_muni(nleaching09, 'Muni_ID', 'leaching_nha')
-rasterize_data_muni <- function(df_to_rasterize, merged_col, field_rasterize)
-{
-  muni <- get_muni_shp()
+rasterize_data_muni <- function(df_to_rasterize, merged_col, field_rasterize) {
+  muni <- get_muni_shp('sf')
   muni <- merge(muni, df_to_rasterize,merged_col)
   
   #create empty raster
   r <- raster(extent(muni), res=100, crs=crs(muni))#0.01)
+  r <- fasterize(sf = muni, raster = r, field = field_rasterize)
 
-  r <- rasterize(muni, r, field=field_rasterize, background=NA)
-  
   return(r) 
 }
 
-rasterize_caa_muni <- function(caa_df, df_to_rasterize, merged_col, field_rasterize)
-{
+rasterize_caa_muni <- function(caa_df, df_to_rasterize, merged_col, field_rasterize) {
   caa <- merge(caa_df, df_to_rasterize, merged_col)
   
   r <- raster(extent(caa_df), res=100)#0.01)
@@ -56,14 +67,12 @@ rasterize_caa_muni <- function(caa_df, df_to_rasterize, merged_col, field_raster
   return(r)
 }
 
-rasterize_caa <- function(year)
-{
-  if(year==1999)
-  {
+rasterize_caa <- function(year) {
+  
+  if(year==1999) {
     caa <- load_shp('CAA99_test')
   }
-  else if (year==2009)
-  {
+  else if (year==2009) {
     caa <- load_shp('CAA09')
   }
   
@@ -74,10 +83,13 @@ rasterize_caa <- function(year)
 }
 
 #merges a muni_df of a specific field (e.g. SSNB), merges with muni_shp and intersects with the CAA scale
-spatial_disagg_muni_caa <- function(df_to_merge, id_col, col_plot, year)
-{
+spatial_disagg_muni_caa <- function(df_to_merge, id_col, col_plot, year) {
   #load conditionals
-  ifelse(year==2009, caa <- get_GIS_file('caaRP09', 'LandCover'), caa <- get_GIS_file('caaRP99', 'LandCover'))
+  if(year==2009) {
+    caa <- get_GIS_file('caaRP09', 'LandCover')
+  } else {
+    caa <- get_GIS_file('caaRP99', 'LandCover')
+  }
   
   #merge with muni and rasterize
   muni <- rasterize_data_muni(df_to_merge, id_col, col_plot)
@@ -86,10 +98,11 @@ spatial_disagg_muni_caa <- function(df_to_merge, id_col, col_plot, year)
   return(muni_caa)
 }
 
-#returns the path of a specific GIS output subfolder
-#select_GIS_output_submodule('LandCover')
-select_GIS_output_submodule <- function(folder_name)
-{
+
+select_GIS_output_submodule <- function(folder_name) {
+  #returns the path of a specific GIS output subfolder
+  #select_GIS_output_submodule('LandCover')
+  
   output_path <- select_module_output('GIS')
   subfolders <- list.files(output_path, pattern = folder_name)
   subfolder_path <- file.path(output_path, subfolders)
@@ -97,10 +110,11 @@ select_GIS_output_submodule <- function(folder_name)
   return(subfolder_path)
 }
 
-#gets a specified file within a certain folder
-#d <- get_GIS_file('CAA99', 'LandCover')
-get_GIS_file <- function(file_pattern, folder_name)
-{
+
+get_GIS_file <- function(file_pattern, folder_name) {
+  #gets a specified file within a certain folder
+  #d <- get_GIS_file('CAA99', 'LandCover')
+  
   subfolder_path <- select_GIS_output_submodule(folder_name)
   files <- list.files(subfolder_path, pattern = file_pattern)
   file_path <- file.path(subfolder_path, files)
@@ -111,15 +125,15 @@ get_GIS_file <- function(file_pattern, folder_name)
 ## LOAD OTHER DATA ------------------------------------------------------------------------
 ## ----------------------------------------------------------------------------------------
 
-#tier_ssnb can be either tier2_irrig or tier2_ssnb
-get_ssnb_data <- function(year, tier_ssnb)
-{
+get_ssnb_data <- function(year, tier_ssnb) {
+  #tier_ssnb can be either tier2_irrig or tier2_ssnb
+  
   load_ssnb_muni(year, TRUE, tier_ssnb)
 }
 
-#this is recycled from Precipitation_idw.R
-get_precipitation <- function(year, pattern_file)
-{
+get_precipitation <- function(year, pattern_file) {
+  #this is recycled from Precipitation_idw.R
+  
   main_folder <- select_maindata_pattern('Climatic')
   prec <- list.files(main_folder, pattern='Precipitation')
   prec_folder <- file.path(main_folder, prec)
@@ -238,36 +252,34 @@ get_ssnb_raster <- function(filename) {
   get_modelling_files('SSNB', filename)
 }
 
-get_leaching_raster <- function(filename)
-{
+get_leaching_raster <- function(filename) {
+  
   get_modelling_files('Total_leaching', filename)
 }
 
-#note: total N-leaching (kg N/ha)
-compute_leaching_caa <- function(ssnb_filename, year, write)
-{
+compute_leaching_caa <- function(ssnb_filename, year, write) {
+  #note: total N-leaching (kg N/ha)
+  
   ssnb <- get_ssnb_raster(ssnb_filename)
   lf09 <- get_GIS_file(paste0('Lf', year_prefix(year)), 'MITERRA')
-  
   leaching <- ssnb*lf09
   
   write_raster_modelling(leaching, paste0('tot_leaching', year_prefix(year)), 'Total_leaching')
 }
 
-write_csv_modelling <- function(folder_path, subfolder_pattern, df_write, filename)
-{
+
+write_csv_modelling <- function(folder_path, subfolder_pattern, df_write, filename) {
+  
   filename <- paste0(filename, '.csv')
   
   modelling_subfolder <- raster_modelling_subfolders(folder_path)
   
-  if (missing(subfolder_pattern)==FALSE)
-  {
+  if (missing(subfolder_pattern)==FALSE) {
     subfolder <- list.files(modelling_subfolder, pattern=subfolder_pattern)
     subfolder_path <- file.path(modelling_subfolder, subfolder)
     path <- file.path(subfolder_path, filename)
   }
-  else 
-  {
+  else {
     path <- file.path(modelling_subfolder, filename)
   }
   

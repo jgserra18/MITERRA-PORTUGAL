@@ -16,8 +16,7 @@ gnb_element_id <- function(db_yr)
 
 #sub-function used in gnb_sum_input and output
 #creates a new df with only the total value of input and outputs per municipality
-gnb_organize <- function(main_df, sum_col, col_name)
-{	
+gnb_organize <- function(main_df, sum_col, col_name) {	
   df <- cbind(main_df, sum_col)
   df <- subset_data(df, c(1,2,3, ncol(df)))
   colnames(df)[4] <- col_name
@@ -25,24 +24,23 @@ gnb_organize <- function(main_df, sum_col, col_name)
   return(df)
 }
 
-#this receives as sub-function the gnb_element_id, which identifies the id of the db_yr list
-#corresponding to input and output
-#this function specifically focusses on the input
-#converts the input list to db and then sums all the inputs
-#irrigation can be selected or not and it computes the total accordingly
-gnb_sum_input <- function(db_yr, irrig)
-{
+
+gnb_sum_input <- function(db_yr, irrig) {
+  #this receives as sub-function the gnb_element_id, which identifies the id of the db_yr list
+  #corresponding to input and output
+  #this function specifically focusses on the input
+  #converts the input list to db and then sums all the inputs
+  #irrigation can be selected or not and it computes the total accordingly
+  
   input_id <- gnb_element_id(db_yr)[1] #stores the id of the list with inputs
   input_list <- db_yr[input_id] #opens the input file from db_yr list
   ##convert to dataframe
   input_db <- as.data.frame(input_list, col.names = colnames(input_list))
   
-  if (irrig==F)
-  {
+  if (irrig==F){
     sum_input <- rowSums(input_db[, 4:8])
   }
-  else if (irrig==T)
-  {
+  else if (irrig==T){
     #ifelse(is.na(input_db[, length(input_db)]), 0)
     sum_input <- rowSums(input_db[, 4:9])
   }
@@ -50,9 +48,9 @@ gnb_sum_input <- function(db_yr, irrig)
   
 }
 
-#similar to the previous function but it calculates the total outputs
-gnb_sum_output <- function(db_yr)
-{
+gnb_sum_output <- function(db_yr) {
+  #similar to the previous function but it calculates the total outputs
+  
   output_id <- gnb_element_id(db_yr)[2]
   output_list <- db_yr[output_id]
   output_db <- as.data.frame(output_list, col.names = colnames(output_list))
@@ -62,14 +60,13 @@ gnb_sum_output <- function(db_yr)
   
 }
 
-#compute GNB
-#receives as input the db_yr list, then calls gnb_sum_input and output
-#hese specify the list index with input and output
-#then computes the gnb 
-gnb_compute <- function(db_yr, irrig)
-{
-  if (missing(irrig))
-  {
+
+gnb_compute <- function(db_yr, irrig) {
+  #compute GNB
+  #receives as input the db_yr list, then calls gnb_sum_input and output
+  #hese specify the list index with input and output
+  #then computes the gnb 
+  if (missing(irrig)==TRUE) {
     tot_input <- gnb_sum_input(db_yr, F)
     tot_output <- gnb_sum_output(db_yr)[, 4]
     
@@ -79,8 +76,7 @@ gnb_compute <- function(db_yr, irrig)
     main_df$gnb <- as.integer(gnb)
     return(main_df)    
   }
-  else 
-  {
+  else {
     tot_input <- gnb_sum_input(db_yr, T)
     tot_output <- gnb_sum_output(db_yr)[, 4]
     

@@ -1,0 +1,9 @@
+Livestock_class,NUE,source,assumption
+Dairy,0.24,IPCC 2006 Table 10.20,-
+Bovine,0.08,IPCC 2006 Table 10.20,-
+Goats,0.1,IPCC 2006 Table 10.20,-
+Equides,0.07,IPCC 2006 Table 10.20,-
+Sheep,0.1,IPCC 2006 Table 10.20,-
+Swine,0.3,IPCC 2006 Table 10.20,-
+Poultry,0.3,IPCC 2006 Table 10.20,-
+Rabbits,0.1,IPCC 2006 Table 10.20,Assumd from goats/sheep

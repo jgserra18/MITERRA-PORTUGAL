@@ -1,0 +1,10 @@
+Livestock_class,Manure_type,Storage
+Bovine,slurry,0.01
+Bovine,solid,0.02
+Swine,slurry,0.01
+Swine,solid,0.01
+Goats,solid,0.02
+Sheep,solid,0.02
+Equides,solid,0.02
+Poultry,solid,0.002
+Rabbits,solid,0.002

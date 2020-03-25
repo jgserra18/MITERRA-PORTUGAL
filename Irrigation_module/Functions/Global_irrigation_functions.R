@@ -1,46 +1,38 @@
 source('./Main_functions.R')
 
-#general function to specify irrigation subdata folders
-#it is used as baseline for other functions to get the data
-get_folder_files <- function(folder_pattern)
-{
-  irrig_path <- check_folder(select_maindata_pattern(pattern = 'Irrigation'))
-  folder_pattern <- list.files(irrig_path, pattern = folder_pattern)
-  full_path <- check_folder(paste0(irrig_path, folder_pattern))
+
+## ----------------------- ACTIVITY DATA GETTERS ----------------------- ##
+## ----------------------------------------------------------------------##
+
+get_irrig_activity_data <- function(folder_pattern) {
+  #general function to specify irrigation subdata folders
+  #it is used as baseline for other functions to get the data
   
-  ifelse(folder_pattern=='Irrigated_areas' | folder_pattern=='NO3 sampling data' | folder_pattern=='Irrigation_N',
-         files_folder <- paste0(full_path, list.files(full_path)),
-         files_folder <- store_folder_files(full_path))
-
-  return(files_folder)
+  irrig_path <- select_maindata_pattern(pattern = 'Irrigation')
+  full_path <- list.files(path = irrig_path, pattern = folder_pattern, full.names = TRUE)
+  files_folder <- list.files(full_path, full.names = TRUE)
 }
 
 
-create_irrig_output_dir <- function(dir_name, year)
-{
-  irrig_output_path <- select_module_output('Irrigation_module')
-  dir_path <- file.path(irrig_output_path, dir_name)
-  dir.create(path = dir_path)
+read_folder_files <- function(folder_pattern, file_pattern) {
+  #this function reads files within the get_folder_files
+  #e.g. Reference_volumes, reference_volume.csv
   
-  if (year==TRUE)
-  {
-    year <- c(1999, 2009)
-    sapply(year, function(x) dir.create(file.path(dir_path, x)))
-  }
+  folder_files <- get_irrig_activity_data(folder_pattern)
+  id_file <- which(grepl(file_pattern, folder_files)==TRUE)
+  selected_file <- folder_files[id_file]
+  ifelse(folder_pattern == 'NO3 stations',
+         read_file <- read.csv(selected_file, stringsAsFactors = FALSE),
+         read_file <- read.csv(selected_file))
+  
+  return(read_file)
+  rm(list=c('folder_files', 'id_file', 'selected_file'))
 }
 
-#this function reads files within the get_folder_files
-#e.g. Reference_volumes, reference_volume.csv
-read_folder_files <- function(folder_pattern, file_pattern)
-{
-  folder_files <- get_folder_files(folder_pattern)
-  selected_file <- folder_files[which(grepl(file_pattern, folder_files)==TRUE)]
-  read_file <- read.csv(selected_file)
-}
 
-#this allows to disaggregate folder into subfolders per year and subsequently disaggregate according to a patter
-disag_folders_year <- function(folder_path, year, pattern)
-{
+disag_folders_year <- function(folder_path, year, pattern) {
+  #this allows to disaggregate folder into subfolders per year and subsequently disaggregate according to a patter
+  
   options(warn=-1) #i dont want this stupid warning about /
   folder_path <- check_folder(folder_path)
   options(warn=1)
@@ -48,174 +40,142 @@ disag_folders_year <- function(folder_path, year, pattern)
   ifelse(missing(pattern)==TRUE, pattern <- '', pattern <- pattern)
   
   folder_path <- disaggregate_year(folder_path, year)
-  folder_files <- list.files(folder_path, pattern = pattern)
-  new_path <- paste0(folder_path, check_folder(folder_files))
-  
+  new_path <- list.files(folder_path, pattern = pattern, full.names = TRUE)
+
   return(new_path)
+  rm(list=c('folder_path'))
 }
 
-#gets simplified sys efficiency per irrig system irrespective of year
-get_irrig_sys_efficiency <- function()
-{
+
+## ----------------------- EFFICIENCY GETTERS ----------------------- ##
+## -------------------------------------------------------------------##
+
+
+get_irrig_sys_efficiency <- function() {
+  #gets simplified sys efficiency per irrig system irrespective of year
+  
   eff_file <- read_folder_files('Efficiency', 'Irrig_sys_eff')
   return(eff_file)
 }
 
-#gets sys efficiency changing over time
-#irrig sys eff were calculated based on average values (i.e. between min and max) and  1 stdp deviation of the mean
-get_temporal_irrig_sys_efficiency <- function()
-{
+
+get_temporal_irrig_sys_efficiency <- function() {
+  #gets sys efficiency changing over time
+  #irrig sys eff were calculated based on average values (i.e. between min and max) and  1 stdp deviation of the mean
+  
   eff_file <- read_folder_files('Efficiency', 'Temporal_irrig_sys_eff')
   return(eff_file)
 }
 
 
-#get main crop names
-get_maincrops_names <- function(year)
-{
-  irrig_areas <- get_folder_files('Irrigated_areas')
+
+## ----------------------- CROP NAMES FUNCTIONS ----------------------- ##
+## ---------------------------------------------------------------------##
+
+get_maincrops_names <- function(year) {
+  #get main crop names
+  
+  irrig_areas <- get_irrig_activity_data('Irrigated_areas')
   irrig_years <- disaggregate_year(irrig_areas, year)
   list_main_crops <- list.files(irrig_years)
-  
   return(list_main_crops)
 }
 
-#gets the name of each crop within each main category
-#this will be used when looping each main crop to calculate water volumnes
-get_crop_names <- function(year, main_crop)
-{
-  irrig_years <- get_folder_files('Irrigated_areas')
+get_crop_names <- function(year, main_crop) {
+  #gets the name of each crop within each main category
+  #this will be used when looping each main crop to calculate water volumnes
+  
+  irrig_years <- get_irrig_activity_data('Irrigated_areas')
   select_year_main_crop <- disag_folders_year(irrig_years, year, main_crop)
   subcrops_list <- list.files(select_year_main_crop)
   subcrops_list <- gsub(pattern = '.csv', replacement = '', x = subcrops_list)
   
   return(subcrops_list)
+  rm(list=c('irrig_years', 'select_year_main_crop'))
 }
 
 
-get_irrig_areas <- function(year, main_crop, crop, corrected99)
-{
-  #this specifies the main crop and associated crop to a folder
-  #uses the function disag_folders_year 
-  #output is a specified csv file, already read onto memory
-  ## AREAS GIVEN IN HA
+get_irrig_areas <- function(year, main_crop, crop) {
+  # this specifies the main crop and associated crop to a folder
+  # output is a specified csv file, already read onto memory
+  # unit: ha yr-1
   
-  if (year==2009)
-  {
-    irrig_years <- get_folder_files('Irrigated_areas')
-    select_year_main_crop <- disag_folders_year(irrig_years, year, main_crop)
-    select_crop <- list.files(select_year_main_crop, pattern = crop)
-  }
-  else if (year==1999)
-  {
-    ifelse(missing(corrected99)==TRUE, year_pattern <- 'corrected99', year_pattern <- '1999')
-    
-    irrig99 <- select_irrig_output_module('irrigated_crop_areas')
-    irrig99_folder <- file.path(irrig99, list.files(irrig99, pattern=year_pattern))
-    select_year_main_crop <- file.path(irrig99_folder, pattern=main_crop)
-    select_crop <- list.files(select_year_main_crop, pattern = crop)
-  }
-
-  crop_path <- file.path(select_year_main_crop, select_crop)
-  read_crop <- read.csv(crop_path)
-  
-  ifelse(colnames(read_crop)[1]=='X', return(read_crop[, -1]), return(read_crop))
-}
-
-get_subcrops <- function(year, main_crop)
-{
-  irrig_years <- get_folder_files('Irrigated_areas')
+  irrig_years <- get_irrig_activity_data('Irrigated_areas')
   select_year_main_crop <- disag_folders_year(irrig_years, year, main_crop)
-  subcrops_list <- list.files(select_year_main_crop)
-  subcrops_list <- gsub(pattern = '.csv', replacement = '', x = subcrops_list)
+  select_crop <- list.files(select_year_main_crop, pattern =crop, full.names = TRUE)
+  select_crop <- read.csv(select_crop)
+  colnames(select_crop) <- gsub(pattern = 'X', replacement = '', x = names(select_crop))
   
-  return(subcrops_list)
+  return(select_crop)
+  rm(list=c('irrig_years', 'select_year_main_crop'))
 }
 
 
-#checks if last col is microaspersion, if not it adds a new col with 0s
-microaspersion_correct <- function(crop_file)
-{
+## ----------------------- IRRIGIATION SYSTEMS VOLUMES----------------------- ##
+## ---------------------------------------------------------------------------##
+
+microaspersion_correct <- function(crop_file) {
+  #checks if last col is microaspersion, if not it adds a new col with 0s
+  
   last_col <- ncol(crop_file)
   
-  if (colnames(crop_file)[last_col]!='microaspersion')
-  {
+  if (colnames(crop_file)[last_col]!='microaspersion') {
     crop_file$microaspersion <- 0
   }
   crop_file$microaspersion <- as.integer(crop_file$microaspersion)
-  
   return(crop_file)
 }
 
-#loads volume_regions and municipality
-get_vol_region <- function()
-{
+get_vol_region <- function() {
+  #loads volume_regions and municipality
+  
   vol_region <- read_folder_files('Reference_volumes', 'reference_volume')
   short_vol_region <- vol_region[, c('Muni_ID', 'volume_region')]
   
   return(short_vol_region)
 }
 
-#cross_references the lines of each vol_region
-#to be applied to for loop
-#returns a list with all 3 vol_regions and respective lines of Muni_ID
-cross_ref_vol_region <- function()
-{
+cross_ref_vol_region <- function() {
+  #cross_references the lines of each vol_region
+  #to be applied to for loop
+  #returns a list with all 3 vol_regions and respective lines of Muni_ID
+  
   vol_region <- get_vol_region()
   vol_regions <- c('Littoral_north', 'Interior_north', 'South')
   list <- list()
   
-  for (i in vol_regions)
-  {
+  for (i in vol_regions) {
     df <- data.frame(Muni_ID=which(vol_region[, 2]==i))
     colnames(df)[1] <- i
     list <- c(df, list)
   }
+  
   return(list)
+  rm(list=c('vol_region', 'vol_regions', 'df'))
 }
 
-#cross_refs crop line of reference volumes of any region with cropname
-#returns crop line
-cross_ref_crop <- function(crop_name)
-{
-  read_vol_region <- read_folder_files('Reference_volumes', 'South') #same crop lines irrespective of file
+cross_ref_crop <- function(crop_name) {
+  #cross_refs crop line of reference volumes of any region with cropname
+  #returns crop line
   
+  read_vol_region <- read_folder_files(folder_pattern = 'Reference_volumes', 
+                                       file_pattern = 'South') #same crop lines irrespective of file
   crop_line <- which(read_vol_region$irrigated_crop==crop_name)
   return(crop_line)
 }
 
-cross_ref_irrig_systems <- function(vol_region, crop_file, crop_col_id)
-{
-  condition <- which(colnames(vol_region)==colnames(crop_file)[crop_col_id])
+cross_ref_irrig_systems <- function(vol_region, crop_file, crop_col_id) {
+  
+  find_crop <- colnames(crop_file)[crop_col_id]
+  condition <- which(colnames(vol_region)==find_crop)
   cross_ref_id <- vol_region[, c(1, condition)]
   
   return(cross_ref_id)
-}
-
-main_crop_dir_create <- function(module, folder_name, year)
-{
-  #creates the main directory to populate the template reference volume for each irrigation system per crop
-  
-  irrig_output <- select_module_output('Irrigation')
-  module_path <- check_folder(paste0(irrig_output, module))
-  
-  if (missing(year)==TRUE)
-  {
-    dir.create(path = paste0(module_path, folder_name))
-  }
-  else 
-  {
-    year_list <- list.files(module_path, pattern = as.character(year))
-    module_path <- check_folder(paste0(module_path, year_list))
-    dir.create(path = paste0(module_path, folder_name))
-  }
-  dir.create(path = paste0(module_path, folder_name))
-  return(paste0(module_path, folder_name))
+  rm(list=c('find_crop', 'condition'))
 }
 
 
-select_irrig_output_module <- function(submodule)
-{
+select_irrig_output_module <- function(submodule) {
   #this selects the sub-module of irrigationt output data
   #e.g. water volumes, or template reference volumes
   
@@ -227,242 +187,116 @@ select_irrig_output_module <- function(submodule)
   return(full_path)
 }
 
-#writes irrigation output data to the selected data
-write_irrig_output <- function(module, writefile, filename, main_crop)
-{
-  irrig_output <- select_module_output('Irrigation')
-  module_path <- check_folder(paste0(irrig_output, module))
-  
-  if (missing(main_crop)==FALSE)
-  {
-    module_path <- check_folder(paste0(module_path, main_crop))
-  }
-  
-  filename <- paste0(module_path, filename, '.csv')
-  fwrite(writefile, filename)
-}
 
-#writes the output of irrigation volumes per system 
-write_irrig_sys_output <- function(year, writefile, filename)
-{
-  irrig_sys_vol_path <- file.path(select_irrig_output_module('Irrigation_systems_volume'), year)
+## ----------------------- IRRIGIATION VOLUME COMPUTATIONS -----------------------##
+## -------------------------------------------------------------------------------##
 
-  filename <- paste0(irrig_sys_vol_path, filename, '.csv')
-  fwrite(writefile, filename)
-}
+## ----------------------- CROP VOLUMES -----------------------##
 
 
-
-get_template_ref_vol <- function(main_crop, crop)
-{
-  output_path <- select_irrig_output_module('Template_ref_volumes')
-  maincrop_output_path <- check_folder(paste0(output_path, main_crop))
-  
-  select_crop_ref_vol <- paste0(maincrop_output_path, list.files(maincrop_output_path, pattern = crop))
-  read_crop_ref_vol <- read.csv(select_crop_ref_vol)
-}
-
-
-populate_ref_volumes_crop <- function(year)
-{
+populate_ref_volumes_crop <- function(year) {
   #this populates the reference volumes per irrigation system (m3/ha/yr) for each crop using the same template as the acreage
   #UNIT: m3/ha/yr
   
   main_crops <- get_maincrops_names(year)
   vol_region <- c('Littoral_north', 'Interior_north', 'South')
-  
-  for (a in main_crops)
-  {
+
+    for (a in main_crops) {
     crop_names <- get_crop_names(year, a)
-    main_crop_dir_create(module = 'Template_ref_volumes', folder_name = a)
     
-    for (b in crop_names)
-    {
-      b <- as.character(b)
+    for (b in crop_names) {
       crop_files <- get_irrig_areas(year, a, b)
       crop_files <- microaspersion_correct(crop_files)
       crop_line <- cross_ref_crop(b) #crop_line_in_vol_region
       
-      for (i in vol_region)
-      {
+      for (i in vol_region) {
         read_vol_region2 <- read_folder_files('Reference_volumes',i)
         lines2 <- cross_ref_vol_region()[i]
         
-        for (c in lines2)
-        {
-          for (z in 4:ncol(crop_files))
-          {
+        for (c in lines2) {
+          
+          for (z in 4:ncol(crop_files)) {
             d <- cross_ref_irrig_systems(read_vol_region2, crop_files, z)
             crop_files[c, z] <- d[crop_line, 2]
           }
         }
       }
-      write_irrig_output('Template_ref_volumes', crop_files, b, a)
+      write_output_subfolder(module_name = 'Irrigation_module', 
+                        subfolder_name = 'Template_ref_volumes', 
+                        file = crop_files, 
+                        filename = b, 
+                        subfolderX2_name = a)
     }
-  }
+    }
+  rm(list=c('main_crops', 'vol_region', 'crop_names', 'crop_files', 'crop_line', 'read_vol_region2', 'lines2', 'd'))
 }
 
-get_irrig_sys_names <- function()
-{
+
+get_template_ref_vol <- function(main_crop, crop) {
+  # gets the standard irrigation water volumes for a given crop
+  # Those data are collated from DGADR (2019)
+  # unit: m3 ha-1 yr-1
+  
+  crop_ref_vol <- get_module_subfolder_output(module = 'Irrigation_module', 
+                                              submodule = 'Template_ref_volumes', 
+                                              submoduleX2 = main_crop, 
+                                              file_pattern = crop)
+  return(crop_ref_vol)
+}
+
+
+get_irrig_sys_names <- function() {
+  
   df <- get_irrig_areas(2009, 'horticulture', 'intensive')
   df <- df[, 4:ncol(df)]
   cols <- colnames(df)
-  
   return(cols)
+  rm(list='df')
 }
 
-#computes total water volume of each irrigation system for each crop
-#UNIT: m3/yr
-## NOTE: IRRIGATION VOLUMES ARE ONLY CORRECTED PER CROP AND NOT PER TOTAL IRRIGATION SYSTEMS EMPLOYED
-compute_crop_volume <- function(year, corrected99)
-{
+
+compute_crop_volume <- function(year) {
+  #computes total water volume of each irrigation system for each crop
+  #UNIT: m3 yr-1
+  ## NOTE: IRRIGATION VOLUMES ARE ONLY CORRECTED PER CROP AND NOT PER TOTAL IRRIGATION SYSTEMS EMPLOYED
+  
   main_crops <- get_maincrops_names(2009)
   
-  for (a in main_crops)
-  {
-    crop_names <- get_crop_names(2009, a)
-    main_crop_dir_create(module = 'Water volumes', folder_name = a, year = year)
+  for (a in main_crops) {
+    crop_names <- get_crop_names(year = year, main_crop = a)
     print(paste0('Writing water volumes of each crop of ', a))
     
-    for (b in crop_names)
-    {
+    for (b in crop_names) {
       df <- create_main_csv()
-      crop_areas <- get_irrig_areas(year, a, b, corrected99)
-      #correct SUM from 1999
-      ifelse(colnames(crop_areas)[ncol(crop_areas)]=='sum', crop_areas <- crop_areas[, -ncol(crop_areas)], crop_areas <- crop_areas)
+      crop_areas <- get_irrig_areas(year = year, main_crop = a, crop = b)
       crop_areas <- microaspersion_correct(crop_areas)
       
       crop_ref_volumes <- get_template_ref_vol(a, b)
       
-      compute_vol <- crop_areas[, seq(4, ncol(crop_areas))]*crop_ref_volumes[, seq(4, ncol(crop_ref_volumes))]
+      compute_vol <- round(
+        crop_areas[, seq(4, ncol(crop_areas))] * crop_ref_volumes[, seq(4, ncol(crop_ref_volumes))], 2)
       df <- cbind(df, compute_vol)
-      write_irrig_output(module = paste0('Water volumes/', year), df, b, a)
-      rm(df)
+      write_annual_data(module_name = 'Irrigation_module', 
+                        subfolder_name = 'Water volumes', 
+                        file = df, filename = b, 
+                        year = year, 
+                        subfolder_nameX2 = a)
     }
   }
-}
-
-#this gets crop water volume usage in irrigation output, water volumes sub-module
-get_crop_water_volume <- function(main_crop, crop, year)
-{
-  ifelse(missing(year)==TRUE, year <- 2009, year <- year)
-  
-  vol_submodule_path <- select_irrig_output_module('Water volumes')
-  vol_submodule_path <- check_folder(paste0(vol_submodule_path, year))
-  crop_path <- paste0(vol_submodule_path, main_crop, '/', crop, '.csv')
-  read_crop <- read.csv(crop_path)
+  rm(list=c('crop_names', 'df', 'crop_areas', 'crop_ref_volumes', 'compute_vol'))
 }
 
 
-aggregate_irrig_system_vol <- function(year, irrig_system, write)
-{
-  main_crops <- get_maincrops_names(year)
-  df <- create_main_csv() #create main df to populate crop water volume usage per irrigation system specified
+get_crop_water_volume <- function(main_crop, crop, year) {
+  #this gets crop water volume usage in irrigation output, water volumes sub-module
+  # unit: m3 yr-1
   
-  for (a in main_crops)
-  {
-    crops <- get_crop_names(year, a)
-    
-    for (b in crops)
-    {
-      crop_volume <- get_crop_water_volume(a, b)
-      cols <- colnames(crop_volume)
-      id_col_irrig <- which(cols==irrig_system)
-      crop_volume_irrig <- crop_volume[, id_col_irrig]
-      
-      df <- cbind(df, crop_volume_irrig)
-      colnames(df)[ncol(df)] <- b
-    }
-  }
-  df$SUM <- rowSums(df[, 4:ncol(df)])
-  ifelse(write==TRUE,
-        write_irrig_sys_output(year, df, irrig_system),
-        return(df))
-}
-
-
-#computes the total water volume used in each irrigation system at the mainland level
-compute_irrig_sys_vol <- function(year, compute_sum_irrig_sys)
-{
-  irrig_sys_names <- get_irrig_sys_names()
-  sum_df <- data.frame(irrig_sys=irrig_sys_names, w_vol_m3=0)
-  
-  ctr <- 0
-  
-  for (i in irrig_sys_names)
-  {
-    ctr <- ctr +1
-    print(paste('Calculating water volume of ', i))
-    df <- aggregate_irrig_system_vol(year, i, FALSE)
-    col_sum <- colSums(df[, ncol(df), drop=FALSE])
-    sum_df[ctr, 2] <- col_sum
-  }
-  
-  if(compute_sum_irrig_sys==T)
-  {
-    write_irrig_sys_output(year = year, writefile = sum_df, filename = 'w_vol_irrig_systems')
-  }
-  return(sum_df)
-}
-
-#other function to load output data according to year directory and file_pattern
-#d <- get_output_file('Irrigation_N', 2009, 'total)
-get_output_file <- function(submodule, year, file_pattern)
-{
-  folder_path <- select_irrig_output_module(submodule)
-  folder_path <- check_folder(paste0(folder_path,year))
-  files <- list.files(folder_path, pattern = file_pattern)
-  
-  file_path <- paste0(folder_path, files)
-  read_file <- read.csv(file_path)
-  return(read_file)
-}
-
-get_crop_irrigatioN <- function(year, individual_crop, maincrop, crop)
-{
-  ## this function reads the files for crop irrigation N either for indiividual crops
-  ## or aggregated main crops
-  
-  cropN_folder <- select_irrig_output_module('crop_N')
-  cropN_year <- list.files(cropN_folder, pattern = as.character(year), full.names = T)
-  
-  if (individual_crop==TRUE) {
-    ind_subfolder <- list.files(cropN_year, pattern = 'individual', full.names = T)
-    main_crop <- list.files(ind_subfolder, pattern = maincrop, full.names = T)
-    r_file <- list.files(main_crop, pattern = crop, full.names = T) #crop file
-  }
-  else if (individual_crop==FALSE) {
-    ind_subfolder <- list.files(cropN_year, pattern = 'Total', full.names = T)
-    r_file <- list.files(ind_subfolder, pattern = maincrop, full.names = T) #crop file
-  }
-  r_file <- read.csv(r_file)
-  return(r_file)
-}
-
-
-#Calculates the N-input from irrigationN to be implemented in the GNB
-#d <- get_irrigatioN_gnb(1999)
-get_irrigatioN_gnb <- function(year)
-{
-  irrigatioN_file <- get_output_file('Irrigation_N', year, 'wo_eff_total')
-  cols <- c(1,2,3, ncol(irrigatioN_file))
-  
-  irrigatioN_file <- irrigatioN_file[,cols]
-  colnames(irrigatioN_file)[ncol(irrigatioN_file)] <- 'irrig_nha'
-  irrigatioN_file <- data_cleaning(irrigatioN_file)
-  
-  return(irrigatioN_file)
-}
-
-
-replace_gnb_input_irrig <- function(df, year)
-{
-  path <- check_folder(select_maindata_pattern('GNB'))
-  filename <- paste0('Inputs', year_prefix(year), '.csv')
- 
-  print(paste0('Writing irrigatioN for ', year))
-  fwrite(df[[1]], paste0(path, filename))
-  print('Finished!')
+  crop_vol <- get_module_subfolder_output(module = 'Irrigation_module', 
+                                           submodule = 'Water volumes', 
+                                           submoduleX2 = main_crop, 
+                                           file_pattern = crop, 
+                                           submoduleX3 = year)
+  return(crop_vol)
 }
 
 

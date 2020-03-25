@@ -74,10 +74,10 @@ Muni_ID,ID,Muni,furrow,other_grav,aspersion,cannon,pivot,drip
 401,1180401,Alfândega da Fé,0,0,0,0,0,0
 1702,1181702,Boticas,0,0,0,0,0,0
 402,1180402,Bragança,0,0,0,0,0,0
-1703,1181703,Chaves,0,0,0,0,0,0
+1703,1181703,Chaves,1,0,0,0,0,0
 405,1180405,Macedo de Cavaleiros,0,0,0,0,0,0
 406,1180406,Miranda do Douro,0,0,0,0,0,0
-407,1180407,Mirandela,0,0,0,0,0,0
+407,1180407,Mirandela,2,0,0,0,0,0
 408,1180408,Mogadouro,0,0,0,0,0,0
 1706,1181706,Montalegre,0,0,0,0,0,0
 1707,1181707,Murça,0,0,0,0,0,0
@@ -106,7 +106,7 @@ Muni_ID,ID,Muni,furrow,other_grav,aspersion,cannon,pivot,drip
 613,1620613,Penacova,0,0,0,0,0,0
 615,1620615,Soure,0,0,0,0,0,0
 1004,1631004,Batalha,0,0,0,0,0,0
-1009,1631009,Leiria,0,0,0,0,0,0
+1009,1631009,Leiria,1,0,0,0,0,0
 1010,1631010,Marinha Grande,0,0,0,0,0,0
 1015,1631015,Pombal,0,0,0,0,0,0
 1016,1631016,Porto de Mós,0,0,0,0,0,0
@@ -124,20 +124,20 @@ Muni_ID,ID,Muni,furrow,other_grav,aspersion,cannon,pivot,drip
 614,1640614,Penela,0,0,0,0,0,0
 616,1640616,Tábua,0,0,0,0,0,0
 617,1640617,Vila Nova de Poiares,0,0,0,0,0,0
-901,1650901,Aguiar da Beira,0,0,3,0,0,0
+901,1650901,Aguiar da Beira,2,0,3,0,0,0
 1802,1651802,Carregal do Sal,0,0,0,0,0,0
-1803,1651803,Castro Daire,0,0,0,0,0,0
+1803,1651803,Castro Daire,1,0,0,0,0,0
 1806,1651806,Mangualde,0,0,0,0,0,0
 1808,1651808,Mortágua,0,0,0,0,0,0
 1809,1651809,Nelas,0,0,0,0,0,0
 1810,1651810,Oliveira de Frades,0,0,0,0,0,0
-1811,1651811,Penalva do Castelo,0,0,0,0,0,0
+1811,1651811,Penalva do Castelo,2,0,0,0,0,0
 1814,1651814,Santa Comba Dão,0,0,0,0,0,0
 1816,1651816,São Pedro do Sul,0,0,0,0,0,0
-1817,1651817,Sátão,0,0,0,0,0,0
+1817,1651817,Sátão,3,0,0,0,0,0
 1821,1651821,Tondela,0,0,0,0,0,0
 1822,1651822,Vila Nova de Paiva,0,0,0,0,0,0
-1823,1651823,Viseu,0,0,0,0,0,0
+1823,1651823,Viseu,2,0,0,0,0,0
 1824,1651824,Vouzela,0,0,0,0,0,0
 1413,1661413,Mação,0,0,0,0,0,0
 506,1660506,Oleiros,0,0,0,0,0,0
@@ -150,7 +150,7 @@ Muni_ID,ID,Muni,furrow,other_grav,aspersion,cannon,pivot,drip
 902,1680902,Almeida,0,0,0,0,0,0
 903,1680903,Celorico da Beira,0,0,0,0,0,0
 904,1680904,Figueira de Castelo Rodrigo,0,0,0,0,0,0
-907,1680907,Guarda,0,0,0,0,0,0
+907,1680907,Guarda,1,0,0,0,0,0
 908,1680908,Manteigas,0,0,0,0,0,0
 909,1680909,Mêda,0,0,0,0,0,0
 910,1680910,Pinhel,0,0,1,0,0,0
@@ -161,7 +161,7 @@ Muni_ID,ID,Muni,furrow,other_grav,aspersion,cannon,pivot,drip
 507,1690507,Penamacor,0,0,0,0,0,0
 511,1690511,Vila Velha de Ródão,0,0,0,0,0,0
 501,16A0501,Belmonte,0,0,0,0,0,0
-503,16A0503,Covilhã,0,0,0,0,0,0
+503,16A0503,Covilhã,2,0,0,0,0,0
 504,16A0504,Fundão,0,0,0,0,0,0
 1001,16B1001,Alcobaça,0,0,0,0,0,0
 1101,16B1101,Alenquer,0,0,0,0,0,0
@@ -205,7 +205,7 @@ Muni_ID,ID,Muni,furrow,other_grav,aspersion,cannon,pivot,drip
 1512,1721512,Setúbal,0,0,0,0,0,0
 1501,1811501,Alcácer do Sal,0,0,2,0,0,0
 1505,1811505,Grândola,0,0,0,0,0,0
-211,1810211,Odemira,0,0,5,0,0,0
+211,1810211,Odemira,1,0,5,0,0,0
 1509,1811509,Santiago do Cacém,0,0,0,0,0,0
 1513,1811513,Sines,0,0,0,0,0,0
 1201,1821201,Alter do Chão,0,0,0,0,0,0
@@ -221,7 +221,7 @@ Muni_ID,ID,Muni,furrow,other_grav,aspersion,cannon,pivot,drip
 1211,1821211,Monforte,0,0,0,0,0,0
 707,1820707,Mora,0,0,0,0,0,0
 1212,1821212,Nisa,0,0,0,0,0,0
-1213,1821213,Ponte de Sor,0,0,0,0,0,0
+1213,1821213,Ponte de Sor,12,0,0,0,0,0
 1214,1821214,Portalegre,0,0,0,0,0,0
 701,1830701,Alandroal,0,0,0,0,0,0
 702,1830702,Arraiolos,0,0,0,0,0,0
@@ -263,7 +263,7 @@ Muni_ID,ID,Muni,furrow,other_grav,aspersion,cannon,pivot,drip
 1416,1851416,Santarém,0,0,0,0,0,0
 801,1500801,Albufeira,0,0,0,0,0,0
 802,1500802,Alcoutim,0,0,0,0,0,0
-803,1500803,Aljezur,0,0,1,0,0,0
+803,1500803,Aljezur,6,0,1,0,0,0
 804,1500804,Castro Marim,0,0,0,0,0,0
 805,1500805,Faro,0,0,0,0,0,0
 806,1500806,Lagoa,0,0,0,0,0,0

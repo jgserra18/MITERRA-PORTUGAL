@@ -58,11 +58,9 @@ load_correct_Nc_mgNL <- function(year) {
 
 get_total_drainage_litre <- function(year, write, irrig_mode) {
   # this function is an adapted version of get_drainage_rasters to fit the "general" function computation_gw_general_func
-  
+  # d <- df_compute_gw_nc(1999, TRUE, irrig_mode = 'Irrig')
   tot_drainage <-  get_drainage_rasters(paste0('total_drainage_m3', year_prefix(year)), TRUE)*1000
   if (write==FALSE) {return(tot_drainage)}
 }
 
 
-dd <- computation_gw_general_func(compute_func = get_total_drainage_litre, year = 2009, irrig_mode = TRUE, parameter = 'drainage_L')
-d <- df_compute_gw_nc(1999, TRUE)

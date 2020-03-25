@@ -150,14 +150,14 @@ write_runoff_leaching_fractions <- function()
 ##  SMALL AND LARGE SURFACE WATERS
 ## ------------------------------------------------------------------------------------------------
 
-file_names <- c('intersect_large09', 'intersect_large99', 'intersect_small09', 'intersect_small09')
+#file_names <- c('intersect_large09', 'intersect_large99', 'intersect_small09', 'intersect_small09')
 
-library(raster)
-df <- load_surface_shp('intersect_large09')
-df  <- spTransform(df, CRS('+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs'))
-ext <- c(2635900, 2977200, 1729700, 2298200)
-df <- raster::crop(df, ext)
+#library(raster)
+#df <- load_surface_shp('intersect_large09')
+#df  <- spTransform(df, CRS('+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs'))
+#ext <- c(2635900, 2977200, 1729700, 2298200)
+#df <- raster::crop(df, ext)
 
-r <- raster(extent(df), res=100, crs=crs(df))#0.01)
+#r <- raster(extent(df), res=100, crs=crs(df))#0.01)
 #proj4string(r) <- sr
-r <- rasterize(df, r, field='surface_id', background=NA)
+#r <- rasterize(df, r, field='surface_id', background=NA)

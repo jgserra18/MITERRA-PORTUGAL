@@ -2,25 +2,32 @@ source('./GIS_module/Function/GW_computation_functions.R')
 
 library(ggplot2)
 
-## create maindataset of aquifers for both years --------------------------------------------------------------------------
 
-df99 <- get_main_df_gw_dataset(1999, F) %>% filter(gw_type=='Aq') %>% dplyr::select(GW_ID, Nc.mg.NO3.L., HU, recharge)
-df09 <- get_main_df_gw_dataset(2009, F)%>% filter(gw_type=='Aq') %>%dplyr::select(GW_ID, Nc.mg.NO3.L., HU, recharge)
+## create maindataset of aquifers for both years --------------------------------------------------------------------------
+df99 <- get_main_df_gw_dataset(1999, F) %>% filter(gw_type=='Aq') %>% dplyr::select(GW_ID, Nc.mg.NO3.L., HU, recharge, drainage_L)
+df09 <- get_main_df_gw_dataset(2009, F)%>% filter(gw_type=='Aq') %>%dplyr::select(GW_ID, Nc.mg.NO3.L., HU, recharge, drainage_L)
+
+df_m_HU99 <- df99 %>% group_by(HU) %>% summarise(sum_drainage = sum(drainage_L))
+df_m_HU09 <- df09 %>% group_by(HU) %>% summarise(sum_drainage = sum(drainage_L))
+
+diff_dfm <- df_m_HU09$sum_drainage-df_m_HU99$sum_drainage
+dff <- cbind(df_m_HU09[, 1], diff_dfm)
+View(dff)
 colnames(df09)[2] <- '2009'
 colnames(df99)[2] <- '1999'
 
-df <- merge(df99, df09[, c('GW_ID', '2009')], 'GW_ID', all.x=F, all.y=F)
+df <- merge(df99, df09[, c('GW_ID', 'drainage_L')], 'GW_ID', all.x=F, all.y=F)
 df_m <- melt(df, measure.vars = c('1999', '2009'), id.vars=c('GW_ID', 'HU', 'recharge'))
 df_m[1:60, 'year'] <- 1999
 df_m[61:120, 'year'] <- 2009
 
 ## Calculate dif in Nc --------------------------------------------------------------------------
 
-df$diff <- df$`2009`-df$`1999`
-df$diff_prct <- df$diff/df$`1999`*100
+df$diff <- df$drainage_L.y-df$drainage_L.x
+df$diff_prct <- df$diff/df$drainage_L.x*100
 
+write.csv(df, 'lol.csv')
 cnt <- df %>% group_by(diff, diff_prct, GW_ID) %>% filter(diff<0) %>% count(diff)
-
 gw <- load_shp('gw')
 see_gw <- merge(gw, cnt, 'GW_ID')
 
@@ -37,7 +44,6 @@ avg_df$year <- as.factor(avg_df$year)
 
 df_m_HU <- df_m %>% group_by(HU, year) %>% summarise(mean_nc = mean(value))
 df_m_HU$mean_nc <- round(df_m_HU$mean_nc, 0)
-
 
 ## PLOTS ----------------------------------------------------------------------------------------------------
 

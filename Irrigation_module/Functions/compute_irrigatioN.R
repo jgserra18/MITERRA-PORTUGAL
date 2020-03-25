@@ -1,80 +1,8 @@
 source('./Irrigation_module/Functions/Compute_1999_areas.R')
 source('./Irrigation_module/Functions/no3_functions.R')
-
-#load irrig_sys_volumes
-#load correct water sources
-#load NO3 by source and convert these to N-NO3
-
-#d <- compute_corrected_water_sources(1999, T)
-#dd <- compute_corrected_water_sources(2009, FALSE)
-#CORRECT WATER SOURCE FFS ONLY FOR 2009!!
-
-#compute kg N per each water source
-#water_source_weight * water_volume_irrig_sys * NO3_water_source
-get_correct_water_source <- function()
-{
-  water_source <- compute_corrected_water_sources(2009, FALSE)
-  return(water_source)
-}
-
-#gets the irrigation system volumes for any specified year and with or without irrigation efficiencies
-get_irrig_sys_volumes <- function(year, efficiency)
-{
-  if (year==1999)
-  {
-    irrig_sys_vol <- compute_1999_irrig_sys_vol(year, FALSE, 'irrig_volumes_wo_efficiency', efficiency) #FALSE=IGNORES IRRIGATION EFFICIENCIES
-  }
-  else 
-  {
-    ifelse(efficiency==TRUE,
-           irrig_sys_vol <- correct_irrig_vol_efficiency(year, FALSE, 'irrig_volumes_efficiency'),
-           irrig_sys_vol <- compute_irrig_sys_volumes(year, FALSE, modify_get_crop_water_volume, 'irrig_volumes'))
-  }
-  return(irrig_sys_vol)
-}
+source('./Irrigation_module/Functions/Compute_crop_irrigatioN.R')
 
 
-#gets specified water_source column
-specify_water_source <- function(water_source)
-{
-  water_source_df <- get_correct_water_source()
-  condition <- which(grepl(water_source, colnames(water_source_df))==TRUE)
-  
-  select_source <- water_source_df[, condition]
-  names(select_source) <- water_source
-  
-  return(select_source)
-}
-
-#corrects the NDs to 0
-correct_no3_ND <- function(df)
-{
-  df <- gsub('ND', 0, df)
-  df <- as.numeric(df)
-  
-  return(df)
-}
-
-#specifies no3 source 
-specify_no3_source <- function(year, water_source)
-{
-  no3_df <- aggregate_no3_source(year)
-  cols <- colnames(no3_df)
-  condition <- which(grepl(water_source, cols)==TRUE)
-  select_source <- no3_df[,condition]
-  select_source <- correct_no3_ND(select_source)
-  
-  return(select_source)
-}
-
-#converts data in mg NO3/L to kg N-NO3/m3
-conversion_no3 <- function(year, water_source)
-{
-  no3_df <- specify_no3_source(year, water_source)
-  no3_df <- as.numeric(no3_df)
-  n_no3_df <- (no3_df*0.2259*0.001*0.001)/0.001 #conversion to N-NO3, conversion to m3, conversion to kg 
-  return(n_no3_df)
-}
 
 #disaggregates the water source according to the user specification and calculates the water volume of each irrig sys  accordingly
 #d <- disaggregate_irrig_sys_per_water_source(2009, TRUE, 'wells')

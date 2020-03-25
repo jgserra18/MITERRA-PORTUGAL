@@ -24,4 +24,4 @@ compute_crop_volume09 <- compute_crop_volume(2009)
 compute_crop_volume99 <- compute_crop_volume(1999)
 
 #aggregates the crop volumes per irrig system
-compute_irrig_sys_vol <- compute_irrig_sys_vol(year = 1999, compute_sum_irrig_sys = T)
+compute_irrig_sys_vol <- compute_irrig_sys_vol(year = 2009, compute_sum_irrig_sys = T)

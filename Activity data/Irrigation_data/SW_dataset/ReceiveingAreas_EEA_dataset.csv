@@ -1,0 +1,130 @@
+dcpLatitude	dcpLongitude	dcpName	rcaNDischarged54	rcaNIncoming54	rcaPDischarged54	rcaPIncoming54	rcaPlants54	rcaPlantsCapacity54	ReportNetEnvelopeFileId	dcpWaterBodyType	TypeDescript	TypeOfReceivingArea	ReceivingAreaDescrp	repCode	rcaCode	rcaMethod54
+54.8049	9.446058	Flensburg	77571	438290	5710	70876	8968	150792745	28148	CW	discharge into coastal water	A54	Art. 5(4) area	DE_UWWT_2016	DE	C
+45.90085	8.42194	OMEGNA_ACQUE_CUSIO	23300	71125	2573	9487	7265	29891054	28830	CW	discharge into coastal water	SA	Sensitive area	IT006	ITCM99CSAQ15001	E
+49.49984757	3.44653273	Rejet ANIZY LE CHATEAU	13784	55474	1009	6458	2003	24400323	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_03207	M
+#N/A	#N/A	#N/A	13784	55474	1009	6458	2003	24400323	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_03207	M
+47.53094683	16.66882917	DP_Nikitsch	9604	49493	741	7734	1883	22036446	28202	#N/A	#N/A	#N/A	#N/A	AT_UWWTD_2017_1	AT_RA_1_CM	M
+53.0124	6.95683333	DISCHARGE POINT  UWWTP STADSKANAAL	14401	92967	1769	13401	327	21796072	27916	FW	discharge into freshwater	A58	Art. 5(8) area (entire Member State)	NL2018	NL2014	M
+47.310736	21.096703	A-1.-csatorna [1.660 fkm] - Kibocsatasi Pont	9360	150362	1065	26873	781	12859978	28721	FW	discharge into freshwater	NA	Normal area	HU-91271CQ-2018k	HUCA2007	M
+45.9236	12.7177	SCARICO_FIUME_VENETO_VIA_TAVELLA	5554	23110	643	2873	1249	9604273	28830	CW	discharge into coastal water	SA	Sensitive area	IT006	ITCM99CSA10000004	C
+#N/A	#N/A	#N/A	5554	23110	643	2873	1249	9604273	28830	CW	discharge into coastal water	SA	Sensitive area	IT006	ITCA99SA10000002	C
+#N/A	#N/A	#N/A	4977	20968	549	2406	2270	8800563	28830	CW	discharge into coastal water	SA	Sensitive area	IT006	ITCA99Q15SA001	E
+56.37202479	8.12860471	Nissum fjord	1874	16449	161	2588	218	7242703	28630	#N/A	#N/A	#N/A	#N/A	DK2015	DK1	M
+48.19948443	1.870939872	Rejet JANVILLE	3124	16235	385	2005	2360	5735412	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_04213	M
+#N/A	#N/A	#N/A	3124	16235	385	2005	2360	5735412	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_04213	M
+43.500635	11.702674	IDL_LATERINA	675343	3912764	77166	401278	338	5185951	28830	CW	discharge into coastal water	SA	Sensitive area	IT006	IT09CSA000000012	C
+47.13513864	4.477742105	Rejet ARNAY-LE-DUC	2331	10859	282	1291	2254	4055681	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_04217	M
+#N/A	#N/A	#N/A	2331	10859	282	1291	2254	4055681	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_04217	M
+54.7779671	10.94996239	Langelands Bælt	1349	12291	166	1810	120	3975452	28630	#N/A	#N/A	#N/A	#N/A	DK2015	DK2	M
+47.55596174	6.860967107	REJET PRINCIPAL DE TREVENANS	1239	7088	151	842	1448	3971737	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06229	M
+#N/A	#N/A	#N/A	1239	7088	151	842	1448	3971737	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06229	M
+48.77521689	7.263550003	Rejet PHALSBOURG NORD	673	8514	158	1084	174	3598124	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_02021	M
+#N/A	#N/A	#N/A	673	8514	158	1084	174	3598124	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_02021	M
+50.17267434	4.024718984	Rejet SARS-POTERIES	2257	10703	270	1322	223	3419851	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_01216	M
+#N/A	#N/A	#N/A	2257	10703	270	1322	223	3419851	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_01216	M
+48.74515874	6.007105108	Rejet AINGERAY	592	5305	117	670	401	2303230	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_02020	M
+#N/A	#N/A	#N/A	592	5305	117	670	401	2303230	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_02020	M
+50.56709246	1.59805085	Rejet CAMIERS	714	5074	104	626	219	2056181	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_01214	M
+#N/A	#N/A	#N/A	714	5074	104	626	219	2056181	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_01214	M
+50.8145	4.30278	DISCHARGE POINT BRU1	1480	7053	144	887	16	1897950	28927	FW	discharge into freshwater	SA	Sensitive area	BE-2016	BE1	M
+48.1640936	-2.765778245	Rejet CALOUET	534	4358	69	587	399	1774610	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_04218	M
+#N/A	#N/A	#N/A	534	4358	69	587	399	1774610	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_04218	M
+43.78706741	11.16230583	COLLETTORE_SINISTRA_D_ARNO_UGNANO	1130353	4528563	108131	496455	7	1715330	28830	CW	discharge into coastal water	SA	Sensitive area	IT006	IT09SA0000000006	C
+49.13520897	-0.165738569	Rejet ARGENCES	346	3660	62	471	319	1603617	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_03202	M
+#N/A	#N/A	#N/A	346	3660	62	471	319	1603617	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_03202	M
+45.153	12.325	ROSOLINA_MARE_VIA_FOCI_ADIGE	544	2539	39	401	10	1224600	28830	CW	discharge into coastal water	SA	Sensitive area	IT006	ITCA99Q15SA004	C
+46.09404664	-1.079049393	Rejet Camp Americain-Les Grands Champs	458	2921	64	361	351	1082168	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_04214	M
+#N/A	#N/A	#N/A	458	2921	64	361	351	1082168	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_04214	M
+48.64681145	-3.310916664	Rejet BEGARD LANNEVEN	283	2211	40	279	102	880093	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_04202	M
+#N/A	#N/A	#N/A	283	2211	40	279	102	880093	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_04202	M
+46.29090157	2.723785591	Rejet COMMENTRY Le Stade	355	2078	42	241	366	781596	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_04219	M
+#N/A	#N/A	#N/A	355	2078	42	241	366	781596	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_04219	M
+43.51043452	5.41159362	Rejet AIX EN PROVENCE La Pioline	159	2047	19	255	44	765649	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06226	M
+#N/A	#N/A	#N/A	159	2047	19	255	44	765649	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06226	M
+48.64797665	-2.483865634	Rejet ERQUY TU ES ROC	150	1337	19	164	28	673350	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CA_04216	M
+46.20790255	-1.533533894	Rejet ARS-EN-RE	231	1688	31	189	13	670680	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CA_04223	M
+47.40649947	0.953842759	Rejet La Varenne	228	1675	23	200	149	620331	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_04222	M
+#N/A	#N/A	#N/A	228	1675	23	200	149	620331	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_04222	M
+43.3123362	2.917227231	Rejet ARGELIERS	114	843	15	90	329	588653	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06310	M
+#N/A	#N/A	#N/A	114	843	15	90	329	588653	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06310	M
+50.47703535	2.731086297	Rejet Mazingarbe	459	2183	51	253	62	569814	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_01215	M
+#N/A	#N/A	#N/A	459	2183	51	253	62	569814	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_01215	M
+48.0706772	-3.98910524	Rejet Briec- Lannénéver	104	877	17	136	36	515625	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_04206	M
+#N/A	#N/A	#N/A	104	877	17	136	36	515625	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_04206	M
+46.825574	17.627472	Balaton [0.000 fkm] - Kibocsatasi Pont	159	909	6	124	30	490356	28721	FW	discharge into freshwater	NA	Normal area	HU-91271CQ-2018k	HULKAIP517	M
+45.65978036	0.131179436	Rejet ANGOULEME (FREGENEUIL)	234	1352	38	178	197	487429	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_05008	M
+#N/A	#N/A	#N/A	234	1352	38	178	197	487429	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_05008	M
+49.05457794	-1.594237396	Rejet AGON COUTAINVILLE	82	809	26	105	161	440790	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_03204	M
+#N/A	#N/A	#N/A	82	809	26	105	161	440790	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_03204	M
+48.41467837	-2.326181284	Rejet JUGON-LES-LACS LE BOUT DE LA VILLE	172	934	16	117	178	421670	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CA_04202	M
+49.88684745	1.133990535	Rejet ARQUES-LA-BATAILLE	120	1245	30	159	194	411020	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_03203	M
+#N/A	#N/A	#N/A	120	1245	30	159	194	411020	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_03203	M
+45.62328215	6.082565632	Rejet AILLON LE JEUNE	214	1116	33	165	53	391700	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06317	M
+#N/A	#N/A	#N/A	214	1116	33	165	53	391700	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06317	M
+43.72541139	4.192363027	Rejet AIGUES VIVES	99	1068	21	120	27	381600	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06227	M
+#N/A	#N/A	#N/A	99	1068	21	120	27	381600	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06227	M
+48.19548951	-2.983967131	Rejet MUR-DE-BRETAGNE PONT ALPIN	83	683	12	80	58	363203	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_04209	M
+#N/A	#N/A	#N/A	83	683	12	80	58	363203	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_04209	M
+47.62284904	-2.941810113	Rejet BADEN Pont Claou	80	981	14	112	46	362272	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_04211	M
+#N/A	#N/A	#N/A	80	981	14	112	46	362272	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_04211	M
+46.74519057	1.818724436	Rejet ARDENTES au bord de l'Indre	88	757	14	98	115	347258	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_04220	M
+#N/A	#N/A	#N/A	88	757	14	98	115	347258	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_04220	M
+49.52304704	0.711902901	Rejet CAUDEBEC-EN-CAUX	178	1090	24	128	10	334600	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CA_03205	M
+48.56234516	-1.517394807	Rejet PONTORSON	89	731	15	88	94	327185	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_04201	M
+#N/A	#N/A	#N/A	89	731	15	88	94	327185	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_04201	M
+43.65062747	4.024702701	REJET PRINCIPAL DE BAILLARGUES - ST BRES	70	771	10	88	45	319428	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06225	M
+#N/A	#N/A	#N/A	70	771	10	88	45	319428	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06225	M
+45.60528654	5.25172735	REJET PRINCIPAL DE BOURGOIN-JALLIEU 2	101	566	12	65	60	282504	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06316	M
+#N/A	#N/A	#N/A	101	566	12	65	60	282504	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06316	M
+47.69704244	-3.316357937	Rejet GAVRES	38	503	8	77	39	282489	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CA_04209	M
+43.43887422	1.599609171	Rejet AYGUESVIVES	138	817	18	94	93	281899	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_05002	M
+#N/A	#N/A	#N/A	138	817	18	94	93	281899	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_05002	M
+47.92662236	-3.717390807	Rejet Bannalec - Moulin Quinquis	38	330	5	41	33	270783	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_04208	M
+#N/A	#N/A	#N/A	38	330	5	41	33	270783	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_04208	M
+44.04249703	3.988591824	Rejet ANDUZE	77	549	16	87	97	268004	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06306	M
+#N/A	#N/A	#N/A	77	549	16	87	97	268004	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06306	M
+43.59470225	3.139731169	Rejet BEDARIEUX (nouvelle)	73	623	15	71	83	257751	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06309	M
+#N/A	#N/A	#N/A	73	623	15	71	83	257751	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06309	M
+48.39402688	-3.434365033	Rejet CALLAC LA VILLE NEUVE	48	377	8	92	59	214730	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_04204	M
+#N/A	#N/A	#N/A	48	377	8	92	59	214730	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_04204	M
+43.18698385	2.940442917	Rejet MONTREDON DES CORBIERES (nouvelle)	37	393	3	49	33	179332	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06311	M
+#N/A	#N/A	#N/A	37	393	3	49	33	179332	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06311	M
+42.61510233	2.89972721	Rejet BAGES	33	343	3	34	15	164415	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06314	M
+#N/A	#N/A	#N/A	33	343	3	34	15	164415	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06314	M
+48.29055837	-2.143513125	Rejet CAULNES PRES LOT. DES MOTTES	56	413	8	46	60	154529	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_04221	M
+#N/A	#N/A	#N/A	56	413	8	46	60	154529	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_04221	M
+49.65334712	-1.590140899	Rejet TOURLAVILLE	37	303	5	39	8	153570	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CA_03201	M
+49.08203401	0.76920289	Rejet BEAUMONT LE ROGER	17	297	9	38	45	125826	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_03208	M
+#N/A	#N/A	#N/A	17	297	9	38	45	125826	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_03208	M
+43.29549197	6.199325298	Rejet carnoules village nlle	18	301	4	37	8	123800	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06318	M
+#N/A	#N/A	#N/A	18	301	4	37	8	123800	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06318	M
+44.15403754	4.653726498	Rejet BAGNOLS-SUR-CEZE	21	184	5	21	64	114869	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06305	M
+#N/A	#N/A	#N/A	21	184	5	21	64	114869	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06305	M
+48.10159575	-4.327813244	Rejet Poulig an aod	12	86	1	14	11	92430	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CA_04205	M
+46.18193356	5.542550008	Rejet NANTUA - Geovreissiat	22	201	3	23	22	91553	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06301	M
+#N/A	#N/A	#N/A	22	201	3	23	22	91553	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06301	M
+42.48579477	2.689753895	Rejet Amélie les Bains	15	124	4	16	24	76145	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06315	M
+#N/A	#N/A	#N/A	15	124	4	16	24	76145	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06315	M
+42.7531177	2.821013382	Rejet BAIXAS	18	109	3	13	28	75388	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06312	M
+#N/A	#N/A	#N/A	18	109	3	13	28	75388	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06312	M
+50.68305256	1.560524559	Rejet EQUIHEN	12	99	3	12	6	60167	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CA_01213	M
+54.95481009	8.69255298	Vadehavet	13	168	2	29	4	57700	28630	#N/A	#N/A	#N/A	#N/A	DK2015	DK4	M
+47.85024077	-3.927558424	Rejet Kerambreton	5	155	1	19	1	57000	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CA_04207	M
+47.61263035	-2.836420528	Rejet ARRADON Prat Cadic	10	98	2	11	6	44267	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CA_04211	M
+48.49823917	-4.09053452	Rejet Landivisiau - Blaise	11	165	2	21	6	42840	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_04203	M
+#N/A	#N/A	#N/A	11	165	2	21	6	42840	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_04203	M
+55.2529	14.81578	Bornholm	8	79	1	12	4	37000	28630	#N/A	#N/A	#N/A	#N/A	DK2015	DK3	M
+43.41887898	3.587892474	Rejet MEZE	10	91	2	10	6	36650	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06228	M
+#N/A	#N/A	#N/A	10	91	2	10	6	36650	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06228	M
+43.67571117	6.979713524	Rejet CHATEAUNEUF	15	140	1	17	2	32250	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06320	M
+#N/A	#N/A	#N/A	15	140	1	17	2	32250	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06320	M
+47.51416796	-2.565625619	Rejet DAMGAN	3	20	0	3	1	25000	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CA_04215	M
+43.4549135	3.809478095	Rejet FRONTIGNAN	3	46	0	5	3	18800	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06322	M
+#N/A	#N/A	#N/A	3	46	0	5	3	18800	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06322	M
+45.69789263	4.697813859	Rejet MESSIMY - VALLEE DU GARON	5	39	1	4	11	16355	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06303	M
+#N/A	#N/A	#N/A	5	39	1	4	11	16355	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06303	M
+43.3750198	3.255630872	Rejet BOUJAN SUR LIBRON	7	44	1	4	6	15900	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_06321	M
+#N/A	#N/A	#N/A	7	44	1	4	6	15900	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_06321	M
+#N/A	#N/A	#N/A	0	3	0	0	1	2000	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_CM_04207	M
+#N/A	#N/A	#N/A	0	3	0	0	1	2000	28443	FW	discharge into freshwater	SA	Sensitive area	FR2016	FR_SA_RI_04207	M
+47.325959	18.41206	Burjan patak [3.400 fkm] - Kibocsatasi Pont	1	12	0	1	1	2000	28721	FW	discharge into freshwater	NA	Normal area	HU-91271CQ-2018k	HULKAIP540	M

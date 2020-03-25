@@ -1,10 +1,9 @@
 source('./Irrigation_module/Functions/Global_irrigation_functions.R')
 source('./GIS_module/Function/General_GIS_functions.R')
 source('./Irrigation_module/Functions/Compute_crop_irrigatioN.R')
-source('./GIS_module/Function/GW_computation_functions.R')
+#source('./GIS_module/Function/GW_computation_functions.R')
 
-loop_LU_classes <- function()
-{
+loop_LU_classes <- function()  {
   classes <- c('perma_irrigated', 'non', 'olive_groves', 'orchards', 'pastures', 'rice', 'vineyards', 'heterogeneous')
   return(classes)
 }
@@ -25,15 +24,14 @@ LU_crop_list <- function () {
 }
 
 #define LU categories
-LU_classes <- function(crop_class){
+LU_classes <- function(crop_class)  {
   #define LU categories
   
   df <- LU_crop_list()
   return(df[[crop_class]])
 }
 
-get_LU_class_raster <- function(LU_class, year)
-{
+get_LU_class_raster <- function(LU_class, year)  {
   #gets LU class from CLC
   # d <- get_LU_class_raster('rice', 1999)
   
@@ -46,8 +44,7 @@ get_LU_class_raster <- function(LU_class, year)
 }
 
 
-LU_class_allocation <- function(LU_class)
-{
+LU_class_allocation <- function(LU_class)  {
   #allocates LU class to different crops
   
   df <- data.frame(perma_irrigated='irrigated_crops',
@@ -65,8 +62,8 @@ LU_class_allocation <- function(LU_class)
 }
 
 
-LU_cereal_conditions <- function(LU_class)
-{
+LU_cereal_conditions <- function(LU_class)  {
+  
   condition <- list(non=c('rye', 'wheat', 'barley', 'triticale'),
                     perma_irrigated=c('oat', 'maize'),
                     rice='rice',
@@ -168,12 +165,10 @@ compute_net_crop_water_reqs <- function(crop_func_df, irrig_eff, year, LU_class)
   #irrig eff can be either static (default) or temporal
   
   #load conditions ----------------------------------------------------------
-  if (irrig_eff=='static')
-  {
+  if (irrig_eff=='static') {
     irrig_eff <- get_irrig_sys_efficiency()
   }
-  else if (irrig_eff=='temporal')
-  {
+  else if (irrig_eff=='temporal') {
     irrig_eff <- get_temporal_irrig_sys_efficiency()
     #subset temporal eff based on year
     ifelse(year==1999, irrig_eff <- irrig_eff[, -3], irrig_eff <- irrig_eff[,-2])
@@ -182,24 +177,20 @@ compute_net_crop_water_reqs <- function(crop_func_df, irrig_eff, year, LU_class)
   #computation
   irrig_sys_names <- colnames(crop_func_df)[seq(4, ncol(crop_func_df))]
   
-  for (i in irrig_sys_names)
-  {
+  for (i in irrig_sys_names)  {
     irrig_effs <- irrig_eff[which(irrig_eff$irrig_system==i), 2]
     crop_func_df[, i] <- round(crop_func_df[, i]*irrig_effs, 0)
   }
   return(crop_func_df)
 }
 
-
-general_func_volume_area_crop <- function(crop_func, year, main_crop, crop, calc_df, irrig_eff, LU_class)
-{
+general_func_volume_area_crop <- function(crop_func, year, main_crop, crop, calc_df, irrig_eff, LU_class)  {
   #note crop_func is either get_crop_water_volume or get_irrig_areas
   
     crop_df <- crop_func(main_crop=main_crop, crop=crop, year=year) 
     new_crop_df <- compute_LU_condition(computation_df = crop_df, LU_class = LU_class, main_crop = main_crop)
     
-    if (missing(irrig_eff)==FALSE)
-    {
+    if (missing(irrig_eff)==FALSE) {
       new_crop_df <- compute_net_crop_water_reqs(new_crop_df, irrig_eff, year)
     }
     
@@ -210,25 +201,23 @@ general_func_volume_area_crop <- function(crop_func, year, main_crop, crop, calc
     return(calc_df)
 }
 
-compute_LU_class_volume <- function(LU_class, year, irrig_eff)
-{
+compute_LU_class_volume <- function(LU_class, year, irrig_eff)  {
   #computes total irrigated areas and water volume of each crop for a LU class
   #returns a list where id =1 concerns the volume and id=2 the areas
   #irrig_eff can be either static, temporal or missing and computes crop water requirements
   #d <- compute_LU_class_volume('olive_groves', 1999, 'static)
   # d <- compute_LU_class_volume('orchards', 2009)
+  
   select_LU_crops <- LU_class_allocation(LU_class)
   cereal_condition <- LU_cereal_conditions(LU_class)
   
   df_vol <- create_main_csv()
   df_irrig <- df_vol
   
-  for (a in select_LU_crops)
-  {
+  for (a in select_LU_crops)  {
     ifelse(a=='cereals', crops <- cereal_condition, crops <- get_crop_names(2009, a))
     
-    for (b in crops)
-    {
+    for (b in crops)  {
       #load volume
       
       df_vol <- general_func_volume_area_crop(crop_func = get_crop_water_volume, year=year, main_crop=a, crop=b, calc_df=df_vol, 
@@ -243,22 +232,19 @@ compute_LU_class_volume <- function(LU_class, year, irrig_eff)
   return(list(df_vol, df_irrig))
 }
 
-compute_tot_temporary_irrig_areas <- function(year)
-{
+compute_tot_temporary_irrig_areas <- function(year) {
   #compute total sum of temporary irrigated crop areas (minus winter cereals)
   
   temp_crops <- c('cereals', 'forage', 'horticulture', 'industry', 'potato', 'pulses')
   calc_df <- create_main_csv()
   df <- create_main_csv()
   
-  for (a in temp_crops)
-  {
+  for (a in temp_crops)  {
     crops <- get_crop_names(2009, a)
     
     ifelse(a=='cereals', crops <- subset(crops, crops=='maize' | crops=='oat'), crops <- get_crop_names(2009, a))
     
-    for (b in crops)
-    {
+    for (b in crops)  {
       crop_sum <- general_func_volume_area_crop(crop_func = get_irrig_areas, year=year, 
                                                main_crop=a, crop=b, calc_df=df)
       calc_df <- cbind(calc_df, crop_sum[, 4]) #last col with total crop area
@@ -271,8 +257,7 @@ compute_tot_temporary_irrig_areas <- function(year)
 }
 
 
-compute_LU_m3_ha <- function(LU_class, year, irrig_eff)
-{
+compute_LU_m3_ha <- function(LU_class, year, irrig_eff)  {
   #aggregates into one dataset the sum of volume, irrigated areas and m3/ha for a LU class
   #d <- compute_LU_m3_ha('olive_groves', 1999)
   #note for the future: this can be generalized
@@ -289,9 +274,9 @@ compute_LU_m3_ha <- function(LU_class, year, irrig_eff)
 }
 
 
-#this function computes the m3/ha of irrigation volume per total area of LU 
-compute_LU_m3_ha_allocation <- function(LU_class, year, irrig_eff)
-{
+compute_LU_m3_ha_allocation <- function(LU_class, year, irrig_eff) {
+  #this function computes the m3/ha of irrigation volume per total area of LU 
+
   crop_vol <- compute_LU_class_volume(LU_class, year, irrig_eff)[[1]]
   crop_class <- LU_class_allocation(LU_class)
   cereal_condition <- LU_cereal_conditions(LU_class)
@@ -299,12 +284,10 @@ compute_LU_m3_ha_allocation <- function(LU_class, year, irrig_eff)
   calc_df <- create_main_csv()
   area_df <- create_main_csv()
   
-  for (a in crop_class)
-  {
+  for (a in crop_class) {
     ifelse(a=='cereals', crops <- cereal_condition, crops <- get_crop_names(2009, a))
     
-    for (b in crops)
-    {
+    for (b in crops) {
       tot_crop_a <- get_raw_crop_areas(year, a, b)
       area_df <- cbind(area_df, tot_crop_a[, ncol(tot_crop_a)])
       colnames(area_df)[ncol(area_df)]  <- b
@@ -320,8 +303,8 @@ compute_LU_m3_ha_allocation <- function(LU_class, year, irrig_eff)
 
 
 ### GET AND WRITE FUNCTIONS ----------------------------------------------------------------------------------
-get_irrig_LU_outputfolder <- function(year, folder_name)
-{
+get_irrig_LU_outputfolder <- function(year, folder_name) {
+  
   irrig_folder <- raster_modelling_subfolders('Irrigation')
   select_yr <- file.path(irrig_folder, year)
   select_folder <- file.path(select_yr, list.files(select_yr, pattern=folder_name))
@@ -342,6 +325,7 @@ get_irrig_LU_data <- function(year, folder_name, path, file_pattern) {
   return(file_path)
 }
 
+
 general_LU_irrig_dir <- function(year, folder_name) {
   # this function checks whether a directory named 'folder_name' exists
   # if not it creates it
@@ -352,9 +336,10 @@ general_LU_irrig_dir <- function(year, folder_name) {
     
     irrig_folder <- raster_modelling_subfolders('Irrigation')
     select_yr <- file.path(irrig_folder, year)
-    fullpath <- file.path(select_yr, folder_name)
-    dir.create(path = fullpath)
+    irrig_output <- file.path(select_yr, folder_name)
+    dir.create(path = irrig_output)
   }
+  return(irrig_output)
 }
 
 create_dir_volumes_path <- function(year, folder_name, path) {
@@ -364,8 +349,8 @@ create_dir_volumes_path <- function(year, folder_name, path) {
   volume_folder <- get_irrig_LU_outputfolder(year, folder_name)
   
   #load conditions
-  df_conditions <- data.frame(path=c('missing', 'static', 'temporal', 'runoff', 'leaching'),
-                              path_name = c('gross_irrigation', 'net_irrigation', 'net_irrigation', 'runoff', 'leaching'))
+  df_conditions <- data.frame(path=c('missing', 'static', 'temporal', 'runoff', 'leaching', 'n2o'),
+                              path_name = c('gross_irrigation', 'net_irrigation', 'net_irrigation', 'runoff', 'leaching', 'n2o'))
   #path_name conditions
   ifelse(missing(path)==TRUE,
     path.name <- df_conditions[which(df_conditions$path=='missing'), 2],
@@ -374,7 +359,7 @@ create_dir_volumes_path <- function(year, folder_name, path) {
   path <- file.path(volume_folder, path.name)
   #path <- paste0(volume_folder, path.name)
   
-  dir.create(path=path)
+  dir.create(path)
   return(path)
 }
 
@@ -387,6 +372,7 @@ write_irrig_LU <- function(year, folder_name, irrig_eff, rasterfile, filename) {
 }
 ### ----------------------------------------------------------------------------------------------------------
 
+
 allocate_LU_volume_GIS <- function(year, irrig_eff) {
   #allocates LU volumes in m3/ha of each LU class to CLC class
   
@@ -395,13 +381,12 @@ allocate_LU_volume_GIS <- function(year, irrig_eff) {
     path <- create_dir_volumes_path(year, 'Volumes', 'missing')
     name <- 'LU_vol_'
   } 
-  else if (irrig_eff=='static' || irrig_eff =='temporal'){
+  else if (irrig_eff=='static' || irrig_eff =='temporal') {
     path <- create_dir_volumes_path(year, 'Volumes', irrig_eff)
     name <- paste0(irrig_eff, '_LU_vol_')
   }
   
-  for (i in LU_classes)
-  {
+  for (i in LU_classes) {
     print(paste0('Working with ', i))
     df_lu_vol <- compute_LU_m3_ha_allocation(i, year, irrig_eff)
     r_lu <- rasterize_data_muni(df_lu_vol, 'Muni_ID', 'm3_tot_ha')
@@ -433,6 +418,7 @@ map_LU_GIS <- function(year, folder_name, subfolder, file_pattern, write) {
   #creates a mosaic raster for a specified irrigation path (e.g. runoff, missing, static)
   #output is a raster mosaic for different LU classes for the mainland
   #map_LU_GIS(1999, 'Volumes', 'runoff', 'LU_vol', TRUE)
+  
   caa <- get_GIS_file(paste0('caaRP', year_prefix(year)), 'LandCover')
   if (subfolder=='missing') {subfolder <- 'gross_irrigation'}
   r_list <- list_LU_GIS(year, folder_name, subfolder, file_pattern)
@@ -444,7 +430,7 @@ map_LU_GIS <- function(year, folder_name, subfolder, file_pattern, write) {
   if(write==TRUE) {
     if (subfolder=='gross_irrigation') {subfolder <- 'missing'}
     write_irrig_LU(year = year, folder_name = folder_name, 
-                   irrig_eff = file_pattern, rasterfile = r_mosaic_caa, filename = paste0('LU_mosaic_', file_pattern))
+                   irrig_eff = subfolder, rasterfile = r_mosaic_caa, filename = paste0('LU_mosaic_', file_pattern))
   }
 }
 
@@ -558,6 +544,78 @@ compute_LU_percolation_vol <- function(year, irrig_eff) {
 ## Compute irrigation N per LU class
 ## ---------------------------------------------------------------------------------------------------------
 
+## ------------------------------------------------------------------------
+# ALLOCATION ROUTINE FOR DIFFERENT LU CLASSES AND STATISTICAL DATA
+
+correction_LU_statistical_df <- function(LU_class, year) {
+  # load total LU areas and statistica areas at the municipality scale
+  
+  clc_lu <- compute_total_CLC_LU_area_muni(LU_class, year)
+  statistics_lu <- compute_total_statistics_LU_area_muni(LU_class, year)
+  correct_df <- cbind(clc_lu, statistics_lu$sum)
+  return(correct_df)
+}
+
+loop_correction_LU_statistical_df <- function(year) {
+  # loops correction_LU_statistical_df for each LU class
+  
+  LU_classes <- loop_LU_classes()
+  path <- general_LU_irrig_dir(year, 'AreaAllocation_LU')
+  
+  write_df <- sapply(LU_classes, function(x) {
+    write_df <- correction_LU_statistical_df(x, year)
+    write.csv(write_df, paste0(path, '/', x, '.csv'))
+  } )
+}
+
+get_correction_LU_statistical_df <- function(LU_class, year) {
+  
+  path <- general_LU_irrig_dir(year, 'AreaAllocation_LU')
+  file <- read.csv(list.files(path, pattern=LU_class, full.names = T))[, -1]
+}
+
+allocation_LU_routine <- function(LU_distribution_df, LU_class, year) {
+  # this function corrects the assumption df "create_LU_distribution_df" with the default LU allocations
+  # corrects the cases where statistical area is higher than CLC, with this difference being allocated to the heterogeneous areas
+  # this is ought to be applied to each LU class and modifies the assumption df accordingly
+  
+  #LU_distribution_df <- create_LU_distribution_df()
+  correct_df <- get_correction_LU_statistical_df(LU_class, year)
+  
+  # CONDITIONS ----------------------------------------------------------------------------
+  # condition 1 - where statistical_area >0 & CLC_area == 0
+  id_1 <- which(correct_df[, 4]==0 & correct_df[, 5]>0)
+  # condition 2 - where allocate_LU>0 & CLC_area>0 
+  id_2 <- which(correct_df[, 5]>0 & correct_df[, 4]>0 & correct_df[, 5]>correct_df[, 4])
+  
+  #modify LU assumptions based on conditions
+  #condition 1 - if CLC_area == 0 --> 100% of the statistical areas to heterogeneous areas
+  LU_distribution_df[id_1, LU_class] <- 1
+  #condition 2 
+  #2.1 - Compute area to allocate to heterogeneous areas and mofidy LU assumptions
+  LU_distribution_df[id_2, LU_class] <- round((correct_df[id_2,5]-correct_df[id_2, 4])/correct_df[id_2, 5], 0)
+  LU_distribution_df <- data_cleaning(LU_distribution_df)
+  
+  return(LU_distribution_df)
+}
+
+
+## VERY IMPORTANT ##
+loop_allocation_LU_routine <- function(year) {
+  # this loops allocation_LU_routine for every LU class besides heterogeneous, which were trying to define here
+  # this returns the final heterogeneous allocation assumptions dataframe for every other LU class
+  options(warn=-1)
+  LU_classes <- loop_LU_classes()
+  LU_classes <- LU_classes[seq(1, (length(LU_classes)-1))] #disregard heterogeneous
+  LU_distribution_df <- create_LU_distribution_df()
+  
+  for (i in LU_classes) {
+    
+    LU_distribution_df <- allocation_LU_routine(LU_distribution_df, i, year)
+  }
+  return(LU_distribution_df)
+}
+
 compute_cropN_LU <- function(year, LU_class) {
   ## this function computes the total N from irrigation for each crop and aggregates it
   ## into each LU class e.g. allocate_cropN_LU(1999, 'rice')
@@ -565,26 +623,122 @@ compute_cropN_LU <- function(year, LU_class) {
   crop_class <- LU_class_allocation(LU_class)
   cereal_condition <- LU_cereal_conditions(LU_class)
   calc_df <- create_main_csv()
-  
-  for (a in crop_class)
-  {
+  #correct allocation to heterogeneous from each LU class, hence 1-proportion_hetero
+  allocation_df <- 1-loop_allocation_LU_routine(year)[, LU_class]
+
+  for (a in crop_class) {
     ifelse(a=='cereals', crops <- cereal_condition, crops <- get_crop_names(2009, a))
     
     for (b in crops) {
-      crop_irrgn <- get_crop_irrigatioN(year = year, individual_crop = FALSE, maincrop = a, crop = b)
+      
+      crop_irrgn <- get_crop_irrigatioN(year = year, individual_crop = F, maincrop = a, crop = b)
       ifelse(ncol(crop_irrgn)>4, calc_df$add <- crop_irrgn[, b], calc_df$add <- crop_irrgn[, 4])
       colnames(calc_df)[ncol(calc_df)] <- b
+      #compute total N correct for heterogeneous allocation for the specified LU_class
+      calc_df[, b] <- calc_df[, b] * allocation_df
     }
   }
   ifelse(ncol(calc_df)>4, 
          calc_df$total_N <- round(rowSums(calc_df[, seq(4, ncol(calc_df))]), 0),
          colnames(calc_df)[4] <- 'total_N')
-         
+
   return(calc_df)
 }
 
-compute_maincropN_hierarchy <- function(year)
-{
+compute_cropN_heterogeneous <- function(year) {
+  # this computes and aggregates crop irrigation N for LU_heterogeneous
+  # loads the heterogeneous allocation_df, corrected to areas according to the conditions highlighted in allocation_LU_routine
+  # loops around each LU class in order to allocate the specified proportion
+  # aggregates each crops' proportion in one single dataset
+  # computes the sum for each municipality
+  # unit: kg N
+  
+  allocation_df <- loop_allocation_LU_routine(year)
+  lu_class <- colnames(allocation_df[, seq(7, ncol(allocation_df))]) #select the other LU classes
+  calc_df <- create_main_csv()
+  
+  for (i in lu_class) {
+    
+    crop_class <- LU_class_allocation(i)
+    cereal_condition <- LU_cereal_conditions(i)
+    
+    for (a in crop_class) {
+      ifelse(a=='cereals', crops <- cereal_condition, crops <- get_crop_names(2009, a))
+      
+      for (b in crops) {
+        
+        crop_irrgn <- get_crop_irrigatioN(year = year, individual_crop = FALSE, maincrop = a, crop = b)
+        ifelse(ncol(crop_irrgn)>4, calc_df$add <- crop_irrgn[, b], calc_df$add <- crop_irrgn[, 4])
+        colnames(calc_df)[ncol(calc_df)] <- b
+        #compute total N correct for heterogeneous allocation for the specified LU_class
+        calc_df[, b] <- calc_df[, b] * allocation_df[, i]
+      }
+    }
+  }
+  calc_df$total_N <- round(rowSums(calc_df[, seq(4, ncol(calc_df))]), 0)
+  return(calc_df)
+}
+
+aggregate_irrigatioN_LU_municipality <- function(year) {
+  
+  LU_classes <- loop_LU_classes()
+  calc_df <- create_main_csv()
+  
+  for (i in LU_classes) {
+    
+    ifelse(i!='heterogeneous', 
+           tot_N <- compute_cropN_LU(year, i)[, 'total_N'],
+           tot_N <- compute_cropN_heterogeneous(year)[, 'total_N'])
+    calc_df$add <- tot_N
+    colnames(calc_df)[ncol(calc_df)] <- i
+  }
+  return(calc_df)
+}
+
+irrigatioN_check_balance <- function(year) {
+  # computes a check balance between the LU allocation routine for irrigation N and irrigation N at the municipality scale absed on statistics
+  # returns a dataset with the total N of the allocation routine and statistical modelling
+  
+  LU_classes <- loop_LU_classes()
+  calc_df <- create_main_csv()
+  
+  for (i in LU_classes) {
+    
+    ifelse(i!='heterogeneous', 
+           tot_N <- compute_cropN_LU(year, i)[, 'total_N'],
+           tot_N <- compute_cropN_heterogeneous(year)[, 'total_N'])
+    calc_df$add <- tot_N
+    colnames(calc_df)[ncol(calc_df)] <- i
+  }
+  statistic_irrigN <- compute_total_irrigN_muni(2009)
+  statistic_irrigN <- rowSums(statistic_irrigN[, seq(4, ncol(statistic_irrigN))])
+  
+  calc_df$sum_LU <- round(rowSums(calc_df[, seq(4, ncol(calc_df))]), 0)
+  calc_df$sum_statistic <- statistic_irrigN
+  final_df <- calc_df[, c(1,2,3, ncol(calc_df)-1, ncol(calc_df))]
+  return(final_df)
+}
+
+#very important
+compute_irrigation_nha_muni_LU <- function(year) {
+  # calls irrigation N per LU calculation as well as the area_LU_CLC and computes this in kg N/LU ha
+  # using such method does not require any adjustment factor since statistical areas were first used in calculating LU irrig N (in kg N)
+  # returns a dataframe disaggregated per LU with irrigation values
+  # unit: kg N//LU_CLC ha
+  
+  LU_classes <- loop_LU_classes()
+  irrigN_LU <- aggregate_irrigatioN_LU_municipality(year)
+  
+  for (i in LU_classes) {
+    print(paste0('Working with ', i))
+    lu_area <- get_correction_LU_statistical_df(i, year)[, 4] #select only CLC_LU_area
+    irrigN_LU[, i] <- round(irrigN_LU[, i]/lu_area, 1)
+  }
+  irrigN_LU <- data_cleaning(irrigN_LU)
+  return(irrigN_LU)
+}
+
+compute_maincropN_hierarchy <- function(year) {
   ##computes the total main crop N irrigation N and aggregates into one dataset
   ## this function is used to assess which crop is associated with irrigation N flows
   
@@ -597,27 +751,6 @@ compute_maincropN_hierarchy <- function(year)
       crop_N <- get_crop_irrigatioN(year = year, individual_crop = FALSE, maincrop = as.character(a))
       calc_df <- cbind(calc_df, crop_N$sum)
       colnames(calc_df)[ncol(calc_df)] <- a
-  }
-  return(calc_df)
-}
-
-compute_total_irrigN_muni <- function(year) {
-  
-  ##computes the total crop irrigation N and aggregates into one dataset
-  ## this function is used to assess which crop is associated with irrigation N flows
-  main_crop <- get_maincrops_names(2009)
-  calc_df <- create_main_csv()
-  
-  for (a in main_crop) {
-    
-    crop <- get_crop_names(2009, a)
-    
-    for (b in crop) {
-
-      crop_N <- get_crop_irrigatioN(year = year, individual_crop = TRUE, maincrop = as.character(a), crop = as.character(b))
-      calc_df <- cbind(calc_df, crop_N$sum)
-      colnames(calc_df)[ncol(calc_df)] <- b
-    }
   }
   return(calc_df)
 }
@@ -647,7 +780,29 @@ compute_cropN_hierarchy <- function(year) {
   return(calc_df)
 }
 
-compute_cropNha_LU <- function(year, LU_class) {
+compute_total_irrigN_muni <- function(year) {
+  ##computes the total crop irrigation N and aggregates into one dataset
+  ## this function is used to assess which crop is associated with irrigation N flows
+  
+  main_crop <- get_maincrops_names(2009)
+  calc_df <- create_main_csv()
+  
+  for (a in main_crop) {
+    
+    crop <- get_crop_names(2009, a)
+    
+    for (b in crop) {
+
+      crop_N <- get_crop_irrigatioN(year = year, individual_crop = TRUE, maincrop = as.character(a), crop = as.character(b))
+      calc_df <- cbind(calc_df, crop_N$sum)
+      colnames(calc_df)[ncol(calc_df)] <- b
+    }
+  }
+  return(calc_df)
+}
+
+#note: do not use this
+not_correct_compute_cropNha_LU <- function(year, LU_class) {
   # uses allocate_cropN_LU and compute_LU_class_volume to compute 
   # N-input from irrigation in kg N/ha based on Portugal Statistics (1999, 2009)
   
@@ -659,6 +814,7 @@ compute_cropNha_LU <- function(year, LU_class) {
   return(lu_irrigN)
 }
 
+
 allocate_LU_irrigN <- function(year) {
   # calls compute_cropNha_LU [irrig in kg N/ha]
   # rasterizes these inputs for each LU
@@ -666,13 +822,14 @@ allocate_LU_irrigN <- function(year) {
   
   LU_classes <- loop_LU_classes()
   general_LU_irrig_dir(year, 'N_irrigation')
-  path <- create_dir_volumes_path(year, 'N_irrigation') #by default it creates 'gross irrigation' folder
+  path <- create_dir_volumes_path(year, 'N_irrigation', 'missing') #by default it creates 'gross irrigation' folder
+  df_irrign_lu <- compute_irrigation_nha_muni_LU(year)
   
   for (i in LU_classes) {
     
     print(paste0('Working with ', i))
-    df_irrign_lu <- compute_cropNha_LU(year, i)
-    r_lu <- rasterize_data_muni(df_irrign_lu, 'Muni_ID', 'total_N')
+    df_LU <- df_irrign_lu[, c('Muni_ID', i)]
+    r_lu <- rasterize_data_muni(df_LU, 'Muni_ID', i)
     LU_GIS <- get_LU_class_raster(i, year)
     LU_irrigN <- LU_GIS*r_lu
     print(paste0('Writing ....', i))
@@ -680,10 +837,11 @@ allocate_LU_irrigN <- function(year) {
   }
 }
 
+
 LU_gross_irrigN_mosaic <- function(year)
 {
   #creates a mosaic for gross irrigation N for each LU class
-  map_LU_GIS(year = year, folder_name = 'N_irrigation', subfolder = 'missing', file_pattern = 'IrrigN_', write = TRUE)
+  map_LU_GIS(year = year, folder_name = 'N_irrigation',  subfolder = 'missing', file_pattern = 'IrrigN_', write = TRUE)
 }
 
 
@@ -715,6 +873,7 @@ compute_total_CLC_LU_area_muni <-function(LU_class, year) {
   return(muni_df)
 }
 
+
 compute_total_statistics_LU_area_muni <- function(LU_class, year) {
   # computes the total statistics area for each LU_class
   # basically after allocating different crops to different LU classes
@@ -724,6 +883,7 @@ compute_total_statistics_LU_area_muni <- function(LU_class, year) {
   area_statistics_lu <- area_statistics_lu[, c(1,2,3, ncol(area_statistics_lu))] #subset ID and sum cols
   return(area_statistics_lu)
 }
+
 
 create_LU_adj_factor_dir <- function(year) {
   # creates year and LU subfolders within the also created LU_adj_factor folder in GIS module "modelling"
@@ -736,6 +896,7 @@ create_LU_adj_factor_dir <- function(year) {
   dir.create(path = lu_adj_factor_folder)
   return(lu_adj_factor_folder)
 }
+
 
 compute_LU_class_adj_factor <- function(year) {
   # computes LU adjustment factor absed on CLC adj and statistic adj factors
@@ -764,6 +925,7 @@ get_LU_adj_factor <- function(LU_class, year) {
   get_adj_factor<- get_modelling_files('LU_adj_factor', LU_class, as.character(year))
   return(get_adj_factor)
 }
+
 
 create_LU_adj_factor_mosaic <- function(year) {
   # loads for each LU class:
@@ -796,6 +958,7 @@ create_LU_adj_factor_mosaic <- function(year) {
   writeRaster(r_mosaic_caa, filename, options=tifoptions) 
 }
 
+
 correct_irrig_percolation <- function(year) {
   # corrects the percolation losses in irrigation (m/yr)
   # by applying the mosaic adjustment factor
@@ -806,6 +969,7 @@ correct_irrig_percolation <- function(year) {
   irrig_perco <- irrig_perco*mosaic_adj_fact
   return(irrig_perco)
 }
+
 
 export_irrig_percolation_drainage_output <- function(year) {
   # exports irrigation losses through percolation to drainage subfolder

@@ -1,0 +1,16 @@
+main_crop,crop,FRAC_renew
+cereals,barley,1
+cereals,maize,1
+cereals,oat,1
+cereals,rice,1
+cereals,rye,1
+cereals,triticale,1
+cereals,wheat,1
+industry,sunflower,1
+industry,other_industry,1
+potato,potato,1
+pulses,bean,1
+pulses,chickpea,1
+pulses,other_pulses,1
+pastures,intensive_pasture,0.6
+pastures,extensive_pasture,0.133333333

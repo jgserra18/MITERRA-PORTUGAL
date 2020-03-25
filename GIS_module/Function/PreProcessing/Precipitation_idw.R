@@ -4,22 +4,32 @@ library(raster)
 library(gstat)
 library(rgdal)
 
+get_climatic_folder <- function() {
+  
+  climatic_folder <- select_maindata_pattern('Climatic')
+  return(climatic_folder)
+}
+
+get_climatic_subfolder <- function(subfolder) {
+  
+  climatic_folder <- get_climatic_folder()
+  climatic_subfolder <- list.files(climatic_folder, pattern=subfolder, full.names=T)
+  return(climatic_subfolder)
+}
+
+#dafuw1
 prec_folder <- function() {
   ## prec source: SNIRH 2019 (in mm/yr)
-  
-  main_folder <- select_maindata_pattern('Climatic')
-  prec <- list.files(main_folder, pattern='Precipitation')
-  prec_folder <- file.path(main_folder, prec)
+
+  prec_folder <- get_climatic_subfolder('Precipitation')
   return(prec_folder)
 }
 
-
+#dafuq2
 evapo_folder <- function() {
   ## evapo source: JRC GRIDDED AGRO-METEREOLOGICAL DATA
   
-  main_folder <- select_maindata_pattern('Climatic')
-  evapo <- list.files(main_folder, pattern='Evapotranspiration')
-  evapo_folder <- file.path(main_folder, evapo)
+  evapo_folder <- get_climatic_subfolder('Evapotranspiration')
   return(evapo_folder)
 }
 
@@ -43,10 +53,12 @@ get_idw_stations <- function(year, idw_source) {
 }
 
 
-georeference_idw_stations <- function(year, source) {
+georeference_idw_stations <- function(year, source, df) {
   #georeferences the spatialpoints coordinates
   
-  idw_stations <- get_idw_stations(year, source)
+  ifelse(missing(df)==TRUE,
+         idw_stations <- get_idw_stations(year, source),
+         idw_stations <- df)
   SP <- SpatialPoints(idw_stations[, 3:2], proj4string = CRS('+proj=longlat +datum=WGS84 +no_defs'))
   SPdf <- SpatialPointsDataFrame(SP, idw_stations)
   
@@ -57,15 +69,21 @@ georeference_idw_stations <- function(year, source) {
   return(SPdf)
 }
 
+interpolate_idw <- function(year, source, SPdf_station) {
+  
+  if(missing(SPdf_station)==TRUE) {
+         SPdf <- georeference_idw_stations(year, source) #SpatialPointsDataFrame
+  } else {SPdf <- SPdf_station}
 
-interpolate_idw <- function(year, source) {
-  
-  SPdf <- georeference_idw_stations(year, source) #SpatialPointsDataFrame
   caa <- get_GIS_file(paste0('caaRP', year_prefix(year)), 'LandCover')
-  r <- raster(extent(caa), crs=crs(caa), res=1000)
+  r <- raster(extent(caa), crs=crs(caa), res=100)
   
-  ifelse(source=='precipitation', gs <- gstat(formula=Annual~1, locations=SPdf, nmax=5, set=list(idp=0)),
-         gs <- gstat(formula=evapo~1, locations=SPdf, nmax=5, set=list(idp=0)))
+  if (missing(SPdf_station)==TRUE) {
+    ifelse(source=='precipitation', gs <- gstat(formula=Annual~1, locations=SPdf, nmax=5, set=list(idp=0)),
+           gs <- gstat(formula=evapo~1, locations=SPdf, nmax=5, set=list(idp=0)))
+  } else {
+    gs <- gstat(formula=sum~1, locations=SPdf, nmax=5, set=list(idp=0))
+  }
   nn <- interpolate(r, gs)
   return(nn)
 }
@@ -108,37 +126,5 @@ write_idw <- function(idw_rast, year, prec_name, source)
   
   writeRaster(idw_rast, path, format='GTiff', options=tifoptions, overwrite=TRUE)
 }
-
-### ------------------------------------------------------------------------------
-## Write rasters
-### ------------------------------------------------------------------------------
-
-## PRECIPITATION -----------------------------------------------------------------
-#whole precipitation
-p99 <- downscale_idw_caa(1999, caa_whole=FALSE, 'precipitation')
-p09 <- downscale_idw_caa(2009, caa_whole=FALSE, 'precipitation')
-
-write_idw(p99, 1999, 'rast_p', 'precipitation')
-write_idw(p09, 2009, 'rast_p', 'precipitation')
-
-#precipitation within UAA
-prec99 <- downscale_idw_caa(1999, caa_whole=TRUE, 'precipitation')
-prec09 <- downscale_idw_caa(2009, caa_whole=TRUE, 'precipitation')
-
-write_idw(prec99, 1999, 'rast_caa', 'precipitation')
-write_idw(prec09, 2009, 'rast_caa', 'precipitation')
-
-## EVAPO --------------------------------------------------------------------------
-e99 <- downscale_idw_caa(1999, caa_whole=FALSE, 'evapo')
-e09 <- downscale_idw_caa(2009, caa_whole=FALSE, 'evapo')
-
-write_idw(e99, 1999, 'rast_e', 'evapo')
-write_idw(e09, 2009, 'rast_e', 'evapo')
-
-evapo99 <- downscale_idw_caa(1999, caa_whole=TRUE, 'evapo')
-evapo09 <- downscale_idw_caa(2009, caa_whole=TRUE, 'evapo')
-
-write_idw(evapo99, 1999, 'rast_caa', 'evapo')
-write_idw(evapo09, 2009, 'rast_caa', 'evapo')
 
 

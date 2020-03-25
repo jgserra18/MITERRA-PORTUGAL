@@ -15,8 +15,7 @@ source('./GIS_module/Function/General_GIS_functions.R')
 ################################################################################################################
 ################################################# LOAD DATA ####################################################
 
-retrieve_data <- function(pattern, year, pattern2)
-{
+retrieve_data <- function(pattern, year, pattern2) {
   ncol_df <- select_output_data(pattern ,year, pattern2)
   main_df <- create_main_csv()
   
@@ -26,15 +25,13 @@ retrieve_data <- function(pattern, year, pattern2)
   return(main_df)
 }
 
-remove_duplic_cols <- function(df)
-{
+remove_duplic_cols <- function(df) {
  df <- df[, !duplicated(colnames(df))]
  
  return(df)
 }
 
-melt_df <- function(df, by_col, vars)
-{
+melt_df <- function(df, by_col, vars) {
   new_df <- melt(df, by=by_col, measure.vars=vars)
   
   return(new_df)
@@ -42,64 +39,62 @@ melt_df <- function(df, by_col, vars)
 
 ################################################################################################################
 ################################################# N BALANCES ####################################################
-n_balance_data <- function(year)
-{
-  gnb_db <- retrieve_data('GNB', year)
-  ssnb_db <- load_ssnb_muni(year, TRUE, 'tier2')
-  ns_db <- ns_compute('NH3', year=year)
+n_balance_data <- function(year, irrig_mode) {
+  gnb_db <- retrieve_data('GNB', year,pattern2 = 'default')
+  ssnb_db <- load_ssnb_muni(year, TRUE, 'tier2_ssnb')
+  ns_db <- ns_compute('NH3', year=year, irrig_mode = irrig_mode)
   
   main_df <- cbind(gnb_db, ssnb_db, ns_db)
   main_df <- remove_duplic_cols(main_df)
   main_df <- data_cleaning(main_df)
   
   return(main_df)
-  
 }
 
-#returns list with the worked df of nutrient balances for 99 and 09
-n_budgets_years_db <- function()
-{
-  db99 <- n_balance_data(1999)
-  db09 <- n_balance_data(2009)
+n_budgets_years_db <- function(irrig_mode) {
+  #returns list with the worked df of nutrient balances for 99 and 09
+
+  db99 <- n_balance_data(1999, irrig_mode)
+  db09 <- n_balance_data(2009, irrig_mode)
   
   db99$year <- 1999
   db09$year <- 2009
   
-  df99 <- melt_df(db99, c('Muni_ID', 'year'),c('gnb', 'ns', 'ssnb'))
-  df09 <- melt_df(db09, c('Muni_ID', 'year'),c('gnb', 'ns', 'ssnb'))
+  df99 <- melt_df(db99, c('Muni_ID', 'year'),c('gnb', 'default_ns', 'ssnb'))
+  df09 <- melt_df(db09, c('Muni_ID', 'year'),c('gnb', 'default_ns', 'ssnb'))
   
   return(list(df99, df09))
 }
 
 
-#merges n balances with leaching
-merging_leaching_n_balances <- function(year)
-{
+merging_leaching_n_balances <- function(year) {
+  #merges n balances with leaching
+
   leaching<- load_leaching_muni(year) #default tier2
   leaching <- leaching[, ncol(leaching)]
   n_balances <- n_balance_data(year)
 
   merged_df <- cbind(n_balances, leaching)
 
-
   return(merged_df)
 }
 
-#prepare the merged df with leaching and all the n balances
+
+prepare_merged_leaching_n_balance <- function(year) {
+  #prepare the merged df with leaching and all the n balances
 #by melting it 
-prepare_merged_leaching_n_balance <- function(year)
-{
+
   main_df <- merging_leaching_n_balances(year)
   melt_df <- melt_df(main_df, 'Muni_ID', c('gnb', 'ns', 'ssnb'))
 
   return(melt_df)
-
 }
 
-#corrects the negative values to 0
+
+correct_leaching_n_balance_data <- function(year) {
+  #corrects the negative values to 0
 #NOTE: THIS IS THE FUNCTION TO CALL THE DATA FOR SCATTERPLOT ANALYSIS
-correct_leaching_n_balance_data <- function(year)
-{
+
   main_df <- prepare_merged_leaching_n_balance(year)
   main_df[main_df< 0] <- 0
   main_df$year <- as.numeric(year)
@@ -109,46 +104,54 @@ correct_leaching_n_balance_data <- function(year)
 
 ################################################################################################################
 ################################################# RUNOFF AND GASEOUS ####################################################
-#merges gaseous N losses and runoff
+
+
+gaseous_losses_runoff <- function(year, irrig_mode) {
+  #merges gaseous N losses and runoff
 #by default it is tier2
-gaseous_losses_runoff <- function(year)
-{
-  gas_db <- ssnb_compile_tot_gaseous(year, 'tier2')
-  rf_db <- runoff_output_data('Runoff', year, 'total')
+
+  gas_db <- ssnb_compile_tot_gaseous(year, 'tier2', irrig_mode)
+  rf_db <- runoff_output_data('Runoff', year, 'total_muni')
   
   main_df <- cbind(gas_db, rf_db)
   
   return(main_df)
 }
 
-#this function is used to plot these losses in the same plot for both years
+
+
+ggplot_same_plot_gaseous_losses_runoff <- function(irrig_mode) {
+  #this function is used to plot these losses in the same plot for both years
 #the output is prepared to be plotted
-ggplot_same_plot_gaseous_losses_runoff <- function()
-{
-  db99 <- gaseous_losses_runoff(1999)
+
+  db99 <- gaseous_losses_runoff(1999, irrig_mode)
+  lch99 <- get_module_output(module = 'Leaching_module', file_pattern = 'tier2_muni_db99', year = 1999)
+  db99 <- merge(db99, lch99[, c(1, 5)], 'Muni_ID')
   db99$year <- 1999
   
-  db09 <- gaseous_losses_runoff(2009)
+  db09 <- gaseous_losses_runoff(2009, irrig_mode)
+  lch09 <- get_module_output(module = 'Leaching_module', file_pattern = 'tier2_muni_db09', year = 2009)
+  db09 <- merge(db09, lch09[, c(1, 5)], 'Muni_ID')
   db09$year <- 2009
   
   main_df <- rbind(db99, db09)
-  main_df <- melt_df(main_df, 'Muni_ID', c('tot_NH3', 'tier2_tot_N2O', 'tot_NOx', 'runoff_nha'))
+  main_df <- melt_df(main_df, 'Muni_ID', c('tot_NH3', 'tier2_tot_N2O', 'tot_NOx', 'runoff_nha', 'leaching_nha'))
   main_df$N_losses <- 'Gaseous and runoff N losses'
   
   return(main_df)
 }
 
-#compute N losses in kilotonnes N 
+
+compute_N_losses <- function(year, irrig_mode) {
+  #compute N losses in kilotonnes N 
 #output is a list
-compute_N_losses <- function(year)
-{
-  main_df <- gaseous_losses_runoff(year)
+
+  main_df <- gaseous_losses_runoff(year, irrig_mode)
   uaa <- load_uaa(year)
   
   sum_df <- data.frame(loss=c('NH3', 'N2O', 'NOx', 'Runoff'), kt_N = vector(mode='numeric', length=4))
   
-  for (i in 4:ncol(main_df))
-  {
+  for (i in 4:ncol(main_df)) {
     main_df[, i] <- main_df[, i]*uaa
     sum_df[i-3, 2] <- sum(main_df[, i], na.rm=TRUE)/1000000
   }
@@ -156,9 +159,10 @@ compute_N_losses <- function(year)
   return(list(main_df, sum_df))
 }
 
-#for plotting
-melt_gaseous_losses_runoff <- function(year)
-{
+
+melt_gaseous_losses_runoff <- function(year) {
+  #for plotting
+
   main_df <- gaseous_losses_runoff(year)
   cols <- colnames(main_df)
   cols <- cols[seq(4, length(cols))]
@@ -171,9 +175,10 @@ melt_gaseous_losses_runoff <- function(year)
 
 ################################################################################################################
 ################################################# GW CALL DATA ####################################################
-#loads all the necessary data required for exploratory analysis
-load_gw_data <- function(year, tier_leaching)
-{
+
+load_gw_data <- function(year, tier_leaching) {
+  #loads all the necessary data required for exploratory analysis
+
   df <- CORRECT_gw_complete_dataset(year, tier_leaching)
   
   #need to merge with recharge rates
@@ -291,7 +296,7 @@ gaseous_runoff_boxplot <- function(df_plot, hide_yy)
     scale_y_continuous(name='Different N losses (kg N/ha)', limits=c(0, 56), expand=c(0,0)) + 
     scale_x_discrete(labels=labels)+ 
     #facet_grid(~year) + 
-    theme_bw() + 
+    theme_classic() + 
     theme(text=element_text(family='serif', size=15),
           axis.title.x =element_blank(),
           axis.ticks.x = element_blank(),
@@ -302,16 +307,20 @@ gaseous_runoff_boxplot <- function(df_plot, hide_yy)
 }
 
 #note: only for the output of ggplot_same_plot_gaseous_losses_runoff()
-same_plot_gaseous_runoff_boxplot <- function(df_plot, name)
-{
-  labels <- c(expression(NH[3]), expression(paste(N[2], 'O')), expression(NO[x]), 'Runoff')
-  
+same_plot_gaseous_runoff_boxplot <- function(df_plot, name, leaching) {
+  ifelse(leaching==TRUE,
+         labels <- c(expression(NH[3]), expression(paste(N[2], 'O')), expression(NO[x]), 'Runoff', 'LeachN'),
+         labels <- c(expression(NH[3]), expression(paste(N[2], 'O')), expression(NO[x]), 'Runoff')
+  )
+
   plot <- ggplot(df_plot, aes(variable, value, fill=factor(year))) + 
-    geom_boxplot(position='dodge', outlier.shape = NA) + 
-    scale_y_continuous(name = 'Different N losses (kg N/ha)', limits=c(0, 56), expand=c(0,0)) + 
+    geom_boxplot(lwd=1) + 
+    scale_y_continuous(name = expression('Environmental N losses ( kg N '~ha^-1~yr^-1~')'),  
+                       breaks=c(0, 1, 2, 5, 10, 25, 50, 100, 200, 300), 
+                       limits = c(0, 350), expand=c(0,0), trans='pseudo_log') + 
     scale_x_discrete(label=labels) + 
-   # facet_grid(~N_losses) + 
-    theme_test() + 
+   # facet_grid(~info) + 
+    theme_bw() + 
     theme(
           axis.title.x =element_blank(),
           axis.ticks.x = element_blank(),
@@ -320,14 +329,14 @@ same_plot_gaseous_runoff_boxplot <- function(df_plot, name)
           axis.text.y = element_text(size=18),
           strip.text.x = element_text(size=18),
           text=element_text(family='serif', size=18),
-          legend.position = c(0.91, 0.85),
+          legend.position = 'none',
           legend.text = element_text(size=18),
           legend.title = element_text(size=18)) + 
     labs(fill='Year')
   
   path <- plot_output()
   
-  ggsave(plot =plot, filename = paste0(path, name), dpi=600, height = 6, width = 7.5)
+ # ggsave(plot =plot, filename = paste0(path, name), dpi=600, height = 6, width = 7.5)
   
   return(plot)
 }
@@ -596,41 +605,40 @@ create_recharge_rate <- function(two_plots)
 
 create_gw_leaching_result <- function(shp_ind, shp_diff_nload)
 {
-  tm_shape(shp_ind, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_fill(col='azure4') + tm_borders(col='black') + 
-    tm_shape(gw99, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_polygons(col='N.loads.mg.N.',# style='cont', 
+  tm_shape(shp_ind, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(col='black') + 
+    tm_shape(gw99, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_polygons(col='n_load_kgN',# style='cont', 
                                  breaks = c(0, 100, 200, 400, 600, 900, 1200),
                                  palette = c('blue1','green1', 'yellow1',  'red1'), #c('cadetblue1', 'deepskyblue2', 'dodgerblue3', 'blue3'), 
                                  labels = c(' <100', '100 - 200', '200 - 400', '400 - 600', '600 - 900', '900 - 1200'),
-                                 title='Ngw (tonnes N)') + tm_borders(col='black') + 
+                                 title=expression('N'[gw]~'(tonnes N)')) + tm_borders(col='black') + 
     tm_legend(legend.outside=F, legend.position = c(0.7, 0.3)) + 
     tm_scale_bar(color.dark = 'black', text.color = 'black',
                  position=c(0.63, 0.05), breaks = c(0, 50, 100)) + 
-    tm_compass(type='4star', size=1.1, fontsize = 0.7,
+    tm_compass(type='4star', size=1.1, text.size =0.7,
                position=c(0.1, 0.9)) +
     tm_layout(legend.title.size = 0.9, legend.text.size=0.7, legend.width=2, 
               frame=T,  legend.hist.width = .7,                                     
-              fontfamily = 'serif', panel.label.height = 1, panel.labels='1999') + 
-    tm_shape(shp_ind, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_fill(col='azure4') + tm_borders(col='black')
+              fontfamily = 'serif', panel.label.height = 1, panel.labels='1999')
 }
 
 
 create_gw_leaching_result_proportion <- function(shp_ind, shp_diff_nload)
 {
-  d <- tm_shape(shp_ind, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_fill(col='azure4') + tm_borders(col='black') + 
+  d <- tm_shape(shp_ind, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(col='black') + 
     tm_shape(shp_diff_nload, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_polygons(col='dif_prc', 
                                    labels = c('<-40', '-40 - -20', '-20 - 0', '0 - 20', '>20'),
                                    breaks = c(-Inf, -40, -20, 0, 20, +Inf), midpoint=0,
                                    palette = c('blue1', 'green3', 'yellow1', 'orange', 'red1'), #c('cadetblue1', 'deepskyblue2', 'dodgerblue3', 'blue3'), 
                                    title='Change in\nN-loads (%)') + tm_borders(col='black') + 
     tm_legend(legend.outside=F, legend.position = c(0.7, 0.3)) + 
-    tm_scale_bar(color.dark = 'black', text.color = 'black',
+    tm_scale_bar(color.dark = 'black', text.color = 'black', 
                  position=c(0.63, 0.05), breaks = c(0, 50, 100)) + 
-    tm_compass(type='4star', size=1.1, fontsize = 0.7,
+    tm_compass(type='4star', size=1.1, text.size = 0.7,
                position=c(0.1, 0.9)) +
     tm_layout(legend.title.size = 0.9, legend.text.size=0.7, legend.width=2, 
               frame=T,  legend.hist.width = .7,                                     
               fontfamily = 'serif', panel.label.height = 1, panel.labels='Change in N-loads') + 
-    tm_shape(shp_ind, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_fill(col='azure4') + tm_borders(col='black')
+    tm_shape(shp_ind, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(col='black')
 }
 
 
@@ -643,9 +651,9 @@ create_aquifer_recharge_result_proportion <- function(shp_ind, shp_diff_rech)
     tm_legend(legend.outside=F, legend.position = c(0.7, 0.3)) + 
     tm_scale_bar(color.dark = 'black', text.color = 'black',
                  position=c(0.63, 0.05), breaks = c(0, 50, 100)) + 
-    tm_compass(type='4star', size=1.1, fontsize = 0.7,
+    tm_compass(type='4star', size=1.1, text.size = 0.7,
                position=c(0.1, 0.9)) +
-    tm_layout(legend.title.size = 0.9, legend.text.size=0.7, 
+    tm_layout(legend.title.size = 0.9, legend.text.size=0.7, legend.width=2,
               frame=T,  legend.hist.width = .7,                                     
               fontfamily = 'serif', panel.label.height = 1, panel.labels='Change in recharge') + 
     tm_shape(shp_ind, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_fill(col='azure4') + tm_borders(col='black')
@@ -664,7 +672,7 @@ create_aquifer_recharge <- function(year, legend, panel_plot, two_plots)
   gw <- load_shp('gw')
   subset <- subset(gw, gw_data0_1=='Ind')
   
-  df_gw <- get_df_Nc(year)
+  df_gw <- get_df_Nc(year, irrig_mode = TRUE)
   df_gw$drainage <- df_gw$drainage/1000000000 #L to hm3
   
   gw <- merge(gw, df_gw, 'GW_ID')
@@ -673,7 +681,8 @@ create_aquifer_recharge <- function(year, legend, panel_plot, two_plots)
   plot1<-tm_shape(subset, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_fill(col='azure4') + tm_borders(col='black') + 
     tm_shape(gw, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + 
     tm_polygons(col='drainage',palette = c('snow1', 'cadetblue1', 'deepskyblue2', 'dodgerblue3', 'blue3', 'blue4'), 
-               breaks = c(0, 15, 30, 45, 75, +Inf), title=expression(paste('Recharge (', hm^3, ')'))) + tm_borders(col='black') + 
+               breaks = c(0, 15, 30, 45, 75, +Inf), 
+               labels = c('< 15', '15 - 30', '30 - 45', '45 - 75', '> 75'), title=expression(paste('Recharge (', hm^3, ')'))) + tm_borders(col='black') + 
     tm_layout(legend.title.size = 0.9, legend.width = 2, legend.position = c(0.7, 0.5),
               frame=TRUE, legend.text.size=0.7, panel.labels=panel_plot, fontfamily = 'serif', panel.label.height = 1)  + 
     tm_legend(show=legend, position=c(0.7, 0.3), frame=F) + 
@@ -695,9 +704,10 @@ create_aquifer_recharge <- function(year, legend, panel_plot, two_plots)
 create_raster_leaching <- function(map_plot, col_plot, panel_plot, legend, title, muni, unit, breaks)
 { 
   tm_shape(muni, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(col='grey') + tm_fill(col='grey') + 
-    tm_shape(map_plot, projection = 'longlat', bbox=c(-10, 36.8, -5.5, 42.25)) + tm_raster(col=col_plot, breaks = c(0, 0.001, 5, 10, 20, 40, 110), 
-                                                      palette = c('black', 'blue1', 'green1', 'yellow', 'orange', 'red'), 
-                                                      labels=c('NA', ' <5', '5 - 10', '10 - 20', '20 - 40', ' >40'),
+    tm_shape(map_plot, projection = 'longlat', bbox=c(-10, 36.8, -5.5, 42.25)) + 
+    tm_raster(col=col_plot, breaks = c(0, 5, 10, 20, 40, 110), style='cont',
+                                                      palette = c( 'blue1', 'green1', 'yellow', 'orange', 'red'), 
+                                                      labels=c('0', '<5', '5 - 10', '10 - 20', '20 - 40', ' >40'),
                                                       title = paste0(title, '\n', unit)) +
     tm_legend(show=legend, position=c(0.7, 0.3), frame=F)+
     tm_scale_bar(color.dark = 'black', text.color = 'black',
@@ -717,26 +727,25 @@ create_raster_leaching <- function(map_plot, col_plot, panel_plot, legend, title
               # = c(0, 0.05, 0, 0.05))
 }
 
-create_raster_leaching_gw <- function(map_plot, col_plot, panel_plot, legend, title, muni, unit, breaks)
+create_raster_leaching_gw <- function(map_plot, col_plot, panel_plot, legend, muni, breaks)
 { 
-  tm_shape(muni, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(col='grey') + tm_fill(col='grey') + 
-    tm_shape(map_plot, projection = 'longlat', bbox=c(-10, 36.8, -5.5, 42.25)) + tm_raster(col=col_plot, breaks = c(0, 0.001, 2.5, 5, 10, 20, 110), 
-                                                                                           palette = c('black', 'blue1', 'green1', 'yellow', 'orange', 'red'), 
-                                                                                           labels=c('NA', ' <2.5', '2.5 - 5', '5 - 10', '10 - 20', ' >20'),
-                                                                                           title = paste0(title, '\n', unit)) +
+ # tm_shape(muni, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(col='grey') + tm_fill(col='grey') + 
+    tm_shape(map_plot, projection = 'longlat', bbox=c(-10, 36.8, -5.5, 42.25)) + 
+    tm_raster(col=col_plot, breaks = c(0, 0.001, 2.5, 5, 10, 15, 110),style='cont',
+              palette = c('black', 'blue1', 'green1', 'yellow', 'red'), 
+              labels=c('NA', '0', '2.5', '5', '10', '15', '110'),
+              title = expression('N'[gw]~'\n(kg N ha'^-1*')')) + 
     tm_legend(show=legend, position=c(0.7, 0.3), frame=F)+
-    tm_scale_bar(color.dark = 'black', text.color = 'black',
+    tm_scale_bar(color.dark = 'black', text.color = 'black', text.size = 0.7,
                  position=c(0.63, 0.05), breaks = c(0, 50, 100)) + 
-    tm_compass(type='4star', size=1.1, fontsize = 0.7,
+    tm_compass(type='4star', size=1.1, text.size = 1,
                position=c(0.1, 0.9)) +
-    tm_layout(frame=T,
-              legend.text.size = 0.71,
-              panel.show = T,
-              legend.title.size = 0.9,
-              panel.labels = panel_plot,
+    tm_layout(legend.title.size = 0.85, legend.text.size=0.7, legend.width=2.25,
+              frame=T,  legend.hist.width = .7, 
               fontfamily = 'serif',
-              panel.label.height = 1)
-
+              panel.show = T,
+              panel.labels = panel_plot,
+              panel.label.height = 1.1)
 }
 
 
@@ -765,23 +774,23 @@ create_raster_Nc <- function(map_plot, col_plot, panel_plot, legend, title, muni
 
 create_raster_gw <- function(subset, map_plot, col_plot, panel_plot, legend, title, unit){
   
-  hydro <- load_shp('main_hydro')
-  hydro$initial <- c('H', 'W', 'TS', 'W', 'W', 'M')
-  hydro_h <- subset(hydro, initial=='H')
-  hydro_t <- subset(hydro, initial=='TS')
-  hydro_w <- subset(hydro, initial=='W')
-  hydro_m <- subset(hydro, initial=='M')
+  #hydro <- load_shp('main_hydro')
+  #hydro$initial <- c('H', 'W', 'TS', 'W', 'W', 'M')
+  #hydro_h <- subset(hydro, initial=='H')
+  #hydro_t <- subset(hydro, initial=='TS')
+  #hydro_w <- subset(hydro, initial=='W')
+  #hydro_m <- subset(hydro, initial=='M')
   
   tm_shape(map_plot, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(col='black', lwd = 0.8) + 
     tm_polygons(col=col_plot,
-                title = paste0(title, '\n', unit), breaks=c(0,  10, 25, 50, +Inf),
-                palette = c('blue1', 'green1', 'yellow1', 'red'),
-                label = c('<10', '10 - 25', '25 - 50', ' >50'), showNA=FALSE)+
+                title = paste0(title, '\n', unit), breaks=c(0, 25,  50, 75, 100, +Inf),
+                palette = c('blue1', 'green1', 'yellow1', 'orange', 'red'),
+                label = c('<25', '25 - 50', '50 - 75', ' 75 - 100', '>100'), showNA=FALSE)+
     tm_shape(subset, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_fill(col='azure4') +tm_borders(col='black') +
     tm_legend(show=legend, position=c(0.7, 0.3), frame=F)+
     tm_scale_bar(color.dark = 'black', text.color = 'black',
                  position=c(0.63, 0.05), breaks = c(0, 50, 100)) + 
-    tm_compass(type='4star', size=1.1, fontsize = 0.7,
+    tm_compass(type='4star', size=1.1, text.size = 0.7,
                position=c(0.1, 0.9)) +
     tm_layout(frame=T,
               legend.text.size = 0.71,
@@ -789,11 +798,11 @@ create_raster_gw <- function(subset, map_plot, col_plot, panel_plot, legend, tit
               legend.title.size = 0.9,
               panel.labels = panel_plot,
               fontfamily = 'serif',
-              panel.label.height = 1) + 
-    tm_shape(hydro_h, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=2.2, lty='solid', col='black') +
-    tm_shape(hydro_t, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=2.2, lty='solid', col='black') + 
-    tm_shape(hydro_w, pprojection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=2.2, lty='solid', col='black') + 
-    tm_shape(hydro_m, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=2.2, lty='solid', col='black') 
+              panel.label.height = 1) #+ 
+   # tm_shape(hydro_h, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=2.2, lty='solid', col='black') +
+   # tm_shape(hydro_t, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=2.2, lty='solid', col='black') + 
+   # tm_shape(hydro_w, pprojection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=2.2, lty='solid', col='black') + 
+    #tm_shape(hydro_m, projection = 'longlat', bbox = c(-9.8, 36.8, -5.5, 42.25)) + tm_borders(lwd=2.2, lty='solid', col='black') 
 }
 
 #arranges two different tmap plots as one and then saves it to a default path
@@ -805,15 +814,24 @@ map_arrange <- function(p1, p2, name, heigth, width, ncol)
   pl <- tmap_arrange(p1, p2, ncol=2)
   
   print('Saving this now...')
-  tmap_save(pl, paste0(path, name), dpi =600, height = 6.5, width = 8) #width =8 by default +
+  ifelse(grepl('tif', name)==FALSE,
+         tmap_save(pl, paste0(path, name), dpi =600, height = 6.5, width = 8), #width =8 by default +
+         tmap_save(pl, paste0(path, name), dpi=600, height=6.5, width=8, compress='lzw')
+  )
 }
 
-master_plot_nload <- function(p1, p2, p3, p4, height, width, name)
-{
+master_plot_nload <- function(p1, p2, p3, p4, height, width, name) {
   path <- plot_output()
   
-  pl <- tmap_arrange(p1, p2, p3, p4, ncol=2, nrow=2)
+  pl <- tmap_arrange(p1, p2, p3, p4, ncol=4, nrow=1)
   print('Saving this now...')
-  tmap_save(pl, paste0(path, name), dpi =600, height=height, width=width)
+         tmap_save(pl, paste0(path, name), dpi =600, height=height, width=width) #width =8 by default +
+}
 
+master_plot_nload2 <- function(p1, p2, p3, p4, p5, p6, height, width, name) {
+  path <- plot_output()
+  
+  pl <- tmap_arrange(p1, p2, p3, p4, p5, p6, ncol=2, nrow=3)
+  print('Saving this now...')
+  tmap_save(pl, paste0(path, name), dpi =600, height=height, width=width) #width =8 by default +
 }

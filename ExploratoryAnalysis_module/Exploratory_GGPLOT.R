@@ -5,8 +5,9 @@ source('./NLoading_module/Function/Compute_gw_loadings.R')
 ##################################################################################################################
 ############################################ N BALANCES BOXPLOTS #################################################
 #load n balance data
-df99 <- n_budgets_years_db()[[1]]
-df09 <- n_budgets_years_db()[[2]]
+df99 <- n_budgets_years_db(F)[[1]]
+df09 <- n_budgets_years_db(F)[[2]]
+
 
 #LOAD PLOTS
 n_balance_plot <- ggplot_arrange(df99, df09, 'GGPLOT_n_balances.pdf')

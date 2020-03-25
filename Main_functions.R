@@ -4,6 +4,10 @@
 library(data.table)
 library(dplyr)
 library(tidyverse)
+require("readxl")
+require("readxl")
+library(raster)
+
 
 #this is the general function to check if the folder_path has the \\ in the last two digits
 check_folder <- function(folder_path)
@@ -218,6 +222,7 @@ export_to_activity <- function(source, pathway, name, file)
   }
 }
 
+
 write_output <- function(pattern1, data_to_write, name, pattern2)
 {
   main_path <- './'
@@ -308,8 +313,7 @@ select_module_output <- function(pattern, path)
   
   full_path <- path
   
-  for (i in pattern)
-  {
+  for (i in pattern) {
     path <- list.files(path=full_path, pattern=as.character(i))
     path <- check_folder(path)
     full_path <- paste0(full_path, path)
@@ -320,16 +324,18 @@ select_module_output <- function(pattern, path)
   return(output_path)
 }
 
-#this cleans up the data
-#Inf, NA or NaN
-data_cleaning <- function(dataset)
-{
+
+data_cleaning <- function(dataset) {
+  #this cleans up the data
+  #Inf, NA or NaN
+  options(warn=-1)
   dataset <- do.call(data.frame, lapply(dataset, function(x)
   {
     replace(x, is.infinite(x) | is.na(x), 0)
   }
   ))
-
+  options(warn=0)
+  colnames(dataset) <- gsub('X', '', names(dataset))
   return(dataset)
 }
 
@@ -375,17 +381,6 @@ populate_gng_input_irrig <- function(year, function_get_irrigN, df, overwrite)
   return(df)
 }
 
-#generic function to get data from modules
-get_module_output <- function(module, file_pattern, year)
-{
-  module_path <- select_module_output(module)
-  files <- list.files(module_path, pattern = file_pattern)
-  files <- disaggregate_year(files, year)
-  
-  full_path <- file.path(module_path, files)
-  select_file <- read.csv(full_path)
-}
-
 create_caa_df <- function(year)
 {
   folder_path <- './Activity data/Main_sheet_csv/'
@@ -415,21 +410,164 @@ get_results <- function(folder, filename)
 }
 
 
-## loads raw data activity data subfolders
-load_raw_data <- function(subfolder)
-{
+## ----------------------- DATABASE FORMAT CONVERSION ---------------------- ##
+## --------------------------------------------------------------------------##
+
+
+convert_raw_xls_into_csv <- function(filepath_from, filepath_to) {
+  # CONVERTS WEIRD AND OLD .XLS FILES TO TREATED .CSV
+
+  xls_file <- read_excel(filepath_from)
+  # get filename
+  filename <- paste0(xls_file[6,3], '.csv')
+  
+  # identify columns to subset -----------------------------------------------------
+  yrs <- seq(2018, 1986)
+  store_yrs <- c()
+  ctr <- 0
+  for (i in yrs) {
+    ctr <- ctr + 1
+    store_yrs[ctr] <- which(xls_file[8,]==i) 
+  }
+  
+  store_yrs <- c(1,2, store_yrs)
+  xls_file <- xls_file[, store_yrs]
+  
+  # remove rows 1-7, 9, 17-25 
+  xls_file <- xls_file[-c(1,2,3,4,5,6,7,9, 17, 18, 19, 20, 21, 22,23,24,25), ]
+  
+  names(xls_file) <- xls_file[1, ]
+  colnames(xls_file)[1] <- 'agrarian_region_id'
+  colnames(xls_file)[2] <- 'agrarian_region'
+  xls_file <- xls_file[-1, ]
+  
+  write.csv(x = xls_file, file = file.path(filepath_to, filename), row.names = F)
+}
+
+
+
+convert_raw_xlsv_into_csv <- function(filepath_from, filepath_to) {
+  # CONVERTS WEIRD .XLSX FILES TO TREATED .CSV
+
+  xlsv_file <- read.xlsx(xlsxFile = filepath)
+  # get filename
+  filename <- paste0(xlsv_file[4,3], '.csv')
+  # remove X4 and X6
+  xlsv_file <-xlsv_file[, -c(4,6)]
+  # remove rows 1-5 and 7 and 15-20
+  xlsv_file <- xlsv_file[-c(1,2,3,4,5,7, 15,16,17,18,19,20), ]
+  
+  names(xlsv_file) <- xlsv_file[1, ]
+  # now remove row 1
+  xlsv_file <- xlsv_file[-1, ]
+  colnames(xlsv_file)[1] <- 'agrarian_region_id'
+  colnames(xlsv_file)[2] <- 'agrarian_region'
+
+  write.csv(x = xlsv_file, file = file.path(filepath_to, filename), row.names = F)
+}
+
+
+## ----------------------- ACTIVITY DATA GETTERS ----------------------- ##
+## ----------------------------------------------------------------------##
+
+get_activity_data <- function(subfolder, subfolderX2, file_pattern) {
+  # general function to get data from activity data 
+  # e.g., get_activity_data('Climatic_data', 'Precipitation', 'rast_caa09')
+  # the function automatically distinguishes between the data formats
+
+  data_folder <- select_maindata_pattern(subfolder)
+  
+  if (missing(subfolderX2)==TRUE) {
+    file <- list.files(data_folder, pattern = file_pattern, full.names = TRUE)
+  }
+  else {
+    subfolder <- list.files(data_folder, pattern = subfolderX2, full.names=TRUE)
+    file <- list.files(subfolder, pattern = file_pattern, full.names = TRUE)
+  }
+  
+  if (grepl('.tif', file)==TRUE) {
+    r_file <- raster(file) 
+    return(r_file)
+  }
+  else if (grepl('.shp', file)==TRUE) {
+    r_file <- readOGR(file)
+      colnames(r_file) <- gsub('X', '', names(r_file))
+      return(r_file)
+  }
+  else {
+    r_file <- read.csv(file)
+      colnames(r_file) <- gsub('X', '', names(r_file))
+      return(r_file)
+  }
+
+  rm(list=c('data_folder', 'file', 'subfolder'))
+}
+
+
+
+load_raw_data <- function(subfolder) {
+  ## loads raw data activity data subfolders
+  
     raw_folder <- select_maindata_pattern('Raw')
     subfolder <- file.path(raw_folder, list.files(raw_folder, pattern=subfolder))
     return(subfolder)
 }
 
-#gets raw crop areas
-get_raw_crop_areas <- function(year, main_crop, crop)
-{
+
+get_crop_data <- function(year, subfolder, main_crop, crop) {
+  # gets crop  data for a given crop ;; year can be specified or not
+  # subfolder can be Yields or Areas
+  # Fertilizer_support is not included
+  # unit: kg dry-matter ha-1 yr-1 ;; ha yr-1
+
+  crop_data_folder <- load_raw_data(subfolder = 'Crop_data')
+  select_crop_param <- list.files(path = crop_data_folder, pattern = subfolder, full.names = T)
+  
+  # AREAS IN THE CENSUS YEARS ARE AVAILABLE AT THE MUNICIPALITY SCALE RATHER THAN THE AGRARIAN REGION
+  # SO THESE HAVE TO BE SPECIFIED 
+  if (subfolder=='Areas' | subfolder =='Irrigated_areas') {
+        if (year==1989 | year==1999 | year==2009) {
+          select_data <- list.files(path = select_crop_param, pattern = 'Census_years', full.names = T)
+        } 
+        else if (year!=1989 | year!=1999 | year!=2009) {
+          select_data <- list.files(path = select_crop_param, pattern = 'Other_years', full.names = T)
+        } 
+        select_maincrop <- list.files(path = select_data, pattern = main_crop, full.names = T)
+  }
+  
+  else {
+    select_maincrop <- list.files(path = select_crop_param, pattern = main_crop, full.names = T)
+  }
+  
+  select_crop <- list.files(path = select_maincrop, pattern = crop, full.names = T)
+  
+  if (missing(year)==TRUE) {
+    r_crop.file <- read.csv(select_crop)
+    # correct colnames
+    colnames(r_crop.file) <- gsub(pattern = 'X', replacement = '', x = colnames(r_crop.file))
+  }
+  else if (missing(year)==FALSE & (year!=1989 | year!=1999 | year!=2009) & subfolder != 'Areas') {
+    r_crop.file <- read.csv(select_crop)
+    colnames(r_crop.file) <- gsub(pattern = 'X', replacement = '', x = colnames(r_crop.file))
+    r_crop.file <- r_crop.file[, c(1, 2, which(names(r_crop.file)==year))]
+  }
+  else {
+    r_crop.file <- read.csv(select_crop)
+    colnames(r_crop.file) <- gsub(pattern = 'X', replacement = '', x = colnames(r_crop.file))
+  }
+  return(r_crop.file)  
+}
+
+# see irrigation and GIS module
+# change this
+get_raw_crop_areas <- function(year, main_crop, crop) {
+  #gets raw crop areas 
+  
   subfolder <- load_raw_data('Crop_data')
   select_yr <- file.path(subfolder, list.files(subfolder, pattern=as.character(year)))
-  select_maincrop <- file.path(select_yr, list.files(select_yr, pattern = main_crop))
-  select_crop <- file.path(select_maincrop, list.files(select_maincrop, pattern = crop))
+  select_areas <- file.path(select_yr, list.files(select_yr, pattern = 'Areas'))
+  select_maincrop <- list.files(path = select_areas, pattern = main_crop, full.names=T)
+  select_crop <- list.files(path = select_maincrop, pattern = crop, full.names=T)
 
   read_crop <- read.csv(select_crop)
   return(read_crop)
@@ -445,6 +583,9 @@ load_raw_total_arable <- function(subfolder, year, file_pattern)
   return(file)
 }
 
+## ----------------------- SPATIAL DISAGGREGATION FUNCTIONS ----------------------- ##
+## ---------------------------------------------------------------------------------##
+
 
 call_spatial_disaggregation <- function() {
 
@@ -452,3 +593,201 @@ call_spatial_disaggregation <- function() {
   select_disagg_file <- list.files(module_path, pattern = 'spatial_disaggregation', full.names = T)
   file <- read.csv(select_disagg_file)
 }
+
+spatial_disagg_agrarian_muni <- function(agrarian_df) {
+  # spatially disaggregates the agrarian regions into municipalities
+  
+  muni_df <- call_spatial_disaggregation()
+  muni_df <- left_join(muni_df, agrarian_df[, -2], 'agrarian_region_id')
+  muni_df <- muni_df[, -seq(4,8)]
+  
+  return(muni_df)
+}
+
+## ----------------------- CREATE DIRECTORY AND SUBFOLDERS ----------------------- ##
+## --------------------------------------------------------------------------------##
+
+create_module_dir <- function(module.name) {
+  # creates module name e.g., fertilization
+  
+  path <- './'
+  module_folder <- file.path(path, module.name)
+  dir.create(path = module_folder, showWarnings = F)
+  return(module_folder)
+}
+
+create_module_output_subfolder <- function(module.name, subfolder.name) {
+  # 1 - creates an OUTPUT FOLDER IF IT DOSNT EXIST
+  # 2 - creates the specified subfolder within the output folder
+  # returns the subfolder path
+  
+  create_module_dir(module.name)
+  out_path <- select_module_output(module.name)
+  module_out <- dir.create(path=out_path, showWarnings = F)
+  add_subfolder <-  file.path(out_path, subfolder.name)
+  dir.create(path = add_subfolder, showWarnings = F)
+  return(add_subfolder)
+}
+
+create_module_output_subfolderX2 <- function(module.name, subfolder.name, subfolderX2.name) {
+  # this function should be used to create crop folders within a specific subfolder
+  # e.g., 'Fertilization_module', 'Fertilization_rates', 'cereals
+  
+  sub_path <- create_module_output_subfolder(module.name, subfolder.name)
+  subX2_path <- file.path(sub_path, subfolderX2.name)
+  dir.create(path = subX2_path, showWarnings = F)
+  return(subX2_path)
+}
+
+create_module_annual_subfolder <- function(module.name, subfolder.name, year, subfolderX2.name) {
+  # creates a subfolder for a given year
+  
+  if (missing(subfolderX2.name)==TRUE) {
+    add_subfolder <- create_module_output_subfolder(module.name, subfolder.name)
+    subfolder_year <- file.path(add_subfolder, year)
+    dir.create(path = subfolder_year, showWarnings = F)
+    return(subfolder_year)
+  } 
+  else {
+    add_subfolder <- create_module_output_subfolderX2(module.name, subfolder.name, subfolderX2.name)
+    add_subfolder_year <- file.path(add_subfolder, year)
+    dir.create(path = add_subfolder_year, showWarnings = F)
+    return(add_subfolder_year)
+  }
+}
+
+
+## ----------------------- OUTPUT WRITING ----------------------- ##
+## ---------------------------------------------------------------##
+
+write_output_subfolder <- function(module_name, subfolder_name, file, filename) {
+  # general function to write the output to a specific subfolder
+  
+  folder_path <- create_module_output_subfolder(module_name, subfolder_name)
+  file_path <- file.path(folder_path, paste0(filename, '.csv'))
+  write.csv(file, file_path, row.names = F)
+}
+
+
+write_output_subfolder <- function(module_name, subfolder_name, file_df, filename, subfolderX2_name) {
+  # general function to write the output to a specific subfolder
+  
+  folder_path <- create_module_output_subfolder(module_name, subfolder_name)
+
+  if (missing(subfolderX2_name)==TRUE) {
+    if (class(file_df)=='RasterLayer') {
+       file_path <- file.path(folder_path, paste0(filename, '.tif'))
+       tifoptions=c('COMPRESS=DEFLATE', 'PREDICTOR=2', 'ZLEVEL=6')
+       writeRaster(file_df, file_path, options=tifoptions)
+    } else {
+      file_path <- file.path(folder_path, paste0(filename, '.csv'))
+      write.csv(x = file_df, file = file_path, row.names = F)
+    }
+  } 
+
+  else {
+    subfolder_path <- file.path(folder_path, subfolderX2_name)
+    dir.create(path = subfolder_path, showWarnings = F)
+
+    if (class(file_df)=='RasterLayer') {
+       subfile_path <- file.path(subfolder_path, paste0(filename, '.tif'))
+       tifoptions=c('COMPRESS=DEFLATE', 'PREDICTOR=2', 'ZLEVEL=6')
+       writeRaster(file_df, subfile_path, options=tifoptions)
+    } else {
+      subfile_path <- file.path(subfolder_path, paste0(filename, '.csv'))
+      write.csv(x = file_df, file = subfile_path, row.names = F)
+    }
+  }
+}
+
+
+write_annual_data <- function(module_name, subfolder_name, file, filename, year, subfolder_nameX2) {
+  # e.g., write_annual_data('Fertilization_module', 'Fertilization_rates', d, 'looool', 699999)
+
+  if(missing(subfolder_nameX2)==TRUE) {
+             export_path <- create_module_annual_subfolder(module_name, subfolder_name, year)
+  } else {
+             export_path <- create_module_annual_subfolder(module_name, subfolder_name, year, subfolder_nameX2)
+  }
+  if (class(file)=='RasterLayer') {
+    name <- paste0(filename, '.tif')
+    file_path <- file.path(export_path, name)
+    tifoptions=c('COMPRESS=DEFLATE', 'PREDICTOR=2', 'ZLEVEL=6')
+    writeRaster(file, file_path, options=tifoptions)
+  }
+  else {
+    name <- paste0(filename, '.csv')
+    file_path <- file.path(export_path, name)
+    write.csv(x = file, file = file_path, row.names = F)
+  }
+}
+
+
+
+## ----------------------- MODULE OUTPUT GETTERS ---------------------- ##
+## ---------------------------------------------------------------------##
+
+
+get_module_output <- function(module, file_pattern, year) {
+  #generic function to get data from modules
+  
+  module_path <- select_module_output(module)
+  files <- list.files(module_path, pattern = file_pattern)
+  files <- disaggregate_year(files, year)
+  
+  full_path <- file.path(module_path, files)
+  select_file <- read.csv(full_path)
+}
+
+get_module_subfolder_output <- function(module, submodule, submoduleX2, file_pattern, submoduleX3) {
+  # function to get the outputs of a certain module
+  # only applicable to data.frames
+  # e.g., get_module_subfolder_output('Fertilization_module', 'Manure_crop_distribution', 'cereals', 'rye_slurry', '2009')
+  
+  module_path <- select_module_output(module)
+  submodule_path <- list.files(module_path, pattern=submodule, full.names=TRUE)
+  
+  if (missing(submoduleX2)==TRUE && missing(submoduleX3)==TRUE) {
+    file <- list.files(path = submodule_path, pattern = file_pattern, full.names = TRUE)
+    if(grepl('.tif', file)==TRUE) {
+      file <- raster(file)
+    } else if (grepl('.grd', file)==TRUE) {
+      file <- stack(file)
+    } else {
+      file <- read.csv(file)
+    }
+
+  }
+  else if (missing(submoduleX2)==FALSE && missing(submoduleX3)==TRUE) {
+    submoduleX2_path <- list.files(submodule_path, pattern=as.character(submoduleX2), full.names=TRUE)
+      file <- list.files(path = submoduleX2_path, pattern = file_pattern, full.names = TRUE)
+    if(grepl('.tif', file)==TRUE) {
+      file <- raster(file)
+    } else if (grepl('.grd', file)==TRUE) {
+      file <- stack(file)
+    } else {
+      file <- read.csv(file)
+    }
+
+  }
+  else {
+    submoduleX2_path <- list.files(submodule_path, pattern=as.character(submoduleX2), full.names=TRUE)
+    submoduleX3_path <- list.files(submoduleX2_path, pattern=as.character(submoduleX3), full.names=TRUE)
+    file <- list.files(path = submoduleX3_path, pattern = file_pattern, full.names = TRUE)
+    if(grepl('.tif', file)==TRUE) {
+      file <- raster(file)
+    } else if (grepl('.grd', file)==TRUE) {
+      file <- stack(file)
+    } else {
+      file <- read.csv(file)
+    }
+
+  }
+  if (class(file)=='data.frame') {
+      colnames(file) <- gsub(pattern = 'X', replacement = '', x = colnames(file))
+  }
+  
+  return(file)
+  rm(list = c('module_path', 'submodule_path', 'submoduleX2_path', 'submoduleX3_path'))
+}
+
